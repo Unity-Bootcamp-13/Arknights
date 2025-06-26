@@ -1,43 +1,46 @@
-using System;
+ï»¿using System;
+using UnityEngine;
 
 [Serializable]
 public struct Position
 {
-    public int X { get; }
-    public int Y { get; }
+    [SerializeField] private int x;
+    [SerializeField] private int y;
 
-    // »ı¼ºÀÚ
+    public int X => x;
+    public int Y => y;
+
     public Position(int x, int y)
     {
-        X = x;
-        Y = y;
+        this.x = x;
+        this.y = y;
     }
 
-    // == ¿¬»êÀÚ ¿À¹ö·Îµå
+    // == ì—°ì‚°ì ì˜¤ë²„ë¡œë“œ
     public static bool operator ==(Position a, Position b)
     {
         return a.X == b.X && a.Y == b.Y;
     }
 
-    // != ¿¬»êÀÚ ¿À¹ö·Îµå
+    // != ì—°ì‚°ì ì˜¤ë²„ë¡œë“œ
     public static bool operator !=(Position a, Position b)
     {
         return !(a == b);
     }
 
-    // + ¿¬»êÀÚ ¿À¹ö·Îµå
+    // + ì—°ì‚°ì ì˜¤ë²„ë¡œë“œ
     public static Position operator +(Position a, Position b)
     {
         return new Position(a.X + b.X, a.Y + b.Y);
     }
 
-    // - ¿¬»êÀÚ ¿À¹ö·Îµå
+    // - ì—°ì‚°ì ì˜¤ë²„ë¡œë“œ
     public static Position operator -(Position a, Position b)
     {
         return new Position(a.X - b.X, a.Y - b.Y);
     }
 
-    // Equals, GetHashCode ±¸Çö (==, != ºñ±³½Ã ±ÇÀå)
+    // Equals, GetHashCode êµ¬í˜„ (==, != ë¹„êµì‹œ ê¶Œì¥)
     public override bool Equals(object obj)
     {
         if (obj is Position pos)

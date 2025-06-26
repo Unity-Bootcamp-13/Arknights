@@ -1,4 +1,4 @@
-using UnityEditor.ShaderGraph.Internal;
+ï»¿using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class Map : MonoBehaviour
@@ -10,24 +10,22 @@ public class Map : MonoBehaviour
         get => _map;  
     }
 
-    [Header("¸Ê Å©±â Á¶Àı")]
-    [SerializeField] private int _mapCoordX = 12;       //¸ÊÀÇ °¡·Î ±æÀÌ
-    [SerializeField] private int _mapCoordY = 6;        //¸ÊÀÇ ¼¼·Î ±æÀÌ
-    [SerializeField] private float _coordOffset = 2.0f; // ¿ùµå ÁÂÇ¥ ±âÁØ Å¸ÀÏ °£°İ
+    [Header("ë§µ í¬ê¸° ì¡°ì ˆ")]
+    [SerializeField] private int _mapCoordX = 12;       //ë§µì˜ ê°€ë¡œ ê¸¸ì´
+    [SerializeField] private int _mapCoordY = 6;        //ë§µì˜ ì„¸ë¡œ ê¸¸ì´
+    [SerializeField] private float _maptileLength = 2.0f; // ì›”ë“œ ì¢Œí‘œ ê¸°ì¤€ íƒ€ì¼ ê°„ê²©
 
-    [Header("Å¸ÀÏ ÇÁ¸®ÆÕ")]
+    [Header("íƒ€ì¼ í”„ë¦¬íŒ¹")]
     [SerializeField] private GameObject _groundPrefab;
     [SerializeField] private GameObject _hillPrefab;
     [SerializeField] private GameObject _restrictedPrefab;
     [SerializeField] private GameObject _enemyEntryPointPrefab;
     [SerializeField] private GameObject _defensePointPrefab;
 
-    [Header("Å¸ÀÏ »óÀÚ")]
-    [SerializeField] private GameObject TileContainer;
     private void Start()
     {
         _map = new Maptile[_mapCoordX, _mapCoordY];
-        //for¹® ³»ºÎ´Â Stage 1 ±¸ÇöºÎ (ÀÓ½Ã ¸Ê ¹èÄ¡). ÃßÈÄ ÇÔ¼ö Ãß°¡ÇÏ¿© SO ÆÄÀÏ·Î ÆíÁıÀ» ÆíÇÏ°Ô È®Àå¼ºÀ» °¡Áú ¿¹Á¤
+        //forë¬¸ ë‚´ë¶€ëŠ” Stage 1 êµ¬í˜„ë¶€ (ì„ì‹œ ë§µ ë°°ì¹˜). ì¶”í›„ í•¨ìˆ˜ ì¶”ê°€í•˜ì—¬ SO íŒŒì¼ë¡œ í¸ì§‘ì„ í¸í•˜ê²Œ í™•ì¥ì„±ì„ ê°€ì§ˆ ì˜ˆì •
         for (int i=0; i< _mapCoordX; ++i)
         {
             for (int j=0; j<_mapCoordY; ++j)
@@ -61,7 +59,7 @@ public class Map : MonoBehaviour
         }
     }
     /// <summary>
-    /// Å¸ÀÏÀ» ±ò°í, _mapÀ¸·Î Å¸ÀÏ¸ÊÀÇ ¼Ó¼ºÀ» ÃÊ±âÈ­ÇÏ´Â ¸Ş¼­µå
+    /// íƒ€ì¼ì„ ê¹”ê³ , _mapìœ¼ë¡œ íƒ€ì¼ë§µì˜ ì†ì„±ì„ ì´ˆê¸°í™”í•˜ëŠ” ë©”ì„œë“œ
     /// </summary>
     /// <param name="tilePrefab"></param>
     /// <param name="tileType"></param>
@@ -69,43 +67,44 @@ public class Map : MonoBehaviour
     public void PlaceMaptile(GameObject tilePrefab, TileType tileType, Position position)
     {
         
-        Vector3 tilePosition = new Vector3(position.X * _coordOffset, 0, position.Y * _coordOffset);  //½ÇÁ¦ °ÔÀÓ¿ÀºêÁ§Æ® ÁÂÇ¥ °è»ê
-        GameObject tileObj = Instantiate(tilePrefab, tilePosition, Quaternion.identity, this.transform); // »ı¼º!
-        tileObj.transform.localScale = new Vector3(_coordOffset, _coordOffset, _coordOffset);
-        //Maptile »ı¼º ¹× ÃÊ±âÈ­
+        Vector3 tilePosition = new Vector3(position.X * _maptileLength, 0, position.Y * _maptileLength);  //ì‹¤ì œ ê²Œì„ì˜¤ë¸Œì íŠ¸ ì¢Œí‘œ ê³„ì‚°
+        GameObject tileObj = Instantiate(tilePrefab, tilePosition, Quaternion.identity, this.transform); // ìƒì„±!
+        tileObj.transform.localScale = new Vector3(_maptileLength, _maptileLength, _maptileLength);
+        //Maptile ìƒì„± ë° ì´ˆê¸°í™”
         Maptile tile = new Maptile(tileType, position);
         _map[position.X, position.Y] = tile;
     }
     
     /// <summary>
-    /// Coord ÁÂÇ¥¸¦ Vector3 ÁÂÇ¥·Î º¯È¯ÇÏ´Â ¸Ş¼­µå
+    /// Coord ì¢Œí‘œë¥¼ Vector3 ì¢Œí‘œë¡œ ë³€í™˜í•˜ëŠ” ë©”ì„œë“œ
     /// </summary>
-    /// <param name="x">¸Ê ÁÂÇ¥ÀÇ X°ª</param>
-    /// <param name="y">¸Ê ÁÂÇ¥ÀÇ Y°ª</param>
+    /// <param name="x">ë§µ ì¢Œí‘œì˜ Xê°’</param>
+    /// <param name="y">ë§µ ì¢Œí‘œì˜ Yê°’</param>
     /// <returns></returns>
-    public Vector3 CoordToVector3(int x, int y)
+    public Vector3 CoordToVector3(Position position)
     {
         float height = 0f;
-        if (_map[x, y].TileType == TileType.Ground)
+        if (_map[position.X, position.Y].TileType == TileType.Ground)
         {
-            height = 0.03f * _coordOffset;
+            height = 0.03f * _maptileLength;
         }
-        else if (_map[x,y].TileType == TileType.Hill)
+        else if (_map[position.X,position.Y].TileType == TileType.Hill)
         {
-            height = 0.51f * _coordOffset;
+            height = 0.51f * _maptileLength;
         }
-        return new Vector3(_coordOffset * x, height, _coordOffset * y);
+        return new Vector3(_maptileLength * position.X, height, _maptileLength * position.Y);
     }
     /// <summary>
-    /// Vector3 ÁÂÇ¥¸¦ ¹Ş¾ÒÀ»¶§, Coord X, Y ÁÂÇ¥·Î º¯È¯ÇÏ´Â ¸Ş¼­µå
+    /// Vector3 ì¢Œí‘œë¥¼ ë°›ì•˜ì„ë•Œ, Coord X, Y ì¢Œí‘œë¡œ ë³€í™˜í•˜ëŠ” ë©”ì„œë“œ
     /// </summary>
-    /// <param name="worldPosition">½ÇÁ¦ World¿¡¼­ÀÇ Position</param>
+    /// <param name="worldPosition">ì‹¤ì œ Worldì—ì„œì˜ Position</param>
     /// <returns></returns>
-    public (int, int) Vector3ToCoord (Vector3 worldPosition)
+    public Position Vector3ToCoord (Vector3 worldPosition)
     {
-        float X = Mathf.Round(worldPosition.x / _coordOffset);
-        float Y = Mathf.Round(worldPosition.z / _coordOffset);
-        return ((int)X, (int)Y);
+        float X = Mathf.Round(worldPosition.x / _maptileLength);
+        float Y = Mathf.Round(worldPosition.z / _maptileLength);
+        Position pos = new Position((int)X, (int)Y);
+        return pos;
     }
 
     
