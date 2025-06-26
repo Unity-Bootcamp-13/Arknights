@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public enum PlayerUnitType
@@ -34,9 +34,9 @@ public class PlayerUnit : Unit
 
 
     /// <summary>
-    /// À¯´Ö µ¥ÀÌÅÍ ÃÊ±âÈ­ ÇÔ¼ö
+    /// ìœ ë‹› ë°ì´í„° ì´ˆê¸°í™” í•¨ìˆ˜
     /// </summary>
-    /// <param name="playerUnitData"> Spawner¿¡°Ô Àü´Ş¹ŞÀº À¯´Ö µ¥ÀÌÅÍ </param>
+    /// <param name="playerUnitData"> Spawnerì—ê²Œ ì „ë‹¬ë°›ì€ ìœ ë‹› ë°ì´í„° </param>
     public void Init(PlayerUnitData playerUnitData)
     {
         _playerUnitType = playerUnitData.PlayerUnitType;

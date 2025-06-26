@@ -3,13 +3,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 
-public class Maptile : MonoBehaviour
+public class Maptile
 {
     [SerializeField]
     private TileType _type = TileType.None;
-
-    private int _tilePositionX;
-    private int _tilePositionY;
+    private Position _tilePosition;
     private bool _isUnitPlaced = false;
 
     public TileType TileType
@@ -17,19 +15,21 @@ public class Maptile : MonoBehaviour
         get => _type;
     }
 
-    /// <summary>
-    /// Maptile의 위치를 초기화하기 위한 메서드
-    /// </summary>
-    /// <param name="positionX">X 좌표</param>
-    /// <param name="PositionY">Y 좌표</param>
-    public void InitPosition(int positionX, int PositionY)
+    public Maptile(TileType type, Position position)
     {
-        _tilePositionX = positionX;
-        _tilePositionY = PositionY;
+        _type = type;
+        _tilePosition = position;
         _isUnitPlaced = false;
     }
 
-    
+    /// <summary>
+    /// 현재 타일의 점유현황을 변경하기 위한 메서드
+    /// </summary>
+    /// <param name="isOccupyChange"></param>
+    public void OccupyChange(bool isOccupyChange)
+    {
+        _isUnitPlaced = isOccupyChange;
+    }
 
 
 }
