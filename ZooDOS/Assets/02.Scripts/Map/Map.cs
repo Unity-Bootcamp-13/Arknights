@@ -1,3 +1,4 @@
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class Map : MonoBehaviour
@@ -12,7 +13,7 @@ public class Map : MonoBehaviour
     [Header("맵 크기 조절")]
     [SerializeField] private int _mapCoordX = 12;       //맵의 가로 길이
     [SerializeField] private int _mapCoordY = 6;        //맵의 세로 길이
-    [SerializeField] private float _coordOffset = 1.0f; // 월드 좌표 기준 타일 간격
+    [SerializeField] private float _coordOffset = 2.0f; // 월드 좌표 기준 타일 간격
 
     [Header("타일 프리팹")]
     [SerializeField] private GameObject _groundPrefab;
@@ -21,53 +22,61 @@ public class Map : MonoBehaviour
     [SerializeField] private GameObject _enemyEntryPointPrefab;
     [SerializeField] private GameObject _defensePointPrefab;
 
+    [Header("타일 상자")]
+    [SerializeField] private GameObject TileContainer;
     private void Start()
     {
         _map = new Maptile[_mapCoordX, _mapCoordY];
-        //Stage 1
+        //for문 내부는 Stage 1 구현부 (임시 맵 배치). 추후 함수 추가하여 SO 파일로 편집을 편하게 확장성을 가질 예정
         for (int i=0; i< _mapCoordX; ++i)
         {
             for (int j=0; j<_mapCoordY; ++j)
             {
+                Position pos = new Position(i, j);
                 if (j == 0 || j == 5)
                 {
-                    PlaceMaptile(_restrictedPrefab, i, j);
+                    PlaceMaptile(_restrictedPrefab,TileType.Restricted, pos);
                 }
                 else if (j == 1 || j == 4)
                 {
-                    PlaceMaptile(_hillPrefab, i, j);
+                    PlaceMaptile(_hillPrefab, TileType.Hill, pos);
                 }
                 else
                 {
                     if (i==0 && j == 3)
                     {
-                        PlaceMaptile(_enemyEntryPointPrefab, i, j);
+                        PlaceMaptile(_enemyEntryPointPrefab, TileType.EnemyEntryPoint, pos);
                     }
                     else if (i==11 && (j==2 || j==3))
                     {
-                        PlaceMaptile(_defensePointPrefab, i, j);
+                        PlaceMaptile(_defensePointPrefab, TileType.DefensePoint, pos);
                     }
                     else
                     {
-                        PlaceMaptile(_groundPrefab, i, j);
+                        PlaceMaptile(_groundPrefab, TileType.Ground, pos);
                     }
                 
                 }
             }
         }
     }
-    public void PlaceMaptile(GameObject tilePrefab, int positionX, int positionY)
+    /// <summary>
+    /// 타일을 깔고, _map으로 타일맵의 속성을 초기화하는 메서드
+    /// </summary>
+    /// <param name="tilePrefab"></param>
+    /// <param name="tileType"></param>
+    /// <param name="position"></param>
+    public void PlaceMaptile(GameObject tilePrefab, TileType tileType, Position position)
     {
-        Vector3 tilePosition = new Vector3(positionX * _coordOffset, 0, positionY * _coordOffset);
-
+        
+        Vector3 tilePosition = new Vector3(position.X * _coordOffset, 0, position.Y * _coordOffset);  //실제 게임오브젝트 좌표 계산
         GameObject tileObj = Instantiate(tilePrefab, tilePosition, Quaternion.identity, this.transform); // 생성!
         tileObj.transform.localScale = new Vector3(_coordOffset, _coordOffset, _coordOffset);
-        Maptile tile = tileObj.GetComponent<Maptile>(); // 스크립트 가져오기
-        tile.InitPosition(positionX, positionY);         // 초기화
-        _map[positionX, positionY] = tile;
+        //Maptile 생성 및 초기화
+        Maptile tile = new Maptile(tileType, position);
+        _map[position.X, position.Y] = tile;
     }
-
-
+    
     /// <summary>
     /// Coord 좌표를 Vector3 좌표로 변환하는 메서드
     /// </summary>
@@ -86,7 +95,6 @@ public class Map : MonoBehaviour
             height = 0.51f * _coordOffset;
         }
         return new Vector3(_coordOffset * x, height, _coordOffset * y);
-
     }
     /// <summary>
     /// Vector3 좌표를 받았을때, Coord X, Y 좌표로 변환하는 메서드
