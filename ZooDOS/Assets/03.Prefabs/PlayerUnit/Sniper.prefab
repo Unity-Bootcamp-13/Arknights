@@ -144,7 +144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 77b201613e9c1dd47a8c01ff3332b1ea, type: 3}
       propertyPath: m_Name
-      value: Sniper2
+      value: Sniper
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -187,7 +187,7 @@ Animator:
   m_GameObject: {fileID: 2104316214673069270}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a120d09ef4a110e46bb353b9daa025a7, type: 2}
+  m_Controller: {fileID: 9100000, guid: b507254dad54d7a4aab79cb98552d3d1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
