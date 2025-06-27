@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+ï»¿using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerUnitSpawner : MonoBehaviour
@@ -7,20 +7,41 @@ public class PlayerUnitSpawner : MonoBehaviour
 
 
     /// <summary>
-    /// UI¿¡¼­ ÀûÀıÇÑ ¹èÄ¡ ´Ü°è¸¦ °ÅÄ¡°í È£Ãâ
+    /// UIì—ì„œ ì ì ˆí•œ ë°°ì¹˜ ë‹¨ê³„ë¥¼ ê±°ì¹˜ê³  í˜¸ì¶œ
     /// </summary>
-    /// <param name="x"> ¹èÄ¡ ÁÂÇ¥ x ÀÎµ¦½º </param>
-    /// <param name="y"> ¹èÄ¡ ÁÂÇ¥ y ÀÎµ¦½º </param>
-    /// <param name="playerUnitData"> ½ºÆùÇÒ À¯´Ö µ¥ÀÌÅÍ </param>
-    public void PlayerUnitSpawn(int x, int y , PlayerUnitData playerUnitData)
+    /// <param name="x"> ë°°ì¹˜ ì¢Œí‘œ x ì¸ë±ìŠ¤ </param>
+    /// <param name="y"> ë°°ì¹˜ ì¢Œí‘œ y ì¸ë±ìŠ¤ </param>
+    /// <param name="playerUnitData"> ìŠ¤í°í•  ìœ ë‹› ë°ì´í„° </param>
+    public void PlayerUnitSpawn(Position position, Vector3 direction , PlayerUnitData playerUnitData)
     {
-        Vector3 worldPos = _map.CoordToVector3(x, y);
+        Vector3 worldPos = _map.CoordToVector3(position);
         PlayerUnit playerUnit = Instantiate(playerUnitData.UnitPrefab);
+        ApplyDirectionVector(direction, playerUnit);
         playerUnit.Init(playerUnitData);
         playerUnit.transform.position = worldPos; 
     }
 
-   
-
-    
+    public void ApplyDirectionVector(Vector3 direction, PlayerUnit playerUnit)
+    {
+        if (direction == Vector3.forward)
+        {
+            playerUnit.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // íšŒì „ ì—†ìŒ
+        }
+        else if (direction == Vector3.left)
+        {
+            playerUnit.transform.rotation = Quaternion.Euler(0f, -90f, 0f); // ì™¼ìª½ 90ë„
+        }
+        else if (direction == Vector3.right)
+        {
+            playerUnit.transform.rotation = Quaternion.Euler(0f, 90f, 0f); // ì˜¤ë¥¸ìª½ 90ë„
+        }
+        else if (direction == Vector3.back)
+        {
+            playerUnit.transform.rotation = Quaternion.Euler(0f, 180f, 0f); // ë’¤ìª½ 180ë„
+        }
+        else
+        {
+            return;
+        }
+    }
 }

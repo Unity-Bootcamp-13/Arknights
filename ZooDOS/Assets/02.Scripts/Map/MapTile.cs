@@ -1,4 +1,4 @@
-using UnityEngine;
+癤퓎sing UnityEngine;
 using System;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
@@ -15,6 +15,11 @@ public class Maptile
         get => _type;
     }
 
+    public bool PlayerUnitPlace
+    {
+        get => _isUnitPlaced;
+        set => _isUnitPlaced = value;
+    }
     public Maptile(TileType type, Position position)
     {
         _type = type;
@@ -22,14 +27,7 @@ public class Maptile
         _isUnitPlaced = false;
     }
 
-    /// <summary>
-    /// 현재 타일의 점유현황을 변경하기 위한 메서드
-    /// </summary>
-    /// <param name="isOccupyChange"></param>
-    public void OccupyChange(bool isOccupyChange)
-    {
-        _isUnitPlaced = isOccupyChange;
-    }
+
 
 
 }
