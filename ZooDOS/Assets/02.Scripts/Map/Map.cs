@@ -106,5 +106,21 @@ public class Map : MonoBehaviour
         return pos;
     }
 
-    
+
+
+    public bool CanPlaceUnitAtGround(Position pos)
+    {
+        if (pos.X < 0 || pos.Y < 0 || pos.X >= _map.GetLength(0) || pos.Y >= _map.GetLength(1))
+            return false;
+
+        return _map[pos.X, pos.Y].TileType == TileType.Ground;
+    }
+
+    public bool CanPlaceUnitAtHill(Position pos)
+    {
+        if (pos.X < 0 || pos.Y < 0 || pos.X >= _map.GetLength(0) || pos.Y >= _map.GetLength(1))
+            return false;
+
+        return _map[pos.X, pos.Y].TileType == TileType.Ground;
+    }
 }
