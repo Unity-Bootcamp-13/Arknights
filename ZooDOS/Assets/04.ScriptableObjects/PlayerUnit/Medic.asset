@@ -12,6 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66d85d90edc4a9419dce7065791624d, type: 3}
   m_Name: Medic
   m_EditorClassIdentifier: 
+  Hp: 0
+  Def: 0
+  Atk: 0
+  AtkSpeed: 0
+  ResistCapacity: 0
+  PlaceCost: 0
+  ReplaceTime: 0
   PlayerUnitType: 3
   TileType: 3
+  UnitPortrait: {fileID: 0}
   UnitPrefab: {fileID: -6196702697980001392, guid: 75f2d7cf4db82414aa61e367c0c8868f, type: 3}
+  BackwardRange: 1
+  ForwardRange: 2
+  SidewardRange: 1
