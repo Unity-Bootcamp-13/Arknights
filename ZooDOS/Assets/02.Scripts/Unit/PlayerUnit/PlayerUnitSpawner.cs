@@ -1,26 +1,23 @@
-using Unity.VisualScripting;
+ï»¿using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerUnitSpawner : MonoBehaviour
 {
     [SerializeField] Map _map;
+    [SerializeField] EnemyUnitSpawner _enemyUnitSpawner;
 
 
     /// <summary>
-    /// UI¿¡¼­ ÀûÀıÇÑ ¹èÄ¡ ´Ü°è¸¦ °ÅÄ¡°í È£Ãâ
+    /// UIì—ì„œ ì ì ˆí•œ ë°°ì¹˜ ë‹¨ê³„ë¥¼ ê±°ì¹˜ê³  í˜¸ì¶œ
     /// </summary>
-    /// <param name="x"> ¹èÄ¡ ÁÂÇ¥ x ÀÎµ¦½º </param>
-    /// <param name="y"> ¹èÄ¡ ÁÂÇ¥ y ÀÎµ¦½º </param>
-    /// <param name="playerUnitData"> ½ºÆùÇÒ À¯´Ö µ¥ÀÌÅÍ </param>
+    /// <param name="x"> ë°°ì¹˜ ì¢Œí‘œ x ì¸ë±ìŠ¤ </param>
+    /// <param name="y"> ë°°ì¹˜ ì¢Œí‘œ y ì¸ë±ìŠ¤ </param>
+    /// <param name="playerUnitData"> ìŠ¤í°í•  ìœ ë‹› ë°ì´í„° </param>
     public void PlayerUnitSpawn(int x, int y , PlayerUnitData playerUnitData)
     {
         Vector3 worldPos = _map.CoordToVector3(x, y);
         PlayerUnit playerUnit = Instantiate(playerUnitData.UnitPrefab);
-        playerUnit.Init(playerUnitData);
+        playerUnit.Init(playerUnitData, _enemyUnitSpawner);
         playerUnit.transform.position = worldPos; 
     }
-
-   
-
-    
 }

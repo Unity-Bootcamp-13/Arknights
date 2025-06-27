@@ -12,6 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66d85d90edc4a9419dce7065791624d, type: 3}
   m_Name: Defender
   m_EditorClassIdentifier: 
+  Hp: 0
+  Def: 0
+  Atk: 0
+  AtkSpeed: 0
+  ResistCapacity: 0
+  PlaceCost: 0
+  ReplaceTime: 0
   PlayerUnitType: 1
   TileType: 2
+  UnitPortrait: {fileID: 0}
   UnitPrefab: {fileID: 5846009226573138899, guid: ac7e5b7b5e0c86747ae77686553362a9, type: 3}
+  _backwardRange: 1
+  _forwardRange: 3
+  _sidewardRange: 1
