@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerUnit : Unit
 {
-    protected IReadOnlyList<EnemyUnit> _enemyUnits;
 
     protected Hp _hp;
     protected float _def;
@@ -28,9 +27,8 @@ public class PlayerUnit : Unit
     /// 유닛 데이터 초기화 함수
     /// </summary>
     /// <param name="playerUnitData"> Spawner에게 전달받은 유닛 데이터 </param>
-    public void Init(PlayerUnitData playerUnitData, EnemyUnitSpawner enemyUnitSpawner)
+    public void Init(PlayerUnitData playerUnitData)
     {
-        _enemyUnits = enemyUnitSpawner.EnemyUnitList;
         _playerUnitType = playerUnitData.PlayerUnitType;
         _tileType = playerUnitData.TileType;
         _hp = new Hp(playerUnitData.Hp);
@@ -42,9 +40,9 @@ public class PlayerUnit : Unit
         _replaceTime = playerUnitData.ReplaceTime;
 
         _playerUnitAttackRange = new PlayerUnitAttackRange
-            (playerUnitData.BackwardRange * Constants.TILE_LENGTH,
-             playerUnitData.ForwardRange * Constants.TILE_LENGTH,
-             playerUnitData.SidewardRange * Constants.TILE_LENGTH
+            (playerUnitData.BackwardRange * Constants.MAPTILE_LENGTH,
+             playerUnitData.ForwardRange * Constants.MAPTILE_LENGTH,
+             playerUnitData.SidewardRange * Constants.MAPTILE_LENGTH
             );
 
     }
