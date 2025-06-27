@@ -5,10 +5,10 @@ using UnityEngine.UI;
 public class WaitingUnitSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private Image _icon;
-    [SerializeField] private Sprite _sprite; //추후 데이터에서 받아오기 
+    [SerializeField] private Sprite _sprite;                //추후 데이터에서 받아오기 
     [SerializeField] private GameObject _previewUnitPrefab; // 임시로 드래그할 프리팹
-    [SerializeField] private GameObject _unitPrefab; // 실제 유닛
-    private GameObject _previewInstance; // 현재 프리뷰 오브젝트
+    [SerializeField] private GameObject _unitPrefab;        // 실제 유닛
+    private GameObject _previewInstance;                    // 현재 프리뷰 오브젝트
     private bool _isHolding = false;
     private float _holdTimer = 0f;
     private float _requiredHoldTime = 0.1f; // 0.5초 이상 누르면 발동

@@ -13,7 +13,6 @@ public class Map : MonoBehaviour
     [Header("맵 크기 조절")]
     [SerializeField] private int _mapCoordX = 12;       //맵의 가로 길이
     [SerializeField] private int _mapCoordY = 6;        //맵의 세로 길이
-    [SerializeField] private float _maptileLength = 2.0f; // 월드 좌표 기준 타일 간격
 
     [Header("타일 프리팹")]
     [SerializeField] private GameObject _groundPrefab;
@@ -67,9 +66,9 @@ public class Map : MonoBehaviour
     public void PlaceMaptile(GameObject tilePrefab, TileType tileType, Position position)
     {
         
-        Vector3 tilePosition = new Vector3(position.X * _maptileLength, 0, position.Y * _maptileLength);  //실제 게임오브젝트 좌표 계산
+        Vector3 tilePosition = new Vector3(position.X * Constants.MAPTILE_LENGTH, 0, position.Y * Constants.MAPTILE_LENGTH);  //실제 게임오브젝트 좌표 계산
         GameObject tileObj = Instantiate(tilePrefab, tilePosition, Quaternion.identity, this.transform); // 생성!
-        tileObj.transform.localScale = new Vector3(_maptileLength, _maptileLength, _maptileLength);
+        tileObj.transform.localScale = new Vector3(Constants.MAPTILE_LENGTH, Constants.MAPTILE_LENGTH, Constants.MAPTILE_LENGTH);
         //Maptile 생성 및 초기화
         Maptile tile = new Maptile(tileType, position);
         _map[position.X, position.Y] = tile;
@@ -86,13 +85,13 @@ public class Map : MonoBehaviour
         float height = 0f;
         if (_map[position.X, position.Y].TileType == TileType.Ground)
         {
-            height = 0.03f * _maptileLength;
+            height = 0.03f * Constants.MAPTILE_LENGTH;
         }
         else if (_map[position.X,position.Y].TileType == TileType.Hill)
         {
-            height = 0.51f * _maptileLength;
+            height = 0.51f * Constants.MAPTILE_LENGTH;
         }
-        return new Vector3(_maptileLength * position.X, height, _maptileLength * position.Y);
+        return new Vector3(Constants.MAPTILE_LENGTH * position.X, height, Constants.MAPTILE_LENGTH * position.Y);
     }
     /// <summary>
     /// Vector3 좌표를 받았을때, Coord X, Y 좌표로 변환하는 메서드
@@ -101,8 +100,8 @@ public class Map : MonoBehaviour
     /// <returns></returns>
     public Position Vector3ToCoord (Vector3 worldPosition)
     {
-        float X = Mathf.Round(worldPosition.x / _maptileLength);
-        float Y = Mathf.Round(worldPosition.z / _maptileLength);
+        float X = Mathf.Round(worldPosition.x / Constants.MAPTILE_LENGTH);
+        float Y = Mathf.Round(worldPosition.z / Constants.MAPTILE_LENGTH);
         Position pos = new Position((int)X, (int)Y);
         return pos;
     }
