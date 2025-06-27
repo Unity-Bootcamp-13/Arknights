@@ -10,7 +10,7 @@ public class Maptile
     private TileType _type = TileType.None;
     private Position _tilePosition;
     private PlayerUnit _playerUnit;
-    private List<EnemyUnit> _enemyUnits;
+    //private List<EnemyUnit> _enemyUnits;
 
     public TileType TileType
     {
@@ -29,11 +29,12 @@ public class Maptile
         }
     }
 
-    public List<EnemyUnit> EnemyUnits
+    /*public List<EnemyUnit> EnemyUnits
     {
         get => _enemyUnits;
         set => _enemyUnits = value;
-    }
+    }*/
+
     public Maptile(TileType type, Position position)
     {
         _type = type;

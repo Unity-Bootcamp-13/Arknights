@@ -125,6 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 7041854463452383996}
-  _sprite: {fileID: 21300000, guid: 739c3c39f94a29145beeb14ed72c150a, type: 3}
-  _previewUnitPrefab: {fileID: 6592207061964206478, guid: 8e1bed0030a115743b0648814c93ed79, type: 3}
-  _unitPrefab: {fileID: 2795200752597399646, guid: 75f2d7cf4db82414aa61e367c0c8868f, type: 3}
+  _playerUnitData: {fileID: 11400000, guid: 806c620d2bb203f4a94f7f9b86d2897c, type: 2}

@@ -10,7 +10,10 @@ public class WaitingUnitUI : MonoBehaviour
     [SerializeField] private GameObject slotPrefab2;
     [SerializeField] private GameObject slotPrefab3;
     
-    private List<WaitingUnitSlotUI> slotList = new List<WaitingUnitSlotUI>();
+    private List<WaitingUnitSlotUI> slotList = new List<WaitingUnitSlotUI>(); //
+
+    [SerializeField] private Map _map;
+    [SerializeField] private PlayerUnitSpawner _playerUnitSpawner;
 
     private const float SlotSize = 120f;
     private const float SlotSpacing = 5f;
@@ -20,13 +23,21 @@ public class WaitingUnitUI : MonoBehaviour
         AddUnitSlot(slotPrefab);
         AddUnitSlot(slotPrefab2);
         AddUnitSlot(slotPrefab3);
-        
     }
+
     public void AddUnitSlot(GameObject slotPrefab)
     {
         GameObject slotObj = Instantiate(slotPrefab, slotContainer);
         WaitingUnitSlotUI slot = slotObj.GetComponent<WaitingUnitSlotUI>();
-        slot.SetUnitUI();  //(unitData);
+        
+        PlayerUnitData data = slot?.GetPlayerUnitData();
+        if (data == null)
+        {
+            Debug.LogError("PlayerUnitData not set on slot prefab.");
+            return;
+        }
+
+        slot.Initialize(data, _playerUnitSpawner, _map);
         RectTransform rt = slotObj.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(SlotSize, SlotSize);
         float xPos = -(SlotSize + SlotSpacing) * slotList.Count;
@@ -46,13 +57,5 @@ public class WaitingUnitUI : MonoBehaviour
     {
         int count = slotList.Count;
         return count * SlotSize + Mathf.Max(0, count - 1) * SlotSpacing;
-    }
-
-    public void ClearAllSlots()
-    {
-        foreach (var slot in slotList)
-            Destroy(slot.gameObject);
-        slotList.Clear();
-        UpdateBackgroundSize();
     }
 }
