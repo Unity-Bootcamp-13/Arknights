@@ -1,16 +1,8 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerDefenderUnit : PlayerUnit, IAttackable
+public class PlayerSniperUnit : PlayerUnit, IAttackable
 {
-    List<EnemyUnit> _targets;
-
-    public override void OnPlace(List<Maptile> attackRange, Maptile placedTile)
-    {
-        base.OnPlace(attackRange, placedTile);
-        _targets = new List<EnemyUnit>(_resistCapacity);
-    }
-
+    EnemyUnit _target;
 
     protected void Update()
     {
@@ -21,25 +13,24 @@ public class PlayerDefenderUnit : PlayerUnit, IAttackable
 
         _leftAttackTime = 0;
 
-        _targets.RemoveAll(t => t == null || t.IsDead);
-
-        if (_targets.Count<_resistCapacity)
+        if (_target == null )
         {
-            EnemyUnit target = FindTarget() as EnemyUnit;
-            if (target != null)
-            {
-                _targets.Add(target);
-            }
-            Debug.Log("Defender : 적 탐지 중");
+            Debug.Log("Sniper : 적 탐색 중");
+            _target = FindTarget() as EnemyUnit;
         }
-        if (_targets.Count>0)
+
+        if(_target != null)
         {
-            foreach(EnemyUnit target in _targets)
+            if (IsInRange(_target))
             {
-                if(target.IsDead== false) 
-                    Attack(target);
+                if (_target.IsDead == false)
+                    Attack(_target);
+                Debug.Log("Sniper : 적 공격 중");
             }
-            Debug.Log("Defender : 적 저지 중");
+            else
+            {
+                _target = FindTarget() as EnemyUnit;
+            }
         }
     }
 
@@ -53,7 +44,7 @@ public class PlayerDefenderUnit : PlayerUnit, IAttackable
     {
         Unit ClosestUnit = null;
         float ClosestDistance = 9999;
-        foreach (Maptile maptile in _attackRange)
+        foreach(Maptile maptile in _attackRange)
         {
             if (maptile.EnemyUnits.Count <= 0)
                 continue;
@@ -61,13 +52,14 @@ public class PlayerDefenderUnit : PlayerUnit, IAttackable
             foreach (EnemyUnit enemyUnit in maptile.EnemyUnits)
             {
                 float distance = (enemyUnit.transform.position - transform.position).sqrMagnitude;
-                if (distance < ClosestDistance && !_targets.Contains(enemyUnit))
+                if (distance < ClosestDistance)
                 {
                     ClosestUnit = enemyUnit;
                     ClosestDistance = distance;
                 }
             }
         }
+
         return ClosestUnit;
     }
 
