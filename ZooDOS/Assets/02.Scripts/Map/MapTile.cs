@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
-using System;
 using System.Collections.Generic;
-using UnityEngine.UIElements;
-using TMPro.EditorUtilities;
 
 public class Maptile
 {
