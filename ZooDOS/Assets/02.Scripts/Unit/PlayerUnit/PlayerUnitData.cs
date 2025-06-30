@@ -15,8 +15,8 @@ public class PlayerUnitData : ScriptableObject
     [SerializeField] public Sprite UnitPortrait;
     [SerializeField] public PlayerUnit UnitPrefab;
 
-
     [SerializeField] public int BackwardRange;
     [SerializeField] public int ForwardRange;
     [SerializeField] public int SidewardRange;
+
 }

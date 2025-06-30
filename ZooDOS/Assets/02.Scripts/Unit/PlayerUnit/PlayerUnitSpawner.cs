@@ -1,9 +1,24 @@
-﻿using Unity.VisualScripting;
+﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerUnitSpawner : MonoBehaviour
 {
     [SerializeField] Map _map;
+    [SerializeField] PlayerUnitData[] _playerUnitDatas;
+    Dictionary<PlayerUnitType, PlayerUnit> _units;
+
+    private void Awake()
+    {
+        _units = new Dictionary<PlayerUnitType, PlayerUnit>(_playerUnitDatas.Length);
+        for(int i = 0; i <_playerUnitDatas.Length; i++)
+        {
+            PlayerUnit playerUnit = Instantiate(_playerUnitDatas[i].UnitPrefab);
+            playerUnit.Init(_playerUnitDatas[i]);
+            _units.Add(_playerUnitDatas[i].PlayerUnitType, playerUnit);
+        }
+    }
 
 
     /// <summary>
@@ -15,13 +30,15 @@ public class PlayerUnitSpawner : MonoBehaviour
     public void PlayerUnitSpawn(Position position, Vector3 direction , PlayerUnitData playerUnitData)
     {
         Vector3 worldPos = _map.CoordToVector3(position);
-        PlayerUnit playerUnit = Instantiate(playerUnitData.UnitPrefab);
-        ApplyDirectionVector(direction, playerUnit);
-        playerUnit.Init(playerUnitData);
-        playerUnit.transform.position = worldPos; 
+        PlayerUnit playerUnit = _units[playerUnitData.PlayerUnitType];
+        playerUnit.gameObject.SetActive(true);
+        RotateUnitByDirection(playerUnit, direction);
+        List<Maptile> Range = CalcRange(position, direction, playerUnitData);
+        playerUnit.transform.position = worldPos;
+        playerUnit.OnPlace(Range, _map.MapTiles[position.X,position.Y]);
     }
 
-    public void ApplyDirectionVector(Vector3 direction, PlayerUnit playerUnit)
+    public void RotateUnitByDirection(PlayerUnit playerUnit, Vector3 direction)
     {
         if (direction == Vector3.forward)
         {
@@ -44,4 +61,64 @@ public class PlayerUnitSpawner : MonoBehaviour
             return;
         }
     }
+
+    public List<Maptile> CalcRange(Position center, Vector3 direction, PlayerUnitData playerUnitData)
+    {
+        List<Position> localRange = new List<Position>();
+
+        for (int y = - playerUnitData.BackwardRange; y<=playerUnitData.ForwardRange; y++)
+        {
+            for (int x =-playerUnitData.SidewardRange; x<= playerUnitData.SidewardRange; x++)
+            {
+                localRange.Add(new Position(x, y));
+            }
+        }
+
+        List<Maptile> result = new List<Maptile>();
+
+        foreach (var offset in localRange)
+        {
+            Position rotated = RotateOffset(offset, direction);
+            Position target = center + rotated;
+
+            // 맵 범위 체크
+            if (IsInsideMap(target))
+            {
+                result.Add(_map.MapTiles[target.X, target.Y]);
+            }
+        }
+
+        return result;
+    }
+
+
+    private Position RotateOffset(Position offset, Vector3 direction)
+    {
+        // forward 기준 (0도)
+        if (direction == Vector3.forward)
+            return offset;
+
+        // left 기준 (좌측 90도 회전): (x, y) → (-y, x)
+        if (direction == Vector3.left)
+            return new Position(-offset.Y, offset.X);
+
+        // right 기준 (우측 90도 회전): (x, y) → (y, -x)
+        if (direction == Vector3.right)
+            return new Position(offset.Y, -offset.X);
+
+        // back 기준 (180도 회전): (x, y) → (-x, -y)
+        if (direction == Vector3.back)
+            return new Position(-offset.X, -offset.Y);
+
+        // 예외 처리
+        return offset;
+    }
+
+
+    private bool IsInsideMap(Position pos)
+    {
+        return pos.X >= 0 && pos.X < _map.MapTiles.GetLength(0) &&
+               pos.Y >= 0 && pos.Y < _map.MapTiles.GetLength(1);
+    }
+
 }
