@@ -22,6 +22,6 @@ public class WaitingUnitSlotUI : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        _parentUI.OnUnitSlotSelected(_playerUnitData);
+        _parentUI.OnSlotClicked(_playerUnitData);
     }
 }

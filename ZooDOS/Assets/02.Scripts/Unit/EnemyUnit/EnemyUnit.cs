@@ -1,6 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class EnemyUnit : MonoBehaviour
+public class EnemyUnit : Unit
 {
     //적스포너
     public EnemyUnitSpawner _spawner;
