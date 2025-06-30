@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class PlayerUnitSpawner : MonoBehaviour
 {
     [SerializeField] Map _map;
-    [SerializeField] PlayerUnitData[] _playerUnitDatas; // Test
+    [SerializeField] PlayerUnitData[] _playerUnitDatas;
     Dictionary<PlayerUnitType, PlayerUnit> _units;
 
     private void Awake()
@@ -17,25 +17,6 @@ public class PlayerUnitSpawner : MonoBehaviour
             PlayerUnit playerUnit = Instantiate(_playerUnitDatas[i].UnitPrefab);
             playerUnit.Init(_playerUnitDatas[i]);
             _units.Add(_playerUnitDatas[i].PlayerUnitType, playerUnit);
-        }
-    }
-
-    private void Update()
-    {
-       
-
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            PlayerUnitSpawn(new Position(Random.Range(0, 12), Random.Range(2, 4)), Vector3.forward, _playerUnitDatas[0]);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            PlayerUnitSpawn(new Position(Random.Range(0, 12), Random.Range(2, 4)), Vector3.forward, _playerUnitDatas[1]);
-
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            PlayerUnitSpawn(new Position(Random.Range(0, 12), Random.Range(2, 4)), Vector3.back, _playerUnitDatas[2]);
         }
     }
 
