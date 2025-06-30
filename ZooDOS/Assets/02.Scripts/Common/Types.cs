@@ -1,5 +1,7 @@
 ﻿// enum 모음
 
+using System.Numerics;
+
 public enum PlayerUnitType
 {
     Nothing,
