@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Defender
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8048aabc0c819c24cb51fb686623e9b9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -61,7 +65,7 @@ PrefabInstance:
       addedObject: {fileID: 1722632491730491394}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8048aabc0c819c24cb51fb686623e9b9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5846009226573138899}
+      addedObject: {fileID: 7527928422904632095}
   m_SourcePrefab: {fileID: 100100000, guid: 8048aabc0c819c24cb51fb686623e9b9, type: 3}
 --- !u!1 &4525063598544268936 stripped
 GameObject:
@@ -90,7 +94,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5846009226573138899
+--- !u!114 &7527928422904632095
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,6 +103,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4525063598544268936}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 975473027c4ecfc41a5c86227bed9a41, type: 3}
+  m_Script: {fileID: 11500000, guid: 8419654a76d2a2c40bb228dcfe7a7798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 1722632491730491394}

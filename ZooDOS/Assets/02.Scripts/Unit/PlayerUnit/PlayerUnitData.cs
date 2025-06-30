@@ -19,4 +19,5 @@ public class PlayerUnitData : ScriptableObject
     [SerializeField] public int BackwardRange;
     [SerializeField] public int ForwardRange;
     [SerializeField] public int SidewardRange;
+
 }
