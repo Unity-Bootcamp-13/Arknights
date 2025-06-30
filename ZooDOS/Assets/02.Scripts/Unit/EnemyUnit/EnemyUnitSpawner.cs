@@ -4,6 +4,11 @@ using UnityEngine;
 public class EnemyUnitSpawner : MonoBehaviour
 {
     [SerializeField] private Map map;
+
+    public Map Map
+    {
+        get => map;
+    }
     [SerializeField] private WaveData waveData;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,10 +42,8 @@ public class EnemyUnitSpawner : MonoBehaviour
     public void SpawnEnemy(EnemySpawnData enemyData)
     {
         var enemy = Instantiate(enemyData.enemyPrefab).GetComponent<EnemyUnit>();
-        enemy.Initialize(this);
+        enemy.Initialize(map, enemyData.path);
         
-        //enemyList.Add(enemy);
-
     }
     
     /// <summary>
