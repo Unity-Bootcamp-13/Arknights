@@ -19,13 +19,20 @@ public class EnemyUnit : MonoBehaviour
     {
         
     }
-    //초기값세팅
+    /// <summary>
+    /// 초기값세팅
+    /// </summary>
+    /// <param name="spawner">적 스포너 참조</param>
+    
     public void Initialize(EnemyUnitSpawner spawner)
     {
         _spawner = spawner;
     }
     
-    //이동시 위치 업데이트
+    /// <summary>
+    /// 이동시 위치 업데이트
+    /// </summary>
+    /// <param name="vec2">변경할 위치좌표</param>
     public void UpdateTile(Vector2Int vec2)
     {
         currentTile.enemiesOnTile.Remove(this);
@@ -43,8 +50,10 @@ public class EnemyUnit : MonoBehaviour
     
     
     
+    /// <summary>
+    /// 죽으면 EnemyList에서 Remove 요청
+    /// </summary>
     
-    //죽으면 EnemyList에서 Remove 요청
     [ContextMenu("OnDead")]
     public void OnDead()
     {

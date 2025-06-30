@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class EnemyTile
@@ -8,28 +9,25 @@ public class EnemyUnitSpawner : MonoBehaviour
 {
     public EnemyTile[,] enemyTileMap;
     
-    //public IReadOnlyList<EnemyUnit> enemys => enemyList.AsReadOnly();
-    
-    [SerializeField] private EnemySpawnData enemy;
-
-    private float i=0;
+    [SerializeField] private WaveData waveData;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        int width = 10;
-        int height = 10;
-        enemyTileMap = new EnemyTile[10, 10];
+        // 적유닛배열 초기화
+        int _mapCoordX = 12;
+        int _mapCoordY = 10;
+        enemyTileMap = new EnemyTile[_mapCoordX, _mapCoordY];
 
-        for (int x = 0; x < 10; x++)
+        for (int x = 0; x < _mapCoordX; x++)
         {
-            for (int y = 0; y < 10; y++)
+            for (int y = 0; y < _mapCoordY; y++)
             {
                 enemyTileMap[x, y] = new EnemyTile();
             }
         }
-        
-        SpawnEnemy(enemy);
+
+        StartCoroutine(CallWave());
     }
 
     // Update is called once per frame
@@ -38,22 +36,29 @@ public class EnemyUnitSpawner : MonoBehaviour
         
     }
     
-    
-    
-    //웨이브 
-    //정해놓은 스폰시간마다 적스폰 
-    public void CallWave()
+    /// <summary>
+    /// 웨이브호출
+    /// </summary>
+    /// <returns></returns>
+    // 
+    IEnumerator  CallWave()
     {
-        
-        
-        
+
+        foreach (var enemy in waveData.WaveList)
+        {
+            //정해놓은 스폰시간마다 적스폰, spawnTime 간격 대기 
+            yield return new WaitForSeconds(enemy.spawnTime); 
+            SpawnEnemy(enemy);
+        }
         
     }
     
     
-    
-    // 적 스폰
-    // input : 스폰위치, 적유닛, 경로
+    /// <summary>
+    /// 적 스폰
+    /// </summary>
+    /// <param name="enemyData">유닛 데이터</param>
+    // EnemySpawnData : 적유닛프리펩, 스폰시간, 경로
     public void SpawnEnemy(EnemySpawnData enemyData)
     {
         var enemy = Instantiate(enemyData.enemyPrefab).GetComponent<EnemyUnit>();
@@ -63,27 +68,19 @@ public class EnemyUnitSpawner : MonoBehaviour
 
     }
     
+    /// <summary>
+    /// 적리스트 타일좌표값으로 리턴
+    /// </summary>
+    /// <param name="pos">위치 좌표</param>
+    /// <returns>적 리스트</returns>
     
-    //유닛이 죽으면 리스트에서 제거
-    public void RemoveEnemy(EnemyUnit enemy)
-    {
-        
-        //enemyList.Remove(enemy);
-    }
-    
-    //적리스트 타일좌표값으로 리턴
-    public List<EnemyUnit> OnTileEnemyList()
+    public List<EnemyUnit> OnTileEnemyList(Position pos)
     {
         
         
-        return new List<EnemyUnit>();
+        return enemyTileMap[pos.X, pos.Y].enemiesOnTile;
     }
     
-    //경로 시각화
-    public void PathVisualization()
-    {
-        
-    }
     
     
 }
