@@ -79,6 +79,7 @@ public class PlayerUnit : Unit
     public override void OnDeath()
     {
         base.OnDeath();
+        gameObject.SetActive(false);
         _placeTile.PlayerUnit = null;
     }
 }
