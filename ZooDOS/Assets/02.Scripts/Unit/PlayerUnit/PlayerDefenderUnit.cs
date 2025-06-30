@@ -14,7 +14,6 @@ public class PlayerDefenderUnit : PlayerUnit, IAttackable
 
     protected void Update()
     {
-        // 공격 딜레이
         _leftAttackTime += Time.deltaTime;
 
         if (_leftAttackTime < _atkSpeed)
