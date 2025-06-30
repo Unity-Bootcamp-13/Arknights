@@ -61,6 +61,9 @@ public class PlayerDefenderUnit : PlayerUnit, IAttackable
 
             foreach (EnemyUnit enemyUnit in maptile.EnemyUnits)
             {
+                if (enemyUnit == null || enemyUnit.IsDead)
+                    continue;
+
                 float distance = (enemyUnit.transform.position - transform.position).sqrMagnitude;
                 if (distance < ClosestDistance && !_targets.Contains(enemyUnit))
                 {

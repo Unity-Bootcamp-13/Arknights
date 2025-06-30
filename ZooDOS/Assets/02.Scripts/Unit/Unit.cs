@@ -20,6 +20,7 @@ public class Unit : MonoBehaviour, IDamagable
         if (_isDead) return;
 
         float damage = Math.Min(-1, _def - value);
+        Debug.Log(damage);
 
         _hp.HP +=  damage;
 
@@ -33,6 +34,5 @@ public class Unit : MonoBehaviour, IDamagable
     public virtual void OnDeath()
     {
         _isDead = true;
-        Destroy(gameObject);
     }
 }
