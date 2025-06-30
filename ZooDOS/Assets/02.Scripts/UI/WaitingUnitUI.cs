@@ -101,11 +101,12 @@ public class WaitingUnitUI : MonoBehaviour
         Position pos = _map.Vector3ToCoord(_previewInstance.transform.position);
         if (!IsValidTile(pos))
         {
+            HideUnitInfoUI();
             Destroy(_previewInstance);
             _previewInstance = null;
             return;
         }
-
+        
         _isSelectingDirection = true;
         _pointerDownPos = Vector2.zero;
         ShowPopupAtWorldPosition(_previewInstance.transform.position);
@@ -122,17 +123,22 @@ public class WaitingUnitUI : MonoBehaviour
         if (_isDirectionInputActive && Input.GetMouseButton(0))
         {
             Vector2 delta = (Vector2)Input.mousePosition - _pointerDownPos;
-            if (delta.magnitude >= 10f)
+            if (delta.sqrMagnitude >= 100f)
                 ApplyDirectionPreview(delta);
         }
 
         if (_isDirectionInputActive && Input.GetMouseButtonUp(0))
         {
             Vector2 delta = (Vector2)Input.mousePosition - _pointerDownPos;
-            if (delta.magnitude >= 10f)
+            if (delta.sqrMagnitude >= 100f)
+            {
                 FinalizePlacement(GetSwipeDirection(delta));
-
-            ResetDirectionSelection();
+                ResetDirectionSelection();
+            }
+            else
+            {
+                _isDirectionInputActive = false;
+            }
         }
     }
 
@@ -151,12 +157,12 @@ public class WaitingUnitUI : MonoBehaviour
 
     private void FinalizePlacement(Vector3 dir)
     {
-        HideUnitInfoUI();
-
         Position pos = _map.Vector3ToCoord(_previewInstance.transform.position);
-        if (IsValidTile(pos))
+        if (IsValidTile(pos) && _map.MapTiles[pos.X, pos.Y].PlayerUnit == null)
+        {
             _playerUnitSpawner.PlayerUnitSpawn(pos, dir, _currentUnit);
-
+            HideUnitInfoUI();
+        }
         Destroy(_previewInstance);
         _previewInstance = null;
     }
