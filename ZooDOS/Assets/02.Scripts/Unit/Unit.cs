@@ -7,32 +7,9 @@ public class Unit : MonoBehaviour, IDamagable
     protected float _def;
     protected float _atk;
     protected float _atkSpeed;
-    protected bool _isDead;
 
+    public Hp Hp => _hp;
+    public float Def => _def;
 
-
-    public float HpRatio => _hp.HP / _hp.MaxHP;
-    public bool IsDead => _isDead;
-
-
-    public void GetDamage(float value)
-    {
-        if (_isDead) return;
-
-        float damage = Math.Min(-1, _def - value);
-        Debug.Log(damage);
-
-        _hp.HP +=  damage;
-
-
-        if (_hp.HP <= 0)
-        {
-            OnDeath();
-        }
-    }
-
-    public virtual void OnDeath()
-    {
-        _isDead = true;
-    }
+    public virtual void OnDeath() { }
 }

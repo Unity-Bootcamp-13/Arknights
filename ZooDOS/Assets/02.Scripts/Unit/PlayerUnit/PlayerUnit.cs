@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +16,21 @@ public class PlayerUnit : Unit
     protected float _replaceTime;
     protected PlayerUnitType _playerUnitType;
     protected TileType _tileType;
+    protected AttackType _attackType;
 
+    PlayerUnitBasicAttack _basicAttack;
+
+    void Update()
+    {
+        // 공격 딜레이
+        _leftAttackTime += Time.deltaTime;
+
+        if (_leftAttackTime < _atkSpeed)
+            return;
+        _leftAttackTime = 0;
+
+        _basicAttack.Attack();
+    }
 
 
     /// <summary>
@@ -34,8 +49,8 @@ public class PlayerUnit : Unit
         _attackRange = attackRange;
         _placeTile = placedTile;
         _placeTile.PlayerUnit = this;
-
-        _hp.Replace();
+        _hp.RefillHp();
+        _basicAttack = new PlayerUnitBasicAttack(this, _resistCapacity, _attackRange, _animator, _atk, _attackType);
         transform.position += Vector3.up * Constants.FALLING_POS;
         StartCoroutine(C_FallingCoroutine());
     }
@@ -52,16 +67,15 @@ public class PlayerUnit : Unit
         gameObject.SetActive(false);
         _playerUnitType = playerUnitData.PlayerUnitType;
         _tileType = playerUnitData.TileType;
-        _hp = new Hp(playerUnitData.Hp);
+        _attackType = playerUnitData.AttackType;
+        _hp = new Hp(playerUnitData.Hp, this);
         _def = playerUnitData.Def;
         _atk = playerUnitData.Atk;
         _atkSpeed = playerUnitData.AtkSpeed;
         _resistCapacity = playerUnitData.ResistCapacity;
         _placeCost = playerUnitData.PlaceCost;
         _replaceTime = playerUnitData.ReplaceTime;
-
     }
-
 
     IEnumerator C_FallingCoroutine()
     {
@@ -75,10 +89,11 @@ public class PlayerUnit : Unit
         }
         transform.position = new Vector3(transform.position.x, targetY, transform.position.z);
     }
+
+
     
     public override void OnDeath()
     {
-        base.OnDeath();
         gameObject.SetActive(false);
         _placeTile.PlayerUnit = null;
     }
