@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyUnit : MonoBehaviour
+public class EnemyUnit : Unit, IAttackable
 {
     //적스포너
     public EnemyUnitSpawner _spawner;
@@ -27,6 +27,7 @@ public class EnemyUnit : MonoBehaviour
     public void Initialize(EnemyUnitSpawner spawner)
     {
         _spawner = spawner;
+        
     }
     
     /// <summary>
@@ -54,13 +55,30 @@ public class EnemyUnit : MonoBehaviour
     /// 죽으면 EnemyList에서 Remove 요청
     /// </summary>
     
-    [ContextMenu("OnDead")]
-    public void OnDead()
+    [ContextMenu("OnDeath")]
+    public override void OnDeath()
     {
         // 죽을 때 적리스트에서 자기 자신을 제거 요청
         currentTile.enemiesOnTile.Remove(this);
         Destroy(gameObject);
     }
     
+    public bool IsInRange(Unit unit)
+    {
+        throw new System.NotImplementedException();
+    }
+    
+    public Unit FindTarget()
+    {
+        throw new System.NotImplementedException();
+    }
+    
+    public void Attack(Unit unit)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    
+
     
 }

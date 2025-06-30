@@ -1,46 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class EnemyTile
-{
-    public List<EnemyUnit> enemiesOnTile = new();
-}
 public class EnemyUnitSpawner : MonoBehaviour
 {
-    public EnemyTile[,] enemyTileMap;
-    
+    [SerializeField] private Map map;
     [SerializeField] private WaveData waveData;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // 적유닛배열 초기화
-        int _mapCoordX = 12;
-        int _mapCoordY = 10;
-        enemyTileMap = new EnemyTile[_mapCoordX, _mapCoordY];
-
-        for (int x = 0; x < _mapCoordX; x++)
-        {
-            for (int y = 0; y < _mapCoordY; y++)
-            {
-                enemyTileMap[x, y] = new EnemyTile();
-            }
-        }
-
+       
         StartCoroutine(CallWave());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     /// <summary>
     /// 웨이브호출
     /// </summary>
-    /// <returns></returns>
-    // 
     IEnumerator  CallWave()
     {
 
@@ -78,7 +53,7 @@ public class EnemyUnitSpawner : MonoBehaviour
     {
         
         
-        return enemyTileMap[pos.X, pos.Y].enemiesOnTile;
+        return map.MapTiles[pos.X, pos.Y].EnemyUnits;
     }
     
     
