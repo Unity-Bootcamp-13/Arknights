@@ -14,6 +14,7 @@ public class PlayerUnitData : ScriptableObject
     [SerializeField] public TileType TileType;
     [SerializeField] public Sprite UnitPortrait;
     [SerializeField] public PlayerUnit UnitPrefab;
+    [SerializeField] public GameObject UnitTposePrefab;
 
     [SerializeField] public int BackwardRange;
     [SerializeField] public int ForwardRange;
