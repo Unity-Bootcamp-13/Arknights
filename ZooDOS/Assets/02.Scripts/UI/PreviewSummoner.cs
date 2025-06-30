@@ -3,12 +3,12 @@ using TMPro;
 
 public class PreviewSummoner : MonoBehaviour
 {
-    [Header("Deps")]
+    [Header("의존성 주입")]
     [SerializeField] private Map _map;
     [SerializeField] private Camera _mainCamera;
-    [SerializeField] private DirectionSelectUI _directionUI;   // 인스펙터 연결
+    [SerializeField] private DirectionSelectUI _directionUI;   
 
-    [Header("Unit-Info UI")]
+    [Header("유닛 정보 UI")]
     [SerializeField] private GameObject unitInfoPanel;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI descText;
@@ -17,75 +17,93 @@ public class PreviewSummoner : MonoBehaviour
     private GameObject _preview;
     private bool _cursorOnMap;
 
-    /* ---------- public API ---------- */
     public void StartPreview(PlayerUnitData data)
     {
          CancelPreview();
-
         _currentUnit = data;
         _preview = Instantiate(data.UnitTposePrefab);
         _preview.SetActive(false);
+        _map.ShowTileTypeOverlay(_currentUnit.TileType);
         ShowInfo(data);
     }
 
     public void CancelPreview()
     {
-        if (_preview) Destroy(_preview);
+        if (_preview)
+        {
+            Destroy(_preview);
+        }
+        
         _preview = null;
+        _map.ClearTileTypeOverlay();
         HideInfo();
     }
 
-    /* ---------- MonoBehaviour ---------- */
     void Update()
     {
-        if (_preview == null || _directionUI.IsActive) return;
-        FollowMouse();
+        if (_preview == null || _directionUI.IsActive)
+        {
+            return;
+        }
+        UpdatePreviewPosition();
+        HandleMouseClick();
     }
 
-    /* ---------- internals ---------- */
-    private void FollowMouse()
+    bool IsSameTileType(Position pos)
+    {
+        return _currentUnit.TileType == _map.MapTiles[pos.X, pos.Y].TileType;
+    }
+
+    private void UpdatePreviewPosition()
     {
         Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-        if (!new Plane(Vector3.up, Vector3.zero).Raycast(ray, out float enter)) return;
-
-        Vector3 world = ray.GetPoint(enter);
-        Position pos = _map.Vector3ToCoord(world);
-
-        if (_map.IsInsideMap(pos))
+        Plane groundPlane = new(Vector3.up, Vector3.zero);
+        if (groundPlane.Raycast(ray, out float enter))
         {
-            _preview.transform.position = _map.CoordToVector3(pos);
-            if (!_cursorOnMap)
+            Vector3 world = ray.GetPoint(enter);
+            Position pos = _map.Vector3ToCoord(world);
+
+            if (_map.IsInsideMap(pos) && IsSameTileType(pos))
             {
-                _preview.SetActive(true);
-                _cursorOnMap = true;
+                _preview.transform.position = _map.CoordToVector3(pos);
+                if (!_cursorOnMap)
+                {
+                    _preview.SetActive(true);
+                    _cursorOnMap = true;
+                }
             }
-
-            if (Input.GetMouseButtonUp(0))
-                TryLockPreview();
-        }
-        else
-        {
-            if (_cursorOnMap)
+            else
             {
-                _preview.SetActive(false);
-                _cursorOnMap = false;
+                if (_cursorOnMap)
+                {
+                    _preview.SetActive(false);
+                    _cursorOnMap = false;
+                }
             }
         }
     }
 
+    private void HandleMouseClick()
+    {
+        if (Input.GetMouseButtonUp(0) && _cursorOnMap)
+        {
+            TryLockPreview();
+        }
+    }
     private void TryLockPreview()
     {
         Position pos = _map.Vector3ToCoord(_preview.transform.position);
-        if (!_map.IsInsideMap(pos)) { CancelPreview(); return; }
-
-        // 방향 선택 UI로 제어 이양
-        _directionUI.Open(_preview, _currentUnit, this);
+        if (!_map.IsInsideMap(pos))
+        {
+            CancelPreview(); 
+            return;
+        }
+        _directionUI.OpenDirectionUI(_preview, _currentUnit, this); // 의존성 주입
     }
-
-    private void ShowInfo(PlayerUnitData d)
+    private void ShowInfo(PlayerUnitData data)
     {
-        nameText.text = d.name;
-        descText.text = $"HP {d.Hp}\nDef {d.Def}\nAtk {d.Atk}\nResist {d.ResistCapacity}";
+        nameText.text = data.name;
+        descText.text = $"HP {data.Hp}\nDef {data.Def}\nAtk {data.Atk}\nResist {data.ResistCapacity}";
         unitInfoPanel.SetActive(true);
     }
     private void HideInfo()

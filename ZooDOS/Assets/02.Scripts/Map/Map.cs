@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Map : MonoBehaviour
 {
@@ -20,6 +23,9 @@ public class Map : MonoBehaviour
     [SerializeField] private GameObject _enemyEntryPointPrefab;
     [SerializeField] private GameObject _defensePointPrefab;
 
+    [Header("타일 반짝이는 용도")]
+    private List<GameObject> _tempTiles = new(); 
+    [SerializeField] private GameObject _tilePreviewPrefab;
     private void Start()
     {
         _map = new Maptile[_mapCoordX, _mapCoordY];
@@ -85,15 +91,13 @@ public class Map : MonoBehaviour
             Debug.LogError($"CoordToVector3(): No tile exists at {position.X}, {position.Y}");
             return Vector3.zero;
         }
-        float height = 0f;
-        if (_map[position.X, position.Y].TileType == TileType.Ground)
+        float height = _map[position.X, position.Y].TileType switch
         {
-            height = 0.03f * Constants.MAPTILE_LENGTH;
-        }
-        else if (_map[position.X,position.Y].TileType == TileType.Hill)
-        {
-            height = 0.51f * Constants.MAPTILE_LENGTH;
-        }
+            TileType.Ground => 0.03f * Constants.MAPTILE_LENGTH,
+            TileType.Hill => 0.31f * Constants.MAPTILE_LENGTH,
+            TileType.Restricted => 0.61f * Constants.MAPTILE_LENGTH,
+            _ => 0f
+        };
         return new Vector3(Constants.MAPTILE_LENGTH * position.X, height, Constants.MAPTILE_LENGTH * position.Y);
     }
     /// <summary>
@@ -144,4 +148,44 @@ public class Map : MonoBehaviour
         return pos.X >= 0 && pos.Y >= 0 && pos.X < _mapCoordX && pos.Y < _mapCoordY;
     }
 
+    public void ClearTileTypeOverlay()
+    {
+        foreach (var tile in _tempTiles)
+        {
+            if (tile != null) Destroy(tile);
+        }
+        _tempTiles.Clear();
+    }
+
+    public void ShowTileTypeOverlay(TileType unitType)
+    {
+        ClearTileTypeOverlay();
+
+        for (int x = 0; x < _mapCoordX; x++)
+        {
+            for (int y = 0; y < _mapCoordY; y++)
+            {
+                Maptile tile = _map[x, y];
+                bool canPlace = tile.TileType == unitType;
+
+                float height = tile.TileType switch
+                {
+                    TileType.Ground => 0.03f * Constants.MAPTILE_LENGTH,
+                    TileType.Hill => 0.31f * Constants.MAPTILE_LENGTH,
+                    TileType.Restricted => 0.61f * Constants.MAPTILE_LENGTH,
+                    _ => 0f
+                };
+
+                Vector3 pos = new Vector3(
+                    Constants.MAPTILE_LENGTH * x,
+                    height,
+                    Constants.MAPTILE_LENGTH * y
+                );
+
+                GameObject tileObj = Instantiate(_tilePreviewPrefab, pos, Quaternion.identity, transform);
+                tileObj.GetComponent<BlinkSpriteBehaviour>().Init(canPlace);
+                _tempTiles.Add(tileObj);
+            }
+        }
+    }
 }

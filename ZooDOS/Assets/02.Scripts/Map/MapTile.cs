@@ -43,10 +43,4 @@ public class Maptile
     {
         _enemyUnits.Add(unit);
     }
-
-
-
-
-
-
 }
