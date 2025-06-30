@@ -1,5 +1,4 @@
-﻿using UnityEditor.ShaderGraph.Internal;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Map : MonoBehaviour
 {
@@ -65,7 +64,6 @@ public class Map : MonoBehaviour
     /// <param name="position"></param>
     public void PlaceMaptile(GameObject tilePrefab, TileType tileType, Position position)
     {
-        
         Vector3 tilePosition = new Vector3(position.X * Constants.MAPTILE_LENGTH, 0, position.Y * Constants.MAPTILE_LENGTH);  //실제 게임오브젝트 좌표 계산
         GameObject tileObj = Instantiate(tilePrefab, tilePosition, Quaternion.identity, this.transform); // 생성!
         tileObj.transform.localScale = new Vector3(Constants.MAPTILE_LENGTH, Constants.MAPTILE_LENGTH, Constants.MAPTILE_LENGTH);
@@ -82,6 +80,11 @@ public class Map : MonoBehaviour
     /// <returns></returns>
     public Vector3 CoordToVector3(Position position)
     {
+        if (_map[position.X, position.Y] == null)
+        {
+            Debug.LogError($"CoordToVector3(): No tile exists at {position.X}, {position.Y}");
+            return Vector3.zero;
+        }
         float height = 0f;
         if (_map[position.X, position.Y].TileType == TileType.Ground)
         {
@@ -103,6 +106,18 @@ public class Map : MonoBehaviour
         float X = Mathf.Round(worldPosition.x / Constants.MAPTILE_LENGTH);
         float Y = Mathf.Round(worldPosition.z / Constants.MAPTILE_LENGTH);
         Position pos = new Position((int)X, (int)Y);
+
+        if (pos.X < 0 || pos.Y < 0 || pos.X >= _mapCoordX || pos.Y >= _mapCoordY)
+        {
+            Debug.LogWarning($" Vector3ToCoord(): Out-of-bounds position detected - " +
+                             $"World: ({worldPosition.x:F2}, {worldPosition.z:F2}) → Coord: ({pos.X}, {pos.Y})");
+        }
+        else
+        {
+            Debug.Log($" Vector3ToCoord(): World → Coord mapping successful - " +
+                      $"World: ({worldPosition.x:F2}, {worldPosition.z:F2}) → Coord: ({pos.X}, {pos.Y})");
+        }
+
         return pos;
     }
 
@@ -121,6 +136,12 @@ public class Map : MonoBehaviour
         if (pos.X < 0 || pos.Y < 0 || pos.X >= _map.GetLength(0) || pos.Y >= _map.GetLength(1))
             return false;
 
-        return _map[pos.X, pos.Y].TileType == TileType.Ground;
+        return _map[pos.X, pos.Y].TileType == TileType.Hill;
     }
+
+    public bool IsInsideMap(Position pos)
+    {
+        return pos.X >= 0 && pos.Y >= 0 && pos.X < _mapCoordX && pos.Y < _mapCoordY;
+    }
+
 }
