@@ -15,6 +15,13 @@ public enum AttackType
     Heal,
 }
 
+public enum EnumyUnitType
+{
+    Nothing,
+    ShortRange,
+    LongRange,
+}
+
 public enum TileType
 {
     None,
