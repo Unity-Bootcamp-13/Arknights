@@ -39,7 +39,8 @@ public class Maptile
         _playerUnit = null;
     }
 
-
-
-
+    public void AddUnit(EnemyUnit unit)
+    {
+        _enemyUnits.Add(unit);
+    }
 }

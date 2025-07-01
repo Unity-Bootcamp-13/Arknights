@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 3036933743107735090}
   - component: {fileID: 6736141645644332915}
   m_Layer: 0
-  m_Name: Box_100x100x100_Prefab
+  m_Name: Box_100x100x60_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,8 +61,8 @@ Transform:
   m_GameObject: {fileID: 7042181445683701711}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalScale: {x: 1, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 586783520350678558}
@@ -159,7 +159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199506735216023843, guid: 60b89e8552734ac40b52ac55863b056b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.01
+      value: 0.61
       objectReference: {fileID: 0}
     - target: {fileID: 4199506735216023843, guid: 60b89e8552734ac40b52ac55863b056b, type: 3}
       propertyPath: m_LocalPosition.z
