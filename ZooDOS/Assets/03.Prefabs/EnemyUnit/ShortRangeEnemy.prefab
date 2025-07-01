@@ -253,7 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266e0033fd92e8243be32ac9feab9ab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawner: {fileID: 0}
+  currentPathIndex: 0
+  _enemyUnitData: {fileID: 11400000, guid: ed70818cb73fa794691c44950b42a66b, type: 2}
 --- !u!1 &4062483452966179502
 GameObject:
   m_ObjectHideFlags: 0

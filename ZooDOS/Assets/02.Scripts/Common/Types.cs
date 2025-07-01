@@ -8,6 +8,13 @@ public enum PlayerUnitType
     Medic,
 }
 
+public enum EnumyUnitType
+{
+    Nothing,
+    ShortRange,
+    LongRange,
+}
+
 public enum TileType
 {
     None,
