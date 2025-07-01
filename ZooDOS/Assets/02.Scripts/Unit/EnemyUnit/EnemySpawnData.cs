@@ -7,5 +7,5 @@ public class EnemySpawnData
 {
     public GameObject enemyPrefab; // 유닛프리팹
     public float spawnTime;        // 이 시간에 생성
-    public List<Vector2> path;          // 경로
+    public List<Position> path;          // 경로
 }
