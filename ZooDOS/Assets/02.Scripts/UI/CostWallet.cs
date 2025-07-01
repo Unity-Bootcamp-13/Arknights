@@ -41,14 +41,14 @@ public class CostWallet : MonoBehaviour
         StopAllCoroutines();
     }
 
-    public void Add(Cost amount)
+    public void AddCost(Cost amount)
     {
         if (amount.Value <= 0) return;
         _current = _current.Add(amount, maxCost);
         Notify();
     }
 
-    public bool TrySpend(Cost price)
+    public bool TrySpendCost(Cost price)
     {
         if (!_current.IsEnoughFor(price))
         {
@@ -62,7 +62,7 @@ public class CostWallet : MonoBehaviour
     public void RefundHalf(Cost originalPrice)
     {
         int half = Mathf.CeilToInt(originalPrice.Value * 0.5f);
-        Add(new Cost(half));
+        AddCost(new Cost(half));
     }
 
     IEnumerator AutoRegen()
@@ -70,7 +70,7 @@ public class CostWallet : MonoBehaviour
         var wait = new WaitForSeconds(tickInterval);
         while (true)
         {
-            Add(new Cost(tickAmount));
+            AddCost(new Cost(tickAmount));
             yield return wait;
         }
     }
