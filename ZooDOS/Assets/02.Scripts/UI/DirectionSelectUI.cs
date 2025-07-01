@@ -9,7 +9,7 @@ public class DirectionSelectUI : MonoBehaviour
     [Header("의존성 주입")]
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private Map _map;
-    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private CostWallet _costWallet;
     [SerializeField] private PlayerUnitSpawner _playerUnitSpanwer;
 
     public bool IsActive { get; private set; }
@@ -96,7 +96,7 @@ public class DirectionSelectUI : MonoBehaviour
         Vector3 dirVector = GetSwipeDirection(delta);
         Position pos = _map.Vector3ToCoord(_preview.transform.position);
 
-        if (_map.IsInsideMap(pos) && _gameManager.DeleteCost(_playerUnitData.PlaceCost))
+        if (_map.IsInsideMap(pos) && _costWallet.TrySpend(new Cost(_playerUnitData.PlaceCost)))
         {
             _playerUnitSpanwer.PlayerUnitSpawn(pos, dirVector, _playerUnitData);
         }
