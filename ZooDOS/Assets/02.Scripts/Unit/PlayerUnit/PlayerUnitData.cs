@@ -12,6 +12,7 @@ public class PlayerUnitData : ScriptableObject
     [SerializeField] public float ReplaceTime;
     [SerializeField] public PlayerUnitType PlayerUnitType;
     [SerializeField] public TileType TileType;
+    [SerializeField] public AttackType AttackType;
     [SerializeField] public Sprite UnitPortrait;
     [SerializeField] public PlayerUnit UnitPrefab;
     [SerializeField] public GameObject UnitTposePrefab;

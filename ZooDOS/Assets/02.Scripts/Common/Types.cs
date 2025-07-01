@@ -8,6 +8,13 @@ public enum PlayerUnitType
     Medic,
 }
 
+public enum AttackType
+{
+    Nothing,
+    Damage,
+    Heal,
+}
+
 public enum EnumyUnitType
 {
     Nothing,

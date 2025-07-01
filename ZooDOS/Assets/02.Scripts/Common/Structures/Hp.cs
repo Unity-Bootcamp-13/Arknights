@@ -2,10 +2,17 @@
 
 public struct Hp
 {
-    public Hp(float hp)
+    float _maxHp;
+    float _hp;
+    bool _isDead;
+    Unit _unit;
+
+    public Hp(float hp, Unit unit)
     {
         _maxHp = hp;
         _hp = _maxHp;
+        _isDead = false;
+        _unit = unit;
     }
 
     public float HP
@@ -21,14 +28,40 @@ public struct Hp
         }
     }
 
-    public void Replace()
+
+    public float HpRatio => _hp / _maxHp;
+    public bool IsDead => _isDead;
+    public float MaxHP => _maxHp;
+
+
+    public void RefillHp()
     {
         _hp = _maxHp;
     }
 
-    public float MaxHP => _maxHp;
+    public void GetDamage(float value)
+    {
+        if (_isDead) return;
 
-    float _maxHp;
-    float _hp;
+        _hp += value;
 
+        if (_hp <= 0)
+        {
+            OnDeath();
+        }
+    }
+
+    public void GetHeal(float value)
+    {
+        if (_isDead) return;
+
+        _hp += value;
+    }
+
+    public void OnDeath()
+    {
+        _isDead = true;
+        _unit.OnDeath();
+
+    }
 }
