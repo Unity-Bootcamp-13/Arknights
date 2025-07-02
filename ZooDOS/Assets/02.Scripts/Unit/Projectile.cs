@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -6,26 +6,12 @@ public class Projectile : MonoBehaviour
 
     Unit _target;
     float _speed;
-    const float OFFSET = 0.1f;
-
-    float _leftBound;
-    float _rightBound;
-    float _upBound;
-    float _downBound;
     Action _projectileAction;
 
     // Update is called once per frame
     void Update()
     {
-        if (IsInTargetBound())
-        {
-            _projectileAction?.Invoke();
-            Destroy(gameObject);
-        }
-        else
-        {
-            Targeting();
-        }
+        Targeting();
     }
 
     public void Targeting()
@@ -37,11 +23,6 @@ public class Projectile : MonoBehaviour
     {
         _target = unit;
         _speed = speed;
-
-        _leftBound = _target.transform.position.x - OFFSET;
-        _rightBound = _target.transform.position.x + OFFSET;
-        _upBound = _target.transform.position.y + OFFSET;
-        _downBound = _target.transform.position.y- OFFSET;
     }
 
     public void SetProjectileAction(Action projectileAction)
@@ -49,15 +30,15 @@ public class Projectile : MonoBehaviour
         _projectileAction += projectileAction;
     }
 
-    public bool IsInTargetBound()
+    private void OnTriggerEnter(Collider other)
     {
-        if (transform.position.x < _rightBound && transform.position.x > _leftBound && transform.position.y < _upBound && transform.position.y > _downBound)
+        if(other.TryGetComponent(out Unit Component))
         {
-            return true;
-        }
-        else
-        {
-            return false;
+            if (_target == Component)
+            {
+                _projectileAction?.Invoke();
+                Destroy(gameObject);
+            }
         }
     }
 }

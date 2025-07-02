@@ -12,5 +12,6 @@ public class Unit : MonoBehaviour, IDamagable
     public Hp Hp => _hp;
     public float Def => _def;
 
+    public Action<Unit> Die;
     public virtual void OnDeath() { }
 }

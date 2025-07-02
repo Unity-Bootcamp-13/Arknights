@@ -129,6 +129,7 @@ public class PlayerUnit : Unit
     
     public override void OnDeath()
     {
+        Die?.Invoke(this);
         gameObject.SetActive(false);
     }
 }
