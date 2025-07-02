@@ -20,8 +20,13 @@ public class PlayerUnit : Unit
 
     PlayerUnitBasicAttack _basicAttack;
 
+
+    public TileType TileType => _tileType;
+
     void Update()
     {
+        _basicAttack.AddTarget();
+
         // 공격 딜레이
         _leftAttackTime += Time.deltaTime;
 
@@ -129,6 +134,17 @@ public class PlayerUnit : Unit
     
     public override void OnDeath()
     {
+        if(TileType == TileType.Ground)
+        {
+            List<Unit> targets = _basicAttack.GetTargets();
+            foreach(Unit target in targets)
+            {
+                EnemyUnit enemy = target as EnemyUnit;
+                enemy.Unblock();
+            }
+
+        }
+
         Die?.Invoke(this);
         gameObject.SetActive(false);
     }

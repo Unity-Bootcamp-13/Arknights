@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System;
 
 public class PlayerUnitBasicAttack
 {
@@ -36,6 +35,22 @@ public class PlayerUnitBasicAttack
         }
     }
 
+    public void AddTarget()
+    {
+        if (_attackType == AttackType.Damage)
+        {
+            AddEnemyUnitToTargets();
+        }
+        else if (_attackType == AttackType.Heal)
+        {
+            AddPlayerUnitToTargets();
+        }
+        else
+        {
+            return;
+        }
+    }
+
     /// <summary>
     /// FindEnemyUnitTarget + ShooDamageProjectile
     ///  = 적 타겟 탐지 + 공격 투사체 발사 
@@ -43,34 +58,17 @@ public class PlayerUnitBasicAttack
     /// </summary>
     public void AttackToEnemyUnit()
     {
-        _targets.RemoveAll(t => t == null || t.Hp.IsDead);
-
-        if (_targets.Count < _targets.Capacity)
-        {
-            EnemyUnit target = FindEnemyUnitTarget() as EnemyUnit;
-            if (target != null && _targets.Contains(target)==false)
-            {
-                _targets.Add(target);
-            }
-            Debug.Log("적 탐지 중");
-        }
         if (_targets.Count > 0)
         {
             foreach (EnemyUnit target in _targets)
             {
-                if (IsInRange(target) == false)
+                if (IsInRange(target) == false && target.Hp.IsDead == true)
                 {
                     continue;
                 }
-
-                if (target.Hp.IsDead == false)
-                {
-
-                    _playerUnit.ShootDamageProjectile(target, _atk);
-                }
-
+                _playerUnit.ShootDamageProjectile(target, _atk);
             }
-            Debug.Log("적 공격 중");
+            //Debug.Log("적 공격 중");
         }
     }
 
@@ -81,42 +79,61 @@ public class PlayerUnitBasicAttack
     /// </summary>
     public void HealToPlayerUnit()
     {
+        if (_targets.Count > 0)
+        {
+            foreach (PlayerUnit target in _targets)
+            {
+                if (IsInRange(target) == false && (target.Hp.IsDead == true))
+                {
+                    continue;
+                }
+                _playerUnit.ShootHealProjectile(target, _atk);
+            }
+            Debug.Log("아군 회복 중");
+        }
+    }
+    private void AddEnemyUnitToTargets()
+    {
         _targets.RemoveAll(t => t == null || t.Hp.IsDead);
 
         if (_targets.Count < _targets.Capacity)
         {
-            PlayerUnit target = FindPlayerUnitTarget() as PlayerUnit;
+            EnemyUnit target = FindEnemyUnitTarget();
+            if (target != null && _targets.Contains(target) == false)
+            {
+                _targets.Add(target);
+            }
+
+            Debug.Log("적 탐지 중");
+        }
+
+        if (_playerUnit.TileType == TileType.Ground)
+        {
+            foreach (EnemyUnit target in _targets)
+            {
+                target.Block(this);
+            }
+        }
+    }
+
+    private void AddPlayerUnitToTargets()
+    {
+        _targets.RemoveAll(t => t == null || t.Hp.IsDead);
+
+        if (_targets.Count < _targets.Capacity)
+        {
+            PlayerUnit target = FindPlayerUnitTarget();
             if (target != null && _targets.Contains(target) == false)
             {
                 _targets.Add(target);
             }
             Debug.Log("아군 탐지 중");
         }
-        if (_targets.Count > 0)
-        {
-            foreach (PlayerUnit target in _targets)
-            {
-                if (IsInRange(target) == false)
-                {
-                    continue;
-                }
-
-                if (target.Hp.IsDead == false)
-                {
-
-                    _playerUnit.ShootHealProjectile(target, _atk);
-                }
-
-            }
-            Debug.Log("아군 회복 중");
-        }
     }
 
-
-
-    public Unit FindPlayerUnitTarget()
+    public PlayerUnit FindPlayerUnitTarget()
     {
-        Unit lowestHpUnit = null;
+        PlayerUnit lowestHpUnit = null;
         float lowestHpRatio = 1f;
         foreach (Maptile maptile in _attackRange)
         {
@@ -137,9 +154,9 @@ public class PlayerUnitBasicAttack
         return lowestHpUnit;
     }
 
-    public Unit FindEnemyUnitTarget()
+    public EnemyUnit FindEnemyUnitTarget()
     {
-        Unit ClosestUnit = null;
+        EnemyUnit ClosestUnit = null;
         float ClosestDistance = 9999;
         foreach (Maptile maptile in _attackRange)
         {
@@ -165,6 +182,11 @@ public class PlayerUnitBasicAttack
             }
         }
         return ClosestUnit;
+    }
+
+    public List<Unit> GetTargets()
+    {
+        return _targets;
     }
 
 
