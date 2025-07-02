@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 public class GameSpeedController : MonoBehaviour
@@ -7,18 +7,18 @@ public class GameSpeedController : MonoBehaviour
     private bool isFastSpeedEnabled = false;
 
     [Header("UI Buttons")]
-    [SerializeField] private Button pauseButton;
+    [SerializeField] private Button pauseButton; 
     [SerializeField] private Button fastSpeedButton;
 
 
-    [Header("ÇÊ¼ö ÂüÁ¶")]
-    [SerializeField] Image buttonImage;   // ¹öÆ°ÀÇ Image ÄÄÆ÷³ÍÆ®
+    [Header("í•„ìˆ˜ ì°¸ì¡°")]
+    [SerializeField] Image buttonImage;   // ë²„íŠ¼ì˜ Image ì»´í¬ë„ŒíŠ¸
 
 
-    [Header("A »óÅÂ")]
+    [Header("A ìƒíƒœ")]
     [SerializeField] Sprite spriteA;
   
-    [Header("B »óÅÂ")]
+    [Header("B ìƒíƒœ")]
     [SerializeField] Sprite spriteB;
 
 
@@ -28,7 +28,7 @@ public class GameSpeedController : MonoBehaviour
 
 
 
-    // ¢º ÀÏ½ÃÁ¤Áö »óÅÂ¸¦ Åä±Û
+    // â–¶ ì¼ì‹œì •ì§€ ìƒíƒœë¥¼ í† ê¸€
     public void OnClick_TogglePause()
     {
         if (isGamePaused)
@@ -36,7 +36,7 @@ public class GameSpeedController : MonoBehaviour
             Time.timeScale = 1f;
             isGamePaused = false;
 
-            // ¢º 2¹è¼Ó ¹öÆ° ´Ù½Ã È°¼ºÈ­
+            // â–¶ 2ë°°ì† ë²„íŠ¼ ë‹¤ì‹œ í™œì„±í™”
             fastSpeedButton.interactable = true;
         }
         else
@@ -44,10 +44,10 @@ public class GameSpeedController : MonoBehaviour
             Time.timeScale = 0f;
             isGamePaused = true;
 
-            // ¢º 2¹è¼Ó ¹öÆ° ºñÈ°¼ºÈ­
+            // â–¶ 2ë°°ì† ë²„íŠ¼ ë¹„í™œì„±í™”
             fastSpeedButton.interactable = false;
 
-            // 2¹è¼Ó »óÅÂ¿´´Ù¸é ¿ø·¡ ¼Óµµ·Î µÇµ¹¸²
+            // 2ë°°ì† ìƒíƒœì˜€ë‹¤ë©´ ì›ë˜ ì†ë„ë¡œ ë˜ëŒë¦¼
             if (isFastSpeedEnabled)
             {
                 isFastSpeedEnabled = false;
@@ -55,7 +55,7 @@ public class GameSpeedController : MonoBehaviour
         }
     }
 
-    // ¢º 2¹è¼Ó »óÅÂ¸¦ Åä±Û (ÀÏ½ÃÁ¤Áö »óÅÂ¿¡¼­´Â ½ÇÇà ºÒ°¡)
+    // â–¶ 2ë°°ì† ìƒíƒœë¥¼ í† ê¸€ (ì¼ì‹œì •ì§€ ìƒíƒœì—ì„œëŠ” ì‹¤í–‰ ë¶ˆê°€)
     public void OnClick_ToggleFastSpeed()
     {
         if (isGamePaused)
@@ -76,7 +76,7 @@ public class GameSpeedController : MonoBehaviour
 
     public void ToggleVisual()
     {
-        isA = !isA;            // »óÅÂ ¹İÀü
+        isA = !isA;            // ìƒíƒœ ë°˜ì „
         ApplyVisual();
     }
 
