@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -22,8 +24,12 @@ public class Map : MonoBehaviour
     [SerializeField] private GameObject _enemyEntryPointPrefab;
     [SerializeField] private GameObject _defensePointPrefab;
 
+    //타일의 타입에 따른 리스트 저장. start에 호출.
+    private Dictionary<TileType, List<Maptile>> _tilesByType;
     private void Start()
     {
+        _tilesByType = new();
+
         _map = new Maptile[_mapCoordX, _mapCoordY];
         //for문 내부는 Stage 1 구현부 (임시 맵 배치). 추후 함수 추가하여 SO 파일로 편집을 편하게 확장성을 가질 예정
         for (int i = 0; i < _mapCoordX; ++i)
@@ -71,6 +77,18 @@ public class Map : MonoBehaviour
     {
         return _map.GetLength(1);
     }
+
+    public IReadOnlyList<Maptile> GetTilesByType(TileType type)
+    {
+        if (_tilesByType.TryGetValue(type, out List<Maptile> list))
+        {
+            return list;
+        }
+        else
+            return Array.Empty<Maptile>();
+    }
+        
+
     public void PlaceMaptile(GameObject tilePrefab, Position position)
     {
         Vector3 worldPos = new Vector3(
@@ -81,6 +99,14 @@ public class Map : MonoBehaviour
 
         Maptile tile = tileObj.GetComponent<Maptile>();
         tile.Init(position);
+        // 타일 타입을 저장 (그 유닛의 배치에 맞는 타일 return 가능하도록)
+        if (!_tilesByType.TryGetValue(tile.TileType, out var list))
+        {
+            list = new List<Maptile>();
+            _tilesByType[tile.TileType] = list;
+        }
+        list.Add(tile);
+
         _map[position.X, position.Y] = tile;
     }
 
@@ -88,7 +114,7 @@ public class Map : MonoBehaviour
     {
         if (GetTile(position) == null)
         {
-            return Vector3.zero;
+            return new Vector3(-5, -5, -5);
         }
         float height = GetTile(position).TileType switch
         {

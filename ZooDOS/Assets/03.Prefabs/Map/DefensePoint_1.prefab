@@ -225,6 +225,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5196901596174731385, guid: 7c96be2b10feb1b4393dc4f5d3633058, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8389361728938034775, guid: 7c96be2b10feb1b4393dc4f5d3633058, type: 3}
       propertyPath: m_Name
       value: Tile - Blue
@@ -232,10 +236,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5183150962091007874, guid: 7c96be2b10feb1b4393dc4f5d3633058, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6610483778163643096}
   m_SourcePrefab: {fileID: 100100000, guid: 7c96be2b10feb1b4393dc4f5d3633058, type: 3}
 --- !u!4 &1285648597708004096 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 594401598879264358, guid: 7c96be2b10feb1b4393dc4f5d3633058, type: 3}
   m_PrefabInstance: {fileID: 1866803121578194278}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6775234471771417316 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5183150962091007874, guid: 7c96be2b10feb1b4393dc4f5d3633058, type: 3}
+  m_PrefabInstance: {fileID: 1866803121578194278}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6610483778163643096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6775234471771417316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7485a5ec513473448c2340457cdadc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _placement0: {r: 0.4, g: 0.5, b: 1, a: 0.5}
+  _placement1: {r: 0.4, g: 0.6, b: 1, a: 0.5}
+  _attack0: {r: 0.9, g: 0, b: 0, a: 0.5}
+  _attack1: {r: 0.85, g: 0, b: 0, a: 0.5}

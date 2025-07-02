@@ -10,12 +10,10 @@ public class CostWallet : MonoBehaviour
     private const float tickInterval = 1f;
     private const int maxCost = 99;
 
-    
     [Header("UI")]
-    [SerializeField] private Slider costSlider;   
+    [SerializeField] private Slider progressSlider;   
     [SerializeField] private TMP_Text costText; 
 
-    
     private Cost _current = Cost.Zero;
     public Cost Current => _current;
 
@@ -23,11 +21,11 @@ public class CostWallet : MonoBehaviour
 
     void Awake()
     {
-        if (costSlider != null)
+        if (progressSlider != null)
         {
-            costSlider.minValue = 0;
-            costSlider.maxValue = maxCost;
-            costSlider.value = _current.Value;
+            progressSlider.minValue = 0f;
+            progressSlider.maxValue = 1f;
+            progressSlider.value = 0f;   // 시작은 0
         }
         UpdateUI();
     }
@@ -67,11 +65,20 @@ public class CostWallet : MonoBehaviour
 
     IEnumerator AutoRegen()
     {
-        var wait = new WaitForSeconds(tickInterval);
         while (true)
         {
+            // 0초 → 1초 동안 진행도를 올린다
+            float elapsed = 0f;
+            while (elapsed < tickInterval)
+            {
+                elapsed += Time.deltaTime;
+                if (progressSlider)
+                    progressSlider.SetValueWithoutNotify(elapsed / tickInterval);
+                yield return null;   
+            }
+            progressSlider.SetValueWithoutNotify(0f);
+
             AddCost(new Cost(tickAmount));
-            yield return wait;
         }
     }
 
@@ -83,10 +90,6 @@ public class CostWallet : MonoBehaviour
 
     void UpdateUI()
     {
-        if (costSlider)
-        {
-            costSlider.SetValueWithoutNotify(_current.Value);
-        }
         if (costText)
         {
             costText.text = _current.Value.ToString();

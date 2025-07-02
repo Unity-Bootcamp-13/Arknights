@@ -229,13 +229,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tile - Yellow
       objectReference: {fileID: 0}
+    - target: {fileID: 4362456215564467002, guid: 47a2660172607db47be72516bbd91bae, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8299443838101774993, guid: 47a2660172607db47be72516bbd91bae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3025908277241970204}
   m_SourcePrefab: {fileID: 100100000, guid: 47a2660172607db47be72516bbd91bae, type: 3}
 --- !u!4 &76791123746819522 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 841800123869013576, guid: 47a2660172607db47be72516bbd91bae, type: 3}
   m_PrefabInstance: {fileID: 774194580265544586}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8760611698842192155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8299443838101774993, guid: 47a2660172607db47be72516bbd91bae, type: 3}
+  m_PrefabInstance: {fileID: 774194580265544586}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3025908277241970204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8760611698842192155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7485a5ec513473448c2340457cdadc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _placement0: {r: 0.2, g: 0.2, b: 1, a: 0.5}
+  _placement1: {r: 0, g: 0.6, b: 1, a: 0.5}
+  _attack0: {r: 0, g: 0, b: 0, a: 0.5}
+  _attack1: {r: 0.4, g: 0.4, b: 0.4, a: 0.5}

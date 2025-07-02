@@ -19,6 +19,7 @@ public class DirectionSelectUI : MonoBehaviour
     private PreviewSummoner _summoner;
     private bool _isDragging;
     private Vector2 _startMousePos;
+    private Vector3 _curDirection = Vector3.forward;
 
     public void OpenDirectionUI(GameObject preview, PlayerUnitData data, PreviewSummoner summoner)
     {
@@ -49,6 +50,7 @@ public class DirectionSelectUI : MonoBehaviour
     {
         IsActive = false;
         _popupUI.gameObject.SetActive(false);
+        _summoner.CancelPreview();
         _preview = null;
         _playerUnitData = null;
         _summoner = null;
@@ -87,8 +89,16 @@ public class DirectionSelectUI : MonoBehaviour
 
     private void ApplyPreviewDirection(Vector2 delta)
     {
+
         var dir = GetSwipeDirection(delta);
+
+        if (dir == _curDirection) return;    // 방향이 바뀌지 않았으면 무시
+        _curDirection = dir;
+
         _preview.transform.rotation = Quaternion.LookRotation(dir);
+
+        Position pos = _map.Vector3ToCoord(_preview.transform.position);
+        _summoner.ShowAttackRange(pos, dir); //사거리 하이라이트 갱신
     }
 
     private void FinalizePlacement(Vector2 delta)
