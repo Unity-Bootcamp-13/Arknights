@@ -3,95 +3,112 @@ using UnityEngine.UI;
 
 public class GameSpeedController : MonoBehaviour
 {
-    private bool isGamePaused = false;
-    private bool isFastSpeedEnabled = false;
-
     [Header("UI Buttons")]
-    [SerializeField] private Button pauseButton; 
-    [SerializeField] private Button fastSpeedButton;
+    [SerializeField] private Button _pauseButton; 
+    [SerializeField] private Button _fastSpeedButton;
 
 
     [Header("필수 참조")]
-    [SerializeField] Image buttonImage;  
+    [SerializeField] private Image _pauseButtonImage;  
+    [SerializeField] private Image _playbackButtonImage;  
 
 
-    [Header("A 상태")]
-    [SerializeField] Sprite spriteA;
+    [Header("Play 상태")]
+    [SerializeField] private Sprite _pauseSprite;
   
-    [Header("B 상태")]
-    [SerializeField] Sprite spriteB;
+    [Header("Pause 상태")]
+    [SerializeField] private Sprite _playSprite;
+
+    [Header("2배속 상태")]
+    [SerializeField] private Sprite _playbackSpeed1Sprite;
+  
+    [Header("1배속 상태")]
+    [SerializeField] private Sprite _playbackSpeed2Sprite;
 
 
-    bool isA = true;
+    private bool _isPauseButtonPushed;
+    private bool _isPlayBackButtonPushed;
 
 
+    private int _playBackSpeed;
+    private int _gameSpeed;
 
 
-
-    public void OnClick_TogglePause()
+    private void Awake()
     {
-        if (isGamePaused)
-        {
-            Time.timeScale = 1f;
-            isGamePaused = false;
-
-         
-            fastSpeedButton.interactable = true;
-        }
-        else
-        {
-            Time.timeScale = 0f;
-            isGamePaused = true;
-
-     
-            fastSpeedButton.interactable = false;
-
-        
-            if (isFastSpeedEnabled)
-            {
-                isFastSpeedEnabled = false;
-            }
-        }
-    }
-
- 
-    public void OnClick_ToggleFastSpeed()
-    {
-        if (isGamePaused)
-            return;
-
-        if (isFastSpeedEnabled)
-        {
-            Time.timeScale = 1f;
-            isFastSpeedEnabled = false;
-        }
-        else
-        {
-            Time.timeScale = 2f;
-            isFastSpeedEnabled = true;
-        }
+        _isPauseButtonPushed = false;
+        _isPlayBackButtonPushed = false;
+        _playBackSpeed = 1;
+        _gameSpeed = 1;
     }
 
 
-    public void ToggleVisual()
+    public void OnClickPauseButton()
     {
-        isA = !isA;           
-        ApplyVisual();
-    }
+        _isPauseButtonPushed = !_isPauseButtonPushed;
 
+        PauseButtonImageChange();
 
-
-    void ApplyVisual()
-    {
-        if (isA)
+        if (_gameSpeed == 0)
         {
-            buttonImage.sprite = spriteA;
-           
+            _gameSpeed = 1;
+            UpdateTimeScale();
         }
         else
         {
-            buttonImage.sprite = spriteB;
-          
+            _gameSpeed = 0;
+            UpdateTimeScale();
+        }
+    }
+
+    public void OnClickPlaybackSpeedButton()
+    {
+        _isPlayBackButtonPushed = !_isPlayBackButtonPushed;
+
+        PlayBackSpeedButtonImageChange();
+
+        if (_playBackSpeed == 2)
+        {
+            _playBackSpeed = 1;
+            UpdateTimeScale();
+        }
+        else
+        {
+            _playBackSpeed = 2;
+            UpdateTimeScale();
+        }
+    }
+
+
+    public void UpdateTimeScale()
+    {
+        Time.timeScale = _playBackSpeed * _gameSpeed;
+    }
+
+
+    public void PauseButtonImageChange()
+    {
+
+        if (_isPauseButtonPushed)
+        {
+            _pauseButtonImage.sprite = _playSprite;
+        }
+        else
+        {
+            _pauseButtonImage.sprite = _pauseSprite;
+        }
+    }
+
+    public void PlayBackSpeedButtonImageChange()
+    {
+
+        if (_isPlayBackButtonPushed)
+        {
+            _playbackButtonImage.sprite = _playbackSpeed1Sprite;
+        }
+        else
+        {
+            _playbackButtonImage.sprite = _playbackSpeed2Sprite;
         }
     }
 

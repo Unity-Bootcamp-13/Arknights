@@ -2079,7 +2079,7 @@ GameObject:
   - component: {fileID: 2127994635}
   - component: {fileID: 2127994634}
   m_Layer: 5
-  m_Name: FastSpeed (Button)
+  m_Name: PlaybackSpeed (Button)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
