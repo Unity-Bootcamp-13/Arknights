@@ -12,7 +12,7 @@ public class GameSpeedController : MonoBehaviour
 
 
     [Header("필수 참조")]
-    [SerializeField] Image buttonImage;   // 버튼의 Image 컴포넌트
+    [SerializeField] Image buttonImage;  
 
 
     [Header("A 상태")]
@@ -28,7 +28,6 @@ public class GameSpeedController : MonoBehaviour
 
 
 
-    // ▶ 일시정지 상태를 토글
     public void OnClick_TogglePause()
     {
         if (isGamePaused)
@@ -36,7 +35,7 @@ public class GameSpeedController : MonoBehaviour
             Time.timeScale = 1f;
             isGamePaused = false;
 
-            // ▶ 2배속 버튼 다시 활성화
+         
             fastSpeedButton.interactable = true;
         }
         else
@@ -44,10 +43,10 @@ public class GameSpeedController : MonoBehaviour
             Time.timeScale = 0f;
             isGamePaused = true;
 
-            // ▶ 2배속 버튼 비활성화
+     
             fastSpeedButton.interactable = false;
 
-            // 2배속 상태였다면 원래 속도로 되돌림
+        
             if (isFastSpeedEnabled)
             {
                 isFastSpeedEnabled = false;
@@ -55,7 +54,7 @@ public class GameSpeedController : MonoBehaviour
         }
     }
 
-    // ▶ 2배속 상태를 토글 (일시정지 상태에서는 실행 불가)
+ 
     public void OnClick_ToggleFastSpeed()
     {
         if (isGamePaused)
@@ -76,12 +75,11 @@ public class GameSpeedController : MonoBehaviour
 
     public void ToggleVisual()
     {
-        isA = !isA;            // 상태 반전
+        isA = !isA;           
         ApplyVisual();
     }
 
 
-    //void Start() => ApplyVisual();
 
     void ApplyVisual()
     {
