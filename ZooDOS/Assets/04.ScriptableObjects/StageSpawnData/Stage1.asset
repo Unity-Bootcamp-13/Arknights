@@ -24,7 +24,7 @@ MonoBehaviour:
       y: 2
     - x: 10
       y: 3
-    - x: 12
+    - x: 11
       y: 3
   - enemyPrefab: {fileID: 3866023922725468305, guid: 67ffe65f00d052d44bda4ba5aa17418d, type: 3}
     spawnTime: 3
@@ -37,7 +37,7 @@ MonoBehaviour:
       y: 2
     - x: 10
       y: 3
-    - x: 12
+    - x: 11
       y: 3
   - enemyPrefab: {fileID: 3866023922725468305, guid: 67ffe65f00d052d44bda4ba5aa17418d, type: 3}
     spawnTime: 3
@@ -50,5 +50,5 @@ MonoBehaviour:
       y: 2
     - x: 10
       y: 3
-    - x: 12
+    - x: 11
       y: 3

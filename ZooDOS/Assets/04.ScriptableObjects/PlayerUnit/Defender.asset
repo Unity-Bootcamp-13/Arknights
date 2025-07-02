@@ -15,14 +15,18 @@ MonoBehaviour:
   Hp: 0
   Def: 0
   Atk: 0
-  AtkSpeed: 0
+  AtkSpeed: 2
+  ProjectileSpeed: 1
   ResistCapacity: 0
-  PlaceCost: 0
+  PlaceCost: 3
   ReplaceTime: 0
-  PlayerUnitType: 1
-  TileType: 2
-  UnitPortrait: {fileID: 21300000, guid: 3c2fe7a7d21764202adb8200047974e0, type: 3}
-  UnitPrefab: {fileID: 7527928422904632095, guid: ac7e5b7b5e0c86747ae77686553362a9, type: 3}
   BackwardRange: 0
   ForwardRange: 0
   SidewardRange: 0
+  PlayerUnitType: 1
+  TileType: 2
+  AttackType: 1
+  UnitPortrait: {fileID: 21300000, guid: 0f8b246ebabc4774bbd0f10d275015d6, type: 3}
+  UnitPrefab: {fileID: 5987083880209581786, guid: ac7e5b7b5e0c86747ae77686553362a9, type: 3}
+  UnitTposePrefab: {fileID: 4955771249421910934, guid: c7076bf0ad00131469faa7a90f48302b, type: 3}
+  UnitProjectilePrefab: {fileID: 0}
