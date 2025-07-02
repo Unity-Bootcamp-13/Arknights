@@ -7,6 +7,7 @@ public class Unit : MonoBehaviour, IDamagable
     protected float _def;
     protected float _atk;
     protected float _atkSpeed;
+    protected float _projectileSpeed;
 
     public Hp Hp => _hp;
     public float Def => _def;

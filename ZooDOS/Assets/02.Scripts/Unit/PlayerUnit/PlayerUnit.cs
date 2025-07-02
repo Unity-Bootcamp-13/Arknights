@@ -6,9 +6,8 @@ using UnityEngine;
 public class PlayerUnit : Unit
 {
     [SerializeField] protected Animator _animator;
+    List<Maptile> _attackRange;
 
-    protected List<Maptile> _attackRange;
-    protected Maptile _placeTile;
 
     protected float _leftAttackTime;
     protected int _resistCapacity;
@@ -17,6 +16,7 @@ public class PlayerUnit : Unit
     protected PlayerUnitType _playerUnitType;
     protected TileType _tileType;
     protected AttackType _attackType;
+    protected Projectile _projectilePrefab;
 
     PlayerUnitBasicAttack _basicAttack;
 
@@ -43,14 +43,12 @@ public class PlayerUnit : Unit
     /// </summary>
     /// <param name="attackRange"></param>
     /// <param name="placedTile"></param>
-    public virtual void OnPlace(List<Maptile> attackRange, Maptile placedTile)
+    public virtual void OnPlace(List<Maptile> attackRange)
     {
         _leftAttackTime = 0;
         _attackRange = attackRange;
-        _placeTile = placedTile;
-        _placeTile.PlayerUnit = this;
         _hp.RefillHp();
-        _basicAttack = new PlayerUnitBasicAttack(this, _resistCapacity, _attackRange, _animator, _atk, _attackType);
+        _basicAttack = new PlayerUnitBasicAttack(this, _resistCapacity, _attackRange, _atk, _attackType);
         transform.position += Vector3.up * Constants.FALLING_POS;
         StartCoroutine(C_FallingCoroutine());
     }
@@ -72,9 +70,46 @@ public class PlayerUnit : Unit
         _def = playerUnitData.Def;
         _atk = playerUnitData.Atk;
         _atkSpeed = playerUnitData.AtkSpeed;
+        _projectileSpeed = playerUnitData.ProjectileSpeed;
         _resistCapacity = playerUnitData.ResistCapacity;
         _placeCost = playerUnitData.PlaceCost;
         _replaceTime = playerUnitData.ReplaceTime;
+        _projectilePrefab = playerUnitData.UnitProjectilePrefab;
+    }
+
+    public void ShootDamageProjectile(Unit target, float value)
+    {
+        _animator.SetTrigger("Attack_t");
+        float damage = Math.Min(-1, target.Def - value);
+
+        if (_projectilePrefab != null)
+        {
+            Projectile projectile = Instantiate(_projectilePrefab);
+            projectile.Init(target, _projectileSpeed);
+            projectile.transform.position = transform.position;
+            projectile.SetProjectileAction(() => target.Hp.GetDamage(damage));
+        }
+        else
+        {
+            target.Hp.GetDamage(damage);
+        }
+        
+    }
+
+    public void ShootHealProjectile(Unit target, float value)
+    {
+        _animator.SetTrigger("Attack_t");
+        if (_projectilePrefab != null)
+        {
+            Projectile projectile = Instantiate(_projectilePrefab);
+            projectile.Init(target, _projectileSpeed);
+            projectile.transform.position = transform.position;
+            projectile.SetProjectileAction(() => target.Hp.GetHeal(value));
+        }
+        else
+        {
+            target.Hp.GetHeal(value);
+        }
     }
 
     IEnumerator C_FallingCoroutine()
@@ -95,6 +130,5 @@ public class PlayerUnit : Unit
     public override void OnDeath()
     {
         gameObject.SetActive(false);
-        _placeTile.PlayerUnit = null;
     }
 }
