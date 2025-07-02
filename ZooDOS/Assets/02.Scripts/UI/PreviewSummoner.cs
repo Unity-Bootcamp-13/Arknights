@@ -6,7 +6,7 @@ public class PreviewSummoner : MonoBehaviour
     [Header("의존성 주입")]
     [SerializeField] private Map _map;
     [SerializeField] private Camera _mainCamera;
-    [SerializeField] private DirectionSelectUI _directionUI;   
+    [SerializeField] private DirectionSelectUI _directionUI;
 
     [Header("유닛 정보 UI")]
     [SerializeField] private GameObject unitInfoPanel;
@@ -19,11 +19,10 @@ public class PreviewSummoner : MonoBehaviour
 
     public void StartPreview(PlayerUnitData data)
     {
-         CancelPreview();
+        CancelPreview();
         _currentUnit = data;
         _preview = Instantiate(data.UnitTposePrefab);
         _preview.SetActive(false);
-        _map.ShowTileTypeOverlay(_currentUnit.TileType);
         ShowInfo(data);
     }
 
@@ -33,9 +32,8 @@ public class PreviewSummoner : MonoBehaviour
         {
             Destroy(_preview);
         }
-        
+
         _preview = null;
-        _map.ClearTileTypeOverlay();
         HideInfo();
     }
 
@@ -51,34 +49,37 @@ public class PreviewSummoner : MonoBehaviour
 
     bool IsSameTileType(Position pos)
     {
-        return _currentUnit.TileType == _map.MapTiles[pos.X, pos.Y].TileType;
+        return _currentUnit.TileType == _map.GetTile(pos).TileType;
     }
 
     private void UpdatePreviewPosition()
     {
         Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-        Plane groundPlane = new(Vector3.up, Vector3.zero);
-        if (groundPlane.Raycast(ray, out float enter))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            Vector3 world = ray.GetPoint(enter);
-            Position pos = _map.Vector3ToCoord(world);
-
-            if (_map.IsInsideMap(pos) && IsSameTileType(pos))
+            Maptile tile = hit.collider.GetComponent<Maptile>();
+            if (tile != null)
             {
-                _preview.transform.position = _map.CoordToVector3(pos);
-                if (!_cursorOnMap)
+                Position pos = tile.GetPosition();
+                if (_map.IsInsideMap(pos) && IsSameTileType(pos))
                 {
-                    _preview.SetActive(true);
-                    _cursorOnMap = true;
+                    _preview.transform.position = _map.CoordToVector3(pos);
+                    if (!_cursorOnMap)
+                    {
+                        _preview.SetActive(true);
+                        _cursorOnMap = true;
+                    }
                 }
-            }
-            else
-            {
-                if (_cursorOnMap)
+                else
                 {
                     _preview.SetActive(false);
                     _cursorOnMap = false;
                 }
+            }
+            else
+            {
+                _preview.SetActive(false);
+                _cursorOnMap = false;
             }
         }
     }
@@ -95,7 +96,7 @@ public class PreviewSummoner : MonoBehaviour
         Position pos = _map.Vector3ToCoord(_preview.transform.position);
         if (!_map.IsInsideMap(pos))
         {
-            CancelPreview(); 
+            CancelPreview();
             return;
         }
         _directionUI.OpenDirectionUI(_preview, _currentUnit, this); // 의존성 주입

@@ -96,7 +96,7 @@ public class DirectionSelectUI : MonoBehaviour
         Vector3 dirVector = GetSwipeDirection(delta);
         Position pos = _map.Vector3ToCoord(_preview.transform.position);
 
-        if (_map.IsInsideMap(pos) && _costWallet.TrySpend(new Cost(_playerUnitData.PlaceCost)))
+        if (_map.IsInsideMap(pos) && _costWallet.TrySpendCost(new Cost(_playerUnitData.PlaceCost)))
         {
             _playerUnitSpanwer.PlayerUnitSpawn(pos, dirVector, _playerUnitData);
         }

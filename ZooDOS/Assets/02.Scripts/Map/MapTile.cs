@@ -1,46 +1,80 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Maptile
+public class Maptile : MonoBehaviour
 {
-    [SerializeField]
-    private TileType _type = TileType.None;
+    [SerializeField] private TileType _type = TileType.None;
     private Position _tilePosition;
     private PlayerUnit _playerUnit;
     private List<EnemyUnit> _enemyUnits = new List<EnemyUnit>();
 
-    public TileType TileType
+    public TileType TileType => _type;
+
+    public Position GetPosition()
     {
-        get => _type;
+        return _tilePosition;
+    }
+    public void SetPlayerUnit(PlayerUnit unit)
+    {
+        _playerUnit = unit;
     }
 
-    public PlayerUnit PlayerUnit
+    public PlayerUnit GetPlayerUnit()
     {
-        get
-        {
-            return _playerUnit;
-        }
-        set
-        {
-            _playerUnit = value;
-        }
+        return _playerUnit;
     }
 
-    public List<EnemyUnit> EnemyUnits
+    public void PlayerDeath()
     {
-        get => _enemyUnits;
-        set => _enemyUnits = value;
+        _playerUnit = null;
     }
 
-    public Maptile(TileType type, Position position)
+    public void Init(Position position)
     {
-        _type = type;
         _tilePosition = position;
         _playerUnit = null;
     }
 
-    public void AddUnit(EnemyUnit unit)
+    public void AddEnemyUnit(EnemyUnit enemy)
     {
-        _enemyUnits.Add(unit);
+        if (!_enemyUnits.Contains(enemy)) // 중복 방지
+        {
+            _enemyUnits.Add(enemy);
+        }
+    }
+
+    public void RemoveEnemyUnit(EnemyUnit enemy)
+    {
+        _enemyUnits.Remove(enemy);
+    }
+
+    public bool HasEnemyUnit(EnemyUnit enemy)
+    {
+        return _enemyUnits.Contains(enemy);
+    }
+
+    public IReadOnlyList<EnemyUnit> GetEnemyUnits()
+    {
+        return _enemyUnits.AsReadOnly();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out EnemyUnit enemy))
+        {
+            AddEnemyUnit(enemy);
+        }
+        if (other.TryGetComponent(out PlayerUnit unit))
+        {
+            SetPlayerUnit(unit);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent(out EnemyUnit enemy))
+        {
+            RemoveEnemyUnit(enemy);
+        }
     }
 }
