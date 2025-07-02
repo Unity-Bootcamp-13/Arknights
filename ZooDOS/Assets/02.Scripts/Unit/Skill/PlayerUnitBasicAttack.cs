@@ -120,16 +120,16 @@ public class PlayerUnitBasicAttack
         float lowestHpRatio = 1f;
         foreach (Maptile maptile in _attackRange)
         {
-            if (maptile.PlayerUnit == null)
+            if (maptile.GetPlayerUnit() == null)
             {
                 continue;
             }
 
-            float ratio = maptile.PlayerUnit.Hp.HpRatio;
+            float ratio = maptile.GetPlayerUnit().Hp.HpRatio;
 
             if (ratio < 1f && ratio < lowestHpRatio)
             {
-                lowestHpUnit = maptile.PlayerUnit;
+                lowestHpUnit = maptile.GetPlayerUnit();
                 lowestHpRatio = ratio;
             }
         }
@@ -143,11 +143,11 @@ public class PlayerUnitBasicAttack
         float ClosestDistance = 9999;
         foreach (Maptile maptile in _attackRange)
         {
-            if (maptile.EnemyUnits.Count <= 0)
+            if (maptile.GetEnemyUnits().Count <= 0)
             {
                 continue;
             }
-            foreach (EnemyUnit enemyUnit in maptile.EnemyUnits)
+            foreach (EnemyUnit enemyUnit in maptile.GetEnemyUnits())
             {
 
                 if (enemyUnit == null || enemyUnit.Hp.IsDead)
@@ -173,7 +173,7 @@ public class PlayerUnitBasicAttack
         EnemyUnit enemy = target as EnemyUnit;
         foreach (Maptile maptile in _attackRange)
         {
-            if (maptile.EnemyUnits.Contains(enemy))
+            if (maptile.HasEnemyUnit(enemy))
             {
                 return true;
             }

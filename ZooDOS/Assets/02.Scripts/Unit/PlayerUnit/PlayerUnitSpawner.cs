@@ -82,7 +82,7 @@ public class PlayerUnitSpawner : MonoBehaviour
             // 맵 범위 체크
             if (IsInsideMap(target))
             {
-                result.Add(_map.MapTiles[target.X, target.Y]);
+                result.Add(_map.GetTile(target));
             }
         }
 
@@ -115,8 +115,8 @@ public class PlayerUnitSpawner : MonoBehaviour
 
     private bool IsInsideMap(Position pos)
     {
-        return pos.X >= 0 && pos.X < _map.MapTiles.GetLength(0) &&
-               pos.Y >= 0 && pos.Y < _map.MapTiles.GetLength(1);
+        return pos.X >= 0 && pos.X < _map.GetTileXSize() &&
+               pos.Y >= 0 && pos.Y < _map.GetTileYSize();
     }
 
 }
