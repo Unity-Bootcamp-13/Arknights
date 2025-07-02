@@ -11,4 +11,7 @@ public class EnemyUnitData : ScriptableObject
     [SerializeField] public EnemyUnitType EnemyUnitType;
 
     [SerializeField] public int RangeRadius;
+    [SerializeField] public Projectile ProjectilePrefab;
+    [SerializeField] public float ProjectileSpeed;
+
 }

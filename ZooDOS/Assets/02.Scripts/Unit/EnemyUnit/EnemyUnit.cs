@@ -11,6 +11,12 @@ public class EnemyUnit : Unit
     private float rotationSpeed = 10;
     private bool isBlocked = false;
 
+    private EnemyUnitType _enemyUnitType;
+    protected Projectile _projectilePrefab;
+    protected float _RangeRadius;
+
+    
+
     [SerializeField] private EnemyUnitData _enemyUnitData;
     void Update()
     {
@@ -30,6 +36,16 @@ public class EnemyUnit : Unit
         _path = path;
         currentPathIndex = 0;
         transform.position = _path[0]; 
+        
+        _hp = new Hp(_enemyUnitData.Hp, this);
+        _def = _enemyUnitData.Def;
+        _atk = _enemyUnitData.Atk;
+        _atkSpeed = _enemyUnitData.AtkSpeed;
+        _enemyUnitType = _enemyUnitData.EnemyUnitType;
+        _RangeRadius = _enemyUnitData.RangeRadius;
+        _projectilePrefab = _enemyUnitData.ProjectilePrefab;
+        _projectileSpeed = _enemyUnitData.ProjectileSpeed;
+        
         
     }
     
