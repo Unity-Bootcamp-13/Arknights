@@ -719,7 +719,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 530, y: 250}
+  m_AnchoredPosition: {x: -60, y: -60}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &729158170
@@ -766,13 +766,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1886352661}
+        m_TargetAssemblyTypeName: GameSpeedController, Assembly-CSharp
+        m_MethodName: OnClickPauseButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -798,8 +798,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -979619978, guid: 013b3ea07b9c4a64c91bcd191fa12664, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1973,11 +1973,11 @@ RectTransform:
   - {fileID: 2127994633}
   m_Father: {fileID: 1208255863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 250, y: 125}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &1886352661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1990,14 +1990,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f679441accc19c40bafc8c98f117c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pauseButton: {fileID: 0}
-  _fastSpeedButton: {fileID: 0}
-  _pauseButtonImage: {fileID: 0}
-  _playbackButtonImage: {fileID: 0}
-  _pauseSprite: {fileID: 0}
-  _playSprite: {fileID: 0}
-  _playbackSpeed1Sprite: {fileID: 0}
-  _playbackSpeed2Sprite: {fileID: 0}
+  _pauseButton: {fileID: 729158170}
+  _fastSpeedButton: {fileID: 2127994634}
+  _pauseButtonImage: {fileID: 729158171}
+  _playbackButtonImage: {fileID: 2127994635}
+  _pauseSprite: {fileID: -1909790954, guid: 013b3ea07b9c4a64c91bcd191fa12664, type: 3}
+  _playSprite: {fileID: -121838509, guid: 013b3ea07b9c4a64c91bcd191fa12664, type: 3}
+  _playbackSpeed1Sprite: {fileID: 2139704354, guid: 013b3ea07b9c4a64c91bcd191fa12664, type: 3}
+  _playbackSpeed2Sprite: {fileID: -1133413521, guid: 013b3ea07b9c4a64c91bcd191fa12664, type: 3}
 --- !u!1 &1953823498
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,7 +2157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 410, y: 250}
+  m_AnchoredPosition: {x: -180, y: -60}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2127994634
@@ -2203,7 +2203,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2127994635}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1886352661}
+        m_TargetAssemblyTypeName: GameSpeedController, Assembly-CSharp
+        m_MethodName: OnClickPlaybackSpeedButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2127994635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2224,8 +2236,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 2139704354, guid: 013b3ea07b9c4a64c91bcd191fa12664, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
