@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 public class EnemyUnitSpawner : MonoBehaviour
 {
     [SerializeField] private Map map;
 
-    public Map Map
-    {
-        get => map;
-    }
     [SerializeField] private WaveData waveData;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -42,23 +39,14 @@ public class EnemyUnitSpawner : MonoBehaviour
     public void SpawnEnemy(EnemySpawnData enemyData)
     {
         var enemy = Instantiate(enemyData.enemyPrefab).GetComponent<EnemyUnit>();
-        enemy.Initialize(map, enemyData.path);
+        List<Vector3> path = new List<Vector3>();
+        foreach (var waypoint in enemyData.path)
+        {
+            path.Add(map.CoordToVector3(waypoint));
+        }
+        enemy.Initialize(path);
         
     }
-    
-    /// <summary>
-    /// 적리스트 타일좌표값으로 리턴
-    /// </summary>
-    /// <param name="pos">위치 좌표</param>
-    /// <returns>적 리스트</returns>
-    
-    public List<EnemyUnit> OnTileEnemyList(Position pos)
-    {
-        
-        
-        return map.MapTiles[pos.X, pos.Y].EnemyUnits;
-    }
-    
     
     
 }
