@@ -17,7 +17,7 @@ MonoBehaviour:
   Atk: 0
   AtkSpeed: 2
   ProjectileSpeed: 1
-  ResistCapacity: 0
+  ResistCapacity: 3
   PlaceCost: 3
   ReplaceTime: 0
   BackwardRange: 0
