@@ -15,7 +15,7 @@ public enum AttackType
     Heal,
 }
 
-public enum EnumyUnitType
+public enum EnemyUnitType
 {
     Nothing,
     ShortRange,

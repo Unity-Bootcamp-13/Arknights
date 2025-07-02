@@ -8,7 +8,7 @@ public class EnemyUnitData : ScriptableObject
     [SerializeField] public float Atk;
     [SerializeField] public float AtkSpeed;
     [SerializeField] public float MoveSpeed;
-    [SerializeField] public EnumyUnitType EnumyUnitType;
+    [SerializeField] public EnemyUnitType EnemyUnitType;
 
     [SerializeField] public int RangeRadius;
 }

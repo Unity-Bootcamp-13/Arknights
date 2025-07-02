@@ -6,7 +6,7 @@ public class Maptile : MonoBehaviour
     [SerializeField] private TileType _type = TileType.None;
     private Position _tilePosition;
     private PlayerUnit _playerUnit;
-    private List<EnemyUnit> _enemyUnits = new List<EnemyUnit>();
+    private List<Unit> _enemyUnits = new List<Unit>();
 
     public TileType TileType => _type;
 
@@ -35,25 +35,29 @@ public class Maptile : MonoBehaviour
         _playerUnit = null;
     }
 
-    public void AddEnemyUnit(EnemyUnit enemy)
+    public void AddEnemyUnit(Unit enemy)
     {
         if (!_enemyUnits.Contains(enemy)) // 중복 방지
         {
             _enemyUnits.Add(enemy);
+            enemy.Die += HandleEnemyDeath;
+
         }
     }
 
-    public void RemoveEnemyUnit(EnemyUnit enemy)
+    public void RemoveEnemyUnit(Unit enemy)
     {
         _enemyUnits.Remove(enemy);
+        enemy.Die -= HandleEnemyDeath;
+
     }
 
-    public bool HasEnemyUnit(EnemyUnit enemy)
+    public bool HasEnemyUnit(Unit enemy)
     {
         return _enemyUnits.Contains(enemy);
     }
 
-    public IReadOnlyList<EnemyUnit> GetEnemyUnits()
+    public IReadOnlyList<Unit> GetEnemyUnits()
     {
         return _enemyUnits.AsReadOnly();
     }
@@ -68,6 +72,7 @@ public class Maptile : MonoBehaviour
         {
             SetPlayerUnit(unit);
         }
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -76,5 +81,17 @@ public class Maptile : MonoBehaviour
         {
             RemoveEnemyUnit(enemy);
         }
+        
+        
+        
     }
+    
+    private void HandleEnemyDeath(Unit unit)
+    {
+        if (HasEnemyUnit(unit))
+        {
+            RemoveEnemyUnit(unit);
+        }
+    }
+    
 }
