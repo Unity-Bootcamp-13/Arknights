@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerUnitSpawner : MonoBehaviour
 {
@@ -35,7 +33,7 @@ public class PlayerUnitSpawner : MonoBehaviour
         RotateUnitByDirection(playerUnit, direction);
         List<Maptile> Range = CalcRange(position, direction, playerUnitData);
         playerUnit.transform.position = worldPos;
-        playerUnit.OnPlace(Range, _map.MapTiles[position.X,position.Y]);
+        playerUnit.OnPlace(Range);
     }
 
     public void RotateUnitByDirection(PlayerUnit playerUnit, Vector3 direction)

@@ -7,17 +7,15 @@ public class PlayerUnitBasicAttack
     List<Unit> _targets;
     PlayerUnit _playerUnit;
     List<Maptile> _attackRange;
-    Animator _animator;
 
     float _atk;
     AttackType _attackType;
 
-    public PlayerUnitBasicAttack(PlayerUnit playerUnit, int resistCapacity, List<Maptile> attackRange, Animator animator, float atk, AttackType attackType)
+    public PlayerUnitBasicAttack(PlayerUnit playerUnit, int resistCapacity, List<Maptile> attackRange, float atk, AttackType attackType)
     {
         _playerUnit = playerUnit;
         _targets = new List<Unit>(resistCapacity);
         _attackRange = attackRange;
-        _animator = animator;
         _atk = atk;
         _attackType = attackType;
     }
@@ -38,6 +36,11 @@ public class PlayerUnitBasicAttack
         }
     }
 
+    /// <summary>
+    /// FindEnemyUnitTarget + ShooDamageProjectile
+    ///  = 적 타겟 탐지 + 공격 투사체 발사 
+    ///  = 적에게 공격
+    /// </summary>
     public void AttackToEnemyUnit()
     {
         _targets.RemoveAll(t => t == null || t.Hp.IsDead);
@@ -45,7 +48,7 @@ public class PlayerUnitBasicAttack
         if (_targets.Count < _targets.Capacity)
         {
             EnemyUnit target = FindEnemyUnitTarget() as EnemyUnit;
-            if (target != null)
+            if (target != null && _targets.Contains(target)==false)
             {
                 _targets.Add(target);
             }
@@ -63,7 +66,7 @@ public class PlayerUnitBasicAttack
                 if (target.Hp.IsDead == false)
                 {
 
-                    Attack(target);
+                    _playerUnit.ShootDamageProjectile(target, _atk);
                 }
 
             }
@@ -71,6 +74,11 @@ public class PlayerUnitBasicAttack
         }
     }
 
+    /// <summary>
+    /// FindPlayerUnitTarget + ShooHealProjectile
+    /// = 아군 타겟 탐지 + 공격 투사체 발사
+    /// = 아군에게 힐
+    /// </summary>
     public void HealToPlayerUnit()
     {
         _targets.RemoveAll(t => t == null || t.Hp.IsDead);
@@ -78,7 +86,7 @@ public class PlayerUnitBasicAttack
         if (_targets.Count < _targets.Capacity)
         {
             PlayerUnit target = FindPlayerUnitTarget() as PlayerUnit;
-            if (target != null)
+            if (target != null && _targets.Contains(target) == false)
             {
                 _targets.Add(target);
             }
@@ -96,7 +104,7 @@ public class PlayerUnitBasicAttack
                 if (target.Hp.IsDead == false)
                 {
 
-                    Heal(target);
+                    _playerUnit.ShootHealProjectile(target, _atk);
                 }
 
             }
@@ -105,18 +113,6 @@ public class PlayerUnitBasicAttack
     }
 
 
-    public void Attack(Unit unit)
-    {
-        _animator.SetTrigger("Attack_t");
-        float damage = Math.Min(-1, unit.Def - _atk);
-        unit.Hp.GetDamage(damage);
-    }
-
-    public void Heal(Unit unit)
-    {
-        _animator.SetTrigger("Attack_t");
-        unit.Hp.GetHeal(_atk);
-    }
 
     public Unit FindPlayerUnitTarget()
     {
