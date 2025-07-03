@@ -496,6 +496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _map: {fileID: 1671331094}
+  _wavedata: {fileID: 11400000, guid: ded40003f4b4cf64eb6de2907dd933b2, type: 2}
 --- !u!4 &167409845
 Transform:
   m_ObjectHideFlags: 0
