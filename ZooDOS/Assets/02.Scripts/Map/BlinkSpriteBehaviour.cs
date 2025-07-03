@@ -21,7 +21,7 @@ public class BlinkSpriteBehaviour : MonoBehaviour
         _originColor = _spr.color;              
     }
 
-    public void StartBlink(Color c0, Color c1, float interval = 0.15f)
+    public void StartBlink(Color c0, Color c1, float interval = 0.5f)
     {
         StopBlink();                          
         _blinkCoroutine = StartCoroutine(BlinkRoutine(c0, c1, interval));

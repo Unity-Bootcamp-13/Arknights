@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6263159471025189322}
   - component: {fileID: 6234901624546176625}
   - component: {fileID: 6035415445988289484}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Box_100x100x50_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 1445275558206958232}
   - component: {fileID: 1600031439477389540}
   - component: {fileID: -6222055896942928740}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ BoxCollider:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 2
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -229,9 +229,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tile - Yellow
       objectReference: {fileID: 0}
+    - target: {fileID: 2001978974288363903, guid: 47a2660172607db47be72516bbd91bae, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4362456215564467002, guid: 47a2660172607db47be72516bbd91bae, type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299443838101774993, guid: 47a2660172607db47be72516bbd91bae, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

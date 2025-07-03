@@ -17,10 +17,15 @@ public class PreviewSummoner : MonoBehaviour
     private PlayerUnitData _currentUnit;
     private GameObject _preview;
     private bool _cursorOnMap;
+    private int _tileMask; 
     // BlinkSpriteBehaviour 색변환 호출용.
     private readonly List<BlinkSpriteBehaviour> _highlightBlinks = new();
     private readonly List<BlinkSpriteBehaviour> _rangeBlinks = new();
 
+    private void Awake()
+    {
+        _tileMask = LayerMask.GetMask("Tile");
+    }
     public void StartPreview(PlayerUnitData data)
     {
         CancelPreview();
@@ -62,7 +67,7 @@ public class PreviewSummoner : MonoBehaviour
     private void UpdatePreviewPosition()
     {
         Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _tileMask))
         {
             Maptile tile = hit.collider.GetComponent<Maptile>();
             if (tile != null)

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6263159471025189322}
   - component: {fileID: 6234901624546176625}
   - component: {fileID: 6035415445988289484}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Box_100x100x1_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 1445275558206958232}
   - component: {fileID: -8418048339098425867}
   - component: {fileID: 573930610819860197}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DefensePoint_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ BoxCollider:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 2
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -225,6 +225,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5183150962091007874, guid: 7c96be2b10feb1b4393dc4f5d3633058, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5196901596174731385, guid: 7c96be2b10feb1b4393dc4f5d3633058, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -233,13 +237,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tile - Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 8389361728938034775, guid: 7c96be2b10feb1b4393dc4f5d3633058, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5183150962091007874, guid: 7c96be2b10feb1b4393dc4f5d3633058, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6610483778163643096}
+      addedObject: {fileID: 3229151370135891160}
   m_SourcePrefab: {fileID: 100100000, guid: 7c96be2b10feb1b4393dc4f5d3633058, type: 3}
 --- !u!4 &1285648597708004096 stripped
 Transform:
@@ -251,7 +259,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5183150962091007874, guid: 7c96be2b10feb1b4393dc4f5d3633058, type: 3}
   m_PrefabInstance: {fileID: 1866803121578194278}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6610483778163643096
+--- !u!114 &3229151370135891160
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
