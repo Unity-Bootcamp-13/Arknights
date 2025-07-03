@@ -5,18 +5,19 @@ using UnityEngine.UI;
 public class GameSpeedController : MonoBehaviour
 {
     [Header("UI Buttons")]
-    [SerializeField] private Button _pauseButton; 
+    [SerializeField] private Button _pauseButton;
     [SerializeField] private Button _fastSpeedButton;
 
 
     [Header("필수 참조")]
-    [SerializeField] private Image _pauseButtonImage;  
+    [SerializeField] private Image _pauseButtonImage;
     [SerializeField] private Image _playbackButtonImage;
     [SerializeField] TextMeshProUGUI label;
+    [SerializeField] private GameObject _pauseOverlay;
 
     [Header("Play 상태")]
     [SerializeField] private Image _pauseImage;
-  
+
     [Header("Pause 상태")]
     [SerializeField] private Image _playImage;
 
@@ -64,7 +65,6 @@ public class GameSpeedController : MonoBehaviour
             UpdateTimeScale();
         }
     }
-
     public void OnClickPlaybackSpeedButton()
     {
         _isPlayBackButtonPushed = !_isPlayBackButtonPushed;
@@ -97,13 +97,14 @@ public class GameSpeedController : MonoBehaviour
         {
             _playImage.enabled = true;
             _pauseImage.enabled = false;
-     
+            _pauseOverlay.SetActive(true);
+
         }
         else
         {
             _playImage.enabled = false;
             _pauseImage.enabled = true;
-          
+            _pauseOverlay.SetActive(false);
         }
     }
 
@@ -116,7 +117,7 @@ public class GameSpeedController : MonoBehaviour
             _playbackSpeed2ImageL.enabled = true;
             _playbackSpeed2ImageR.enabled = true;
             label.text = textB;
-        
+
         }
         else
         {
