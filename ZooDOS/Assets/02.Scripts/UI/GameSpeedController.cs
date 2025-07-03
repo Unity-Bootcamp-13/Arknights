@@ -112,18 +112,18 @@ public class GameSpeedController : MonoBehaviour
 
         if (_isPlayBackButtonPushed)
         {
-            _playbackSpeed1Image.enabled = true;
-            _playbackSpeed2ImageL.enabled = false;
-            _playbackSpeed2ImageR.enabled = false;
-            label.text = textA;
-        
-        }
-        else
-        {
             _playbackSpeed1Image.enabled = false;
             _playbackSpeed2ImageL.enabled = true;
             _playbackSpeed2ImageR.enabled = true;
             label.text = textB;
+        
+        }
+        else
+        {
+            _playbackSpeed1Image.enabled = true;
+            _playbackSpeed2ImageL.enabled = false;
+            _playbackSpeed2ImageR.enabled = false;
+            label.text = textA;
         }
     }
 
