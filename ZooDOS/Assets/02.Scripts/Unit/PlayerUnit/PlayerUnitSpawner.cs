@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerUnitSpawner : MonoBehaviour
 {
-    [SerializeField] Map _map;
+    [SerializeField] GameManager _gameManager;
     [SerializeField] PlayerUnitData[] _playerUnitDatas;
     Dictionary<PlayerUnitType, PlayerUnit> _units;
 
@@ -27,7 +27,7 @@ public class PlayerUnitSpawner : MonoBehaviour
     /// <param name="playerUnitData"> 스폰할 유닛 데이터 </param>
     public void PlayerUnitSpawn(Position position, Vector3 direction , PlayerUnitData playerUnitData)
     {
-        Vector3 worldPos = _map.CoordToVector3(position);
+        Vector3 worldPos = _gameManager.Map.CoordToVector3(position);
         PlayerUnit playerUnit = _units[playerUnitData.PlayerUnitType];
         playerUnit.gameObject.SetActive(true);
         RotateUnitByDirection(playerUnit, direction);
@@ -82,7 +82,7 @@ public class PlayerUnitSpawner : MonoBehaviour
             // 맵 범위 체크
             if (IsInsideMap(target))
             {
-                result.Add(_map.GetTile(target));
+                result.Add(_gameManager.Map.GetTile(target));
             }
         }
 
@@ -115,8 +115,8 @@ public class PlayerUnitSpawner : MonoBehaviour
 
     private bool IsInsideMap(Position pos)
     {
-        return pos.X >= 0 && pos.X < _map.GetTileXSize() &&
-               pos.Y >= 0 && pos.Y < _map.GetTileYSize();
+        return pos.X >= 0 && pos.X < _gameManager.Map.GetTileXSize() &&
+               pos.Y >= 0 && pos.Y < _gameManager.Map.GetTileYSize();
     }
 
 }
