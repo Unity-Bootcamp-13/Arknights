@@ -5,16 +5,16 @@ public class PlayerUnitSpawner : MonoBehaviour
 {
     [SerializeField] GameManager _gameManager;
     [SerializeField] PlayerUnitData[] _playerUnitDatas;
-    Dictionary<PlayerUnitType, PlayerUnit> _units;
+    Dictionary<int, PlayerUnit> _units;
 
     private void Awake()
     {
-        _units = new Dictionary<PlayerUnitType, PlayerUnit>(_playerUnitDatas.Length);
+        _units = new Dictionary<int, PlayerUnit>(_playerUnitDatas.Length);
         for(int i = 0; i <_playerUnitDatas.Length; i++)
         {
             PlayerUnit playerUnit = Instantiate(_playerUnitDatas[i].UnitPrefab);
             playerUnit.Init(_playerUnitDatas[i]);
-            _units.Add(_playerUnitDatas[i].PlayerUnitType, playerUnit);
+            _units.Add(_playerUnitDatas[i].Id, playerUnit);
         }
     }
 
@@ -28,7 +28,7 @@ public class PlayerUnitSpawner : MonoBehaviour
     public void PlayerUnitSpawn(Position position, Vector3 direction , PlayerUnitData playerUnitData)
     {
         Vector3 worldPos = _gameManager.Map.CoordToVector3(position);
-        PlayerUnit playerUnit = _units[playerUnitData.PlayerUnitType];
+        PlayerUnit playerUnit = _units[playerUnitData.Id];
         playerUnit.gameObject.SetActive(true);
         RotateUnitByDirection(playerUnit, direction);
         List<Maptile> Range = CalcRange(position, direction, playerUnitData);

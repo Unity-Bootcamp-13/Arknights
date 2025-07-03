@@ -21,11 +21,11 @@ public class PlayerUnitBasicAttack
 
     public void Attack()
     {
-        if(_attackType == AttackType.Damage)
+        if (_attackType == AttackType.Damage)
         {
             AttackToEnemyUnit();
         }
-        else if(_attackType == AttackType.Heal)
+        else if (_attackType == AttackType.Heal)
         {
             HealToPlayerUnit();
         }
