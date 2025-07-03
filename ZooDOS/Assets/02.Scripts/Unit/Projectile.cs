@@ -11,7 +11,14 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Targeting();
+        if(_target.Hp.IsDead == false)
+        {
+            Targeting();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void Targeting()
