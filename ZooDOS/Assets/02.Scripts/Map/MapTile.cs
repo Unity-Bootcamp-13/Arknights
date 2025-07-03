@@ -16,7 +16,13 @@ public class Maptile : MonoBehaviour
     }
     public void SetPlayerUnit(PlayerUnit unit)
     {
+        if (_playerUnit != null)
+            _playerUnit.Die -= HandlePlayerDeath;  
+
         _playerUnit = unit;
+
+        if (_playerUnit != null)
+            _playerUnit.Die += HandlePlayerDeath;
     }
 
     public PlayerUnit GetPlayerUnit()
@@ -26,6 +32,7 @@ public class Maptile : MonoBehaviour
 
     public void PlayerDeath()
     {
+        _playerUnit.Die -= HandlePlayerDeath;
         _playerUnit = null;
     }
 
@@ -41,7 +48,6 @@ public class Maptile : MonoBehaviour
         {
             _enemyUnits.Add(enemy);
             enemy.Die += HandleEnemyDeath;
-
         }
     }
 
@@ -49,7 +55,6 @@ public class Maptile : MonoBehaviour
     {
         _enemyUnits.Remove(enemy);
         enemy.Die -= HandleEnemyDeath;
-
     }
 
     public bool HasEnemyUnit(Unit enemy)
@@ -72,7 +77,6 @@ public class Maptile : MonoBehaviour
         {
             SetPlayerUnit(unit);
         }
-        
     }
 
     private void OnTriggerExit(Collider other)
@@ -81,11 +85,17 @@ public class Maptile : MonoBehaviour
         {
             RemoveEnemyUnit(enemy);
         }
-        
-        
-        
     }
-    
+    private void HandlePlayerDeath(Unit unit)
+    {
+        if (unit != _playerUnit)
+        {
+            return;
+        }
+        _playerUnit.Die -= HandlePlayerDeath;
+        _playerUnit = null;
+    }
+
     private void HandleEnemyDeath(Unit unit)
     {
         if (HasEnemyUnit(unit))
@@ -93,5 +103,4 @@ public class Maptile : MonoBehaviour
             RemoveEnemyUnit(unit);
         }
     }
-    
 }

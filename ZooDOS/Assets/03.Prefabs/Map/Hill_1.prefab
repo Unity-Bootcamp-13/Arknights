@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4254353161910972847}
   - component: {fileID: 8831076552529287594}
-  m_Layer: 6
+  - component: {fileID: 7261665273867468372}
+  m_Layer: 3
   m_Name: Spr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 00f0ed3d716a5ac488230ea2d916d8ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -87,6 +88,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7261665273867468372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778011361827807422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7485a5ec513473448c2340457cdadc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _placement0: {r: 0.4, g: 0.5, b: 1, a: 0.5}
+  _placement1: {r: 0.4, g: 0.6, b: 1, a: 0.5}
+  _attack0: {r: 0.9, g: 0, b: 0, a: 0.5}
+  _attack1: {r: 0.85, g: 0, b: 0, a: 0.5}
 --- !u!1 &3290145753815053933
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +116,7 @@ GameObject:
   - component: {fileID: 4338019934631883600}
   - component: {fileID: 8894792138110044137}
   - component: {fileID: 1125836709628568917}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Box_100x100x30_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 391330747426680584}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tile - Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +255,7 @@ GameObject:
   - component: {fileID: 8190309660999047108}
   - component: {fileID: 7323382723082705255}
   - component: {fileID: 2186883582830394501}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hill_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,10 +306,10 @@ BoxCollider:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 2
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.4, z: 0}
+  m_Size: {x: 1, y: 0.35, z: 1}
+  m_Center: {x: 0, y: 0.2, z: 0}

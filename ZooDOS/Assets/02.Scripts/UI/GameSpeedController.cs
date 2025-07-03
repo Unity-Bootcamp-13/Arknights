@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GameSpeedController : MonoBehaviour
@@ -10,20 +11,23 @@ public class GameSpeedController : MonoBehaviour
 
     [Header("필수 참조")]
     [SerializeField] private Image _pauseButtonImage;  
-    [SerializeField] private Image _playbackButtonImage;  
-
+    [SerializeField] private Image _playbackButtonImage;
+    [SerializeField] TextMeshProUGUI label;
 
     [Header("Play 상태")]
-    [SerializeField] private Sprite _pauseSprite;
+    [SerializeField] private Image _pauseImage;
   
     [Header("Pause 상태")]
-    [SerializeField] private Sprite _playSprite;
+    [SerializeField] private Image _playImage;
 
     [Header("2배속 상태")]
-    [SerializeField] private Sprite _playbackSpeed1Sprite;
-  
+    [SerializeField] private Image _playbackSpeed1Image;
+    [SerializeField] string textA = "x1";
+
     [Header("1배속 상태")]
-    [SerializeField] private Sprite _playbackSpeed2Sprite;
+    [SerializeField] private Image _playbackSpeed2ImageL;
+    [SerializeField] private Image _playbackSpeed2ImageR;
+    [SerializeField] string textB = "x2";
 
 
     private bool _isPauseButtonPushed;
@@ -91,11 +95,15 @@ public class GameSpeedController : MonoBehaviour
 
         if (_isPauseButtonPushed)
         {
-            _pauseButtonImage.sprite = _playSprite;
+            _playImage.enabled = true;
+            _pauseImage.enabled = false;
+     
         }
         else
         {
-            _pauseButtonImage.sprite = _pauseSprite;
+            _playImage.enabled = false;
+            _pauseImage.enabled = true;
+          
         }
     }
 
@@ -104,11 +112,18 @@ public class GameSpeedController : MonoBehaviour
 
         if (_isPlayBackButtonPushed)
         {
-            _playbackButtonImage.sprite = _playbackSpeed1Sprite;
+            _playbackSpeed1Image.enabled = false;
+            _playbackSpeed2ImageL.enabled = true;
+            _playbackSpeed2ImageR.enabled = true;
+            label.text = textB;
+        
         }
         else
         {
-            _playbackButtonImage.sprite = _playbackSpeed2Sprite;
+            _playbackSpeed1Image.enabled = true;
+            _playbackSpeed2ImageL.enabled = false;
+            _playbackSpeed2ImageR.enabled = false;
+            label.text = textA;
         }
     }
 
