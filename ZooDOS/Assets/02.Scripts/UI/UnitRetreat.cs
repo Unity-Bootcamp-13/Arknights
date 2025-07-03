@@ -1,0 +1,162 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class UnitRetreat : MonoBehaviour
+{
+    [Header("Deps")]
+    [SerializeField] private Camera _mainCamera;
+    [SerializeField] private Map _map;
+    [SerializeField] private CostWallet _costWallet;
+    [SerializeField] private PreviewSummoner _previewSummoner;
+
+    [Header("UI")]
+    [SerializeField] private GameObject _unitInfoPanel;
+    [SerializeField] private Button _retreatButton;
+    [SerializeField] private Canvas _canvas;
+
+    private Button _blockerButton;
+    private LayerMask _playerUnitMask;   // PlayerUnit 레이어
+    private PlayerUnit _selectedUnit;
+
+    void Awake()
+    {
+        _retreatButton.onClick.AddListener(OnRetreatClicked);
+        _playerUnitMask = LayerMask.GetMask("PlayerUnit");
+        CreateBlocker();
+        _unitInfoPanel.SetActive(false);
+    }
+
+    void CreateBlocker()
+    {
+        // 1) 빈 오브젝트 + 컴포넌트
+        GameObject go = new("UnitInfoBlocker",
+                            typeof(RectTransform),
+                            typeof(CanvasRenderer),
+                            typeof(Image),
+                            typeof(Button));
+
+        // 2) Canvas 하위(Panel과 같은 부모)에 붙이기
+        go.transform.SetParent(_canvas.transform, false);
+
+        // 3) 풀스크린으로 Stretch
+        RectTransform rt = go.GetComponent<RectTransform>();
+        rt.anchorMin = Vector2.zero;
+        rt.anchorMax = Vector2.one;
+        rt.offsetMin = rt.offsetMax = Vector2.zero;
+
+        // 4) 이미지 → 완전 투명
+        Image img = go.GetComponent<Image>();
+        img.color = new Color(0, 0, 0, 0);   
+        img.raycastTarget = true;
+
+        // 5) 버튼 클릭 → ClosePanel
+        _blockerButton = go.GetComponent<Button>();
+        _blockerButton.onClick.AddListener(ClosePanel);
+
+        // 6) 패널보다 뒤(인덱스가 작아야 뒤)로 이동
+        int panelIndex = _unitInfoPanel.transform.GetSiblingIndex();
+        go.transform.SetSiblingIndex(panelIndex);
+        _unitInfoPanel.transform.SetSiblingIndex(panelIndex + 1);
+
+        go.SetActive(false);          
+    }
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && 
+            _previewSummoner._previewSummonerIsNull() &&
+            !_unitInfoPanel.activeSelf)
+        {
+            TrySelectUnitAtPointer();
+        }
+    }
+
+    /* ───────────────────────────── Select & UI ───────────────────────────── */
+    void TrySelectUnitAtPointer()
+    {
+        Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+        if (!Physics.Raycast(ray, out var hit, 100f, _playerUnitMask))
+        {
+            
+            return;
+        }
+
+        PlayerUnit unit = hit.collider.GetComponent<PlayerUnit>();
+        if (unit == null)
+        {
+            return;
+        }
+        Debug.Log(unit.name);
+        OpenUnitPanel(unit);
+    }
+
+    void OpenUnitPanel(PlayerUnit unit)
+    {
+        _selectedUnit = unit;
+        _selectedUnit.Die += HandleUnitDie;
+        // 기본 정보 표시 // 추후 추가
+
+        //AttackRange
+        Position pos = _map.Vector3ToCoord(unit.transform.position);
+        Vector3 dir = unit.transform.forward.normalized;
+        _previewSummoner.ShowAttackRange(pos, dir);
+
+        _blockerButton.gameObject.SetActive(true);
+        _unitInfoPanel.SetActive(true);
+        PositionPanelAtWorld(unit.transform.position);
+    }
+
+    void PositionPanelAtWorld(Vector3 worldPos)
+    {
+        // 1) 월드 → 스크린
+        Vector3 screenPos = _mainCamera.WorldToScreenPoint(worldPos);       
+
+        // 2) 스크린 → 캔버스 로컬
+        RectTransform canvasRect = _canvas.transform as RectTransform;
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvasRect,
+            screenPos,
+            _canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : _mainCamera,
+            out Vector2 localPos);
+
+        // 3) 패널 이동
+        RectTransform panelRect = _unitInfoPanel.transform as RectTransform;
+        panelRect.anchoredPosition = localPos;
+    }
+
+    void OnRetreatClicked()
+    {
+        if (_selectedUnit == null)
+        {
+            return;
+        }
+        // 1) 코스트 환급 => 추후 PlayerUnit이 전달해주는 정보로 수정
+        _costWallet.RefundHalf(new Cost(10));
+
+        // 2) 유닛 제거
+        _selectedUnit.OnDeath();
+
+        // 3) UI 정리
+        _previewSummoner.HideAttackRange();
+        _selectedUnit = null;
+        ClosePanel();
+    }
+    void ClosePanel()
+    {
+        _unitInfoPanel.SetActive(false);        
+        _blockerButton.gameObject.SetActive(false);
+
+        _previewSummoner.HideAttackRange();     
+
+        if (_selectedUnit != null)
+            _selectedUnit.Die -= HandleUnitDie; 
+
+        _selectedUnit = null;
+    }
+
+    void HandleUnitDie(Unit unit)
+    {
+        ClosePanel();
+    }
+}
