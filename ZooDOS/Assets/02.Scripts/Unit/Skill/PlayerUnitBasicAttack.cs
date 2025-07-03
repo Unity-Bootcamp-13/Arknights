@@ -111,7 +111,7 @@ public class PlayerUnitBasicAttack
         {
             foreach (EnemyUnit target in _targets)
             {
-                target.Block(this);
+                target.Block(_playerUnit);
             }
         }
     }
