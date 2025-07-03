@@ -11,16 +11,25 @@ public class EnemyUnit : Unit
     private float rotationSpeed = 10;
     private bool isBlocked = false;
 
-    private EnemyUnitType _enemyUnitType;
-    protected Projectile _projectilePrefab;
-    protected float _RangeRadius;
 
-    
+    private List<Unit> _targetList = new List<Unit>();
+
+    private float _attackTime = 0;
 
     [SerializeField] private EnemyUnitData _enemyUnitData;
     void Update()
     {
-        if (!isBlocked)
+        if (_targetList.Count > 0)
+        {
+            if (_attackTime > _enemyUnitData.AtkSpeed)
+            {
+                _attackTime = 0;
+                Attack();
+            }
+
+            _attackTime += Time.deltaTime;
+        }
+        else if (!isBlocked)
         {
             MoveStep();
         }
@@ -41,9 +50,6 @@ public class EnemyUnit : Unit
         _def = _enemyUnitData.Def;
         _atk = _enemyUnitData.Atk;
         _atkSpeed = _enemyUnitData.AtkSpeed;
-        _enemyUnitType = _enemyUnitData.EnemyUnitType;
-        _RangeRadius = _enemyUnitData.RangeRadius;
-        _projectilePrefab = _enemyUnitData.ProjectilePrefab;
         _projectileSpeed = _enemyUnitData.ProjectileSpeed;
         
         
@@ -79,13 +85,22 @@ public class EnemyUnit : Unit
     
     
     //저지당하면 정지
-    public void Block() => isBlocked = true;
-    
-    
-    //저지 풀리면 다시 경로탐색 
-    public void Unblock() => isBlocked = false;
+    public void Block(PlayerUnit unit)
+    {
+        isBlocked = true;
+        _targetList.Add(unit);
 
-    
+    }
+
+
+    //저지 풀리면 다시 경로탐색 
+    public void Unblock()
+    {
+        isBlocked = false;
+        _targetList.Clear();
+    }
+
+
     /// <summary>
     /// 죽으면 EnemyList에서 Remove 요청
     /// </summary>
@@ -105,6 +120,71 @@ public class EnemyUnit : Unit
         // + 라이프 차감 로직 추가 필요
         Die?.Invoke(this);
         Destroy(gameObject);
+    }
+
+
+    public void Attack()
+    {
+        Unit _target = LastDeployUnit(); 
+        float dmg = Math.Min(-1, _target.Def - _atk);
+        
+        if (_enemyUnitData.ProjectilePrefab != null)
+        {
+            Projectile projectile = Instantiate(_enemyUnitData.ProjectilePrefab).GetComponent<Projectile>();
+            projectile.Init(_target, _projectileSpeed);
+            projectile.transform.position = transform.position;
+            projectile.SetProjectileAction(() => _target.Hp.GetDamage(dmg));
+        }
+        else
+        {
+            _target.Hp.GetDamage(dmg);
+        }
+        Debug.Log("적 -> 아군 공격");
+
+    }
+    public void SetPlayerUnit(PlayerUnit unit)
+    {
+        if (!_targetList.Contains(unit)) // 중복 방지
+        {
+            _targetList.Add(unit);
+            unit.Die += RemovePlayerUnit;
+        }
+    }
+    public void RemovePlayerUnit(Unit unit)
+    {
+        _targetList.Remove(unit);
+        unit.Die -= RemovePlayerUnit;
+
+    }
+
+    public Unit LastDeployUnit()
+    {
+        Unit last = null;
+        if (_targetList.Count > 0)
+        {
+            last = _targetList[_targetList.Count - 1];
+        }
+        return last;
+    }
+    
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out PlayerUnit unit))
+        {
+            SetPlayerUnit(unit);
+        }
+        
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent(out EnemyUnit enemy))
+        {
+            RemovePlayerUnit(enemy);
+        }
+        
+        
+        
     }
 
     
