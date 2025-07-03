@@ -3,6 +3,8 @@
 [CreateAssetMenu(fileName = "PlayerUnitData", menuName = "Scriptable Objects/PlayerUnitData")]
 public class PlayerUnitData : ScriptableObject
 {
+    [SerializeField] public string Name;
+    [SerializeField] public int Id;
     [SerializeField] public float Hp;
     [SerializeField] public float Def;
     [SerializeField] public float Atk;
@@ -22,6 +24,7 @@ public class PlayerUnitData : ScriptableObject
     [SerializeField] public AttackType AttackType;
 
 
+    [SerializeField] public Sprite StandingIllust;
     [SerializeField] public Sprite UnitPortrait;
     [SerializeField] public PlayerUnit UnitPrefab;
     [SerializeField] public GameObject UnitTposePrefab;
