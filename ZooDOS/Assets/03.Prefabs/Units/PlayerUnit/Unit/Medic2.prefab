@@ -384,6 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975473027c4ecfc41a5c86227bed9a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthUI: {fileID: 9170260747908703304}
   _animator: {fileID: 3178201969700840669}
 --- !u!65 &-5729723595129553067
 BoxCollider:
@@ -561,5 +562,10 @@ PrefabInstance:
 --- !u!224 &23359259877379983 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8663846080219481379, guid: 05a13010983aef1439a88fe2b141e3ed, type: 3}
+  m_PrefabInstance: {fileID: 8678109947978943148}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &9170260747908703304 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 517237295986765540, guid: 05a13010983aef1439a88fe2b141e3ed, type: 3}
   m_PrefabInstance: {fileID: 8678109947978943148}
   m_PrefabAsset: {fileID: 0}
