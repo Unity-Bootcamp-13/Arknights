@@ -4,8 +4,10 @@ using UnityEngine;
 public class PlayerUnitSpawner : MonoBehaviour
 {
     [SerializeField] GameManager _gameManager;
-    [SerializeField] PlayerUnitData[] _playerUnitDatas;
+    PlayerUnitData[] _playerUnitDatas;
     Dictionary<int, PlayerUnit> _units;
+
+    public Dictionary<int, PlayerUnit> PlayerUnits => _units;
 
     private void Awake()
     {

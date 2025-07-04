@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Medic2
   m_EditorClassIdentifier: 
   Name: "\uBC29\uC5ED\uAD00\uB9AC\uC790"
-  Id: 0
+  Id: 1202
   Hp: 600
   Def: 50
   Atk: 110
