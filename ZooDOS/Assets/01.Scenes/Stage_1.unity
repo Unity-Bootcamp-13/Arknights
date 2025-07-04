@@ -3076,6 +3076,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8afbbacb97132ab4185035b1a0e806f8, type: 2}
   - {fileID: 11400000, guid: 806c620d2bb203f4a94f7f9b86d2897c, type: 2}
   - {fileID: 11400000, guid: b717098db78dba545b9b8f6bc7fff020, type: 2}
+  _spawner: {fileID: 1953823499}
   _previewSummoner: {fileID: 886914838}
 --- !u!1 &1505216018
 GameObject:
