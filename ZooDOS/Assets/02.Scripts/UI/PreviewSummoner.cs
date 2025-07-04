@@ -2,6 +2,7 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PreviewSummoner : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PreviewSummoner : MonoBehaviour
     [SerializeField] private DirectionSelectUI _directionUI;
 
     [Header("유닛 정보 UI")]
-    [SerializeField] private GameObject unitInfoPanel;
+    [SerializeField] private Image unitInfoPanel;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI descText;
 
@@ -122,11 +123,12 @@ public class PreviewSummoner : MonoBehaviour
     {
         nameText.text = data.name;
         descText.text = $"HP {data.Hp}\nDef {data.Def}\nAtk {data.Atk}\nTarget {data.ResistCapacity}";
-        unitInfoPanel.SetActive(true);
+        unitInfoPanel.sprite = data.StandingIllust;
+        unitInfoPanel.gameObject.SetActive(true);
     }
     private void HideInfo()
     {
-        unitInfoPanel.SetActive(false);
+        unitInfoPanel.gameObject.SetActive(false);
     }
 
     private void HighlightPlacableTiles()
