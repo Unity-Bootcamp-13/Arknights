@@ -1,18 +1,24 @@
 ﻿using System;
 
-public struct Hp
+
+public class Hp
 {
     float _maxHp;
     float _hp;
     bool _isDead;
     Unit _unit;
 
+    public Action OnHpChanged;
+
+
+  
     public Hp(float hp, Unit unit)
     {
         _maxHp = hp;
         _hp = _maxHp;
         _isDead = false;
         _unit = unit;
+        OnHpChanged = delegate { }; 
     }
 
     public float HP
@@ -24,7 +30,9 @@ public struct Hp
 
         set
         {
-            _hp = Math.Clamp(value, 0, _maxHp);
+            _hp = value;
+            OnHpChanged?.Invoke();
+            
         }
     }
 
@@ -36,14 +44,16 @@ public struct Hp
 
     public void RefillHp()
     {
-        _hp = _maxHp;
+        HP = _maxHp;
+        _isDead = false;
     }
 
     public void GetDamage(float value)
     {
         if (_isDead) return;
 
-        _hp += value;
+        float newHp = Math.Clamp(_hp - value, 0, _maxHp);
+        HP = newHp;
 
         if (_hp <= 0)
         {
@@ -55,11 +65,14 @@ public struct Hp
     {
         if (_isDead) return;
 
-        _hp += value;
+        float newHp = Math.Clamp(_hp + value, 0, _maxHp);
+        HP = newHp;
     }
 
     public void OnDeath()
     {
+        if (_isDead) return;
+
         _isDead = true;
         _unit.OnDeath();
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Medic2
   m_EditorClassIdentifier: 
   Name: "\uBC29\uC5ED\uAD00\uB9AC\uC790"
-  Id: 0
+  Id: 1202
   Hp: 600
   Def: 50
   Atk: 110
@@ -32,4 +32,4 @@ MonoBehaviour:
   UnitPortrait: {fileID: 21300000, guid: 268af441378e61b439424e95703139ae, type: 3}
   UnitPrefab: {fileID: -4416593063023325296, guid: 2cdcafe75731c9d40a3aa7bb9d23b084, type: 3}
   UnitTposePrefab: {fileID: 3655797239726242352, guid: d2c7638ce0c2b9e4a9d601688c0c0035, type: 3}
-  UnitProjectilePrefab: {fileID: 0}
+  UnitProjectilePrefab: {fileID: 8649918091146281046, guid: 8dfb2adb9eded7c45a2b12332fd0d380, type: 3}
