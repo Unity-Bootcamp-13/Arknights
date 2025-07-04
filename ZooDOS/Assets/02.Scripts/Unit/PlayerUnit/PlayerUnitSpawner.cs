@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerUnitSpawner : MonoBehaviour
 {
     [SerializeField] GameManager _gameManager;
-    PlayerUnitData[] _playerUnitDatas;
+    [SerializeField] PlayerUnitData[] _playerUnitDatas;
     Dictionary<int, PlayerUnit> _units;
 
     public Dictionary<int, PlayerUnit> PlayerUnits => _units;

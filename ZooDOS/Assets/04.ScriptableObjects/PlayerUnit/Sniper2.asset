@@ -32,4 +32,4 @@ MonoBehaviour:
   UnitPortrait: {fileID: 21300000, guid: eb580cb9145e49e45a6a3797fa4e1d16, type: 3}
   UnitPrefab: {fileID: 459893668636384836, guid: f805fc12bedb5014ba0d3db9c3a97728, type: 3}
   UnitTposePrefab: {fileID: 2433133833541575859, guid: f3c147c77df89e446a383475ecca0ab1, type: 3}
-  UnitProjectilePrefab: {fileID: -2930926189466434238, guid: ab98e1b486c3b0c4aa0ad4286b6a84a9, type: 3}
+  UnitProjectilePrefab: {fileID: -1263642197190150880, guid: 22b440fddd132e1439af569dbf44508f, type: 3}

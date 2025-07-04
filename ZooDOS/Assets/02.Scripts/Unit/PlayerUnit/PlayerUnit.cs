@@ -118,7 +118,7 @@ public class PlayerUnit : Unit
         {
             Projectile projectile = Instantiate(_projectilePrefab);
             projectile.Init(target, _projectileSpeed);
-            projectile.transform.position = transform.position;
+            projectile.transform.position = transform.position + Vector3.up;
             projectile.SetProjectileAction(() => target.Hp.GetDamage(damage));
         }
         else
@@ -134,7 +134,7 @@ public class PlayerUnit : Unit
         {
             Projectile projectile = Instantiate(_projectilePrefab);
             projectile.Init(target, _projectileSpeed);
-            projectile.transform.position = transform.position;
+            projectile.transform.position = transform.position + Vector3.up;
             projectile.SetProjectileAction(() => target.Hp.GetHeal(value));
         }
         else
