@@ -28,7 +28,7 @@ MonoBehaviour:
   PlayerUnitType: 1
   TileType: 2
   AttackType: 1
-  StandingIllust: {fileID: 0}
+  StandingIllust: {fileID: 21300000, guid: 2c534053644d552408be3be008da04a4, type: 3}
   UnitPortrait: {fileID: 21300000, guid: 0d2f6b95b3a77c3418a75cf017dd9207, type: 3}
   UnitPrefab: {fileID: 7946307043125928507, guid: 40cc26a77c9e4a3428dda02869e36709, type: 3}
   UnitTposePrefab: {fileID: 4005331351472897680, guid: c5abb729f5d72bc488f155c388e119fd, type: 3}

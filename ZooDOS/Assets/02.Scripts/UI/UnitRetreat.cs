@@ -11,10 +11,14 @@ public class UnitRetreat : MonoBehaviour
     [SerializeField] private PreviewSummoner _previewSummoner;
 
     [Header("UI")]
-    [SerializeField] private GameObject _unitInfoPanel;
+    [SerializeField] private GameObject _unitDiamondPanel;
     [SerializeField] private Button _retreatButton;
     [SerializeField] private Canvas _canvas;
-
+    [SerializeField] private TMP_Text _statusLabel;
+    [SerializeField] private TMP_Text _nameLabel;
+    [SerializeField] private Image _standingIllustPanel;
+    [SerializeField] private Image _ClassIcon;
+    
     private Button _blockerButton;
     private LayerMask _playerUnitMask;   // PlayerUnit 레이어
     private PlayerUnit _selectedUnit;
@@ -24,7 +28,8 @@ public class UnitRetreat : MonoBehaviour
         _retreatButton.onClick.AddListener(OnRetreatClicked);
         _playerUnitMask = LayerMask.GetMask("PlayerUnit");
         CreateBlocker();
-        _unitInfoPanel.SetActive(false);
+        _unitDiamondPanel.SetActive(false);
+        _standingIllustPanel.gameObject.SetActive(false);
     }
 
     void CreateBlocker()
@@ -55,9 +60,9 @@ public class UnitRetreat : MonoBehaviour
         _blockerButton.onClick.AddListener(ClosePanel);
 
         // 6) 패널보다 뒤(인덱스가 작아야 뒤)로 이동
-        int panelIndex = _unitInfoPanel.transform.GetSiblingIndex();
+        int panelIndex = _unitDiamondPanel.transform.GetSiblingIndex();
         go.transform.SetSiblingIndex(panelIndex);
-        _unitInfoPanel.transform.SetSiblingIndex(panelIndex + 1);
+        _unitDiamondPanel.transform.SetSiblingIndex(panelIndex + 1);
 
         go.SetActive(false);          
     }
@@ -65,13 +70,12 @@ public class UnitRetreat : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && 
             _previewSummoner._previewSummonerIsNull() &&
-            !_unitInfoPanel.activeSelf)
+            !_unitDiamondPanel.activeSelf)
         {
             TrySelectUnitAtPointer();
         }
     }
 
-    /* ───────────────────────────── Select & UI ───────────────────────────── */
     void TrySelectUnitAtPointer()
     {
         Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -94,15 +98,20 @@ public class UnitRetreat : MonoBehaviour
     {
         _selectedUnit = unit;
         _selectedUnit.Die += HandleUnitDie;
-        // 기본 정보 표시 // 추후 추가
-
+        // 기본 정보 표시 
+        PlayerUnitStatus stat = _selectedUnit.GetStatus();
+        _statusLabel.text = BuildStatusString(stat);
+        _nameLabel.text = stat.Name;
+        _standingIllustPanel.sprite = stat.StandingIllust;
+        _ClassIcon.sprite = stat.ClassIcon;
         //AttackRange
         Position pos = _map.Vector3ToCoord(unit.transform.position);
         Vector3 dir = unit.transform.forward.normalized;
         _previewSummoner.ShowAttackRange(pos, dir);
 
         _blockerButton.gameObject.SetActive(true);
-        _unitInfoPanel.SetActive(true);
+        _unitDiamondPanel.SetActive(true);
+        _standingIllustPanel.gameObject.SetActive(true);
         PositionPanelAtWorld(unit.transform.position);
     }
 
@@ -121,7 +130,7 @@ public class UnitRetreat : MonoBehaviour
             out Vector2 localPos);
 
         // 3) 패널 이동
-        RectTransform panelRect = _unitInfoPanel.transform as RectTransform;
+        RectTransform panelRect = _unitDiamondPanel.transform as RectTransform;
         panelRect.anchoredPosition = localPos;
     }
 
@@ -144,7 +153,8 @@ public class UnitRetreat : MonoBehaviour
     }
     void ClosePanel()
     {
-        _unitInfoPanel.SetActive(false);        
+        _unitDiamondPanel.SetActive(false);
+        _standingIllustPanel.gameObject.SetActive(false);
         _blockerButton.gameObject.SetActive(false);
 
         _previewSummoner.HideAttackRange();     
@@ -159,4 +169,12 @@ public class UnitRetreat : MonoBehaviour
     {
         ClosePanel();
     }
+
+
+    private string BuildStatusString(PlayerUnitStatus stat)
+    {
+        //추후 한글로 변경
+        return $"Cost : {stat.Cost}\nATK  : {stat.Atk}\nDEF  : {stat.Def}\nMax Target : {stat.MaxTarget}";
+    }
 }
+
