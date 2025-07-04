@@ -11,8 +11,15 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_target == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         if(_target.Hp.IsDead == false)
         {
+            
             Targeting();
         }
         else
@@ -24,6 +31,7 @@ public class Projectile : MonoBehaviour
     public void Targeting()
     {
         transform.position += (_target.transform.position - transform.position).normalized * _speed * Time.deltaTime;
+        transform.LookAt(_target.gameObject.transform);
     }
 
     public void Init(Unit unit, float speed)

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PreviewSummoner : MonoBehaviour
@@ -17,7 +18,7 @@ public class PreviewSummoner : MonoBehaviour
     private PlayerUnitData _currentUnit;
     private GameObject _preview;
     private bool _cursorOnMap;
-    private int _tileMask; 
+    private LayerMask _tileMask; 
     // BlinkSpriteBehaviour 색변환 호출용.
     private readonly List<BlinkSpriteBehaviour> _highlightBlinks = new();
     private readonly List<BlinkSpriteBehaviour> _rangeBlinks = new();
@@ -120,7 +121,7 @@ public class PreviewSummoner : MonoBehaviour
     private void ShowInfo(PlayerUnitData data)
     {
         nameText.text = data.name;
-        descText.text = $"HP {data.Hp}\nDef {data.Def}\nAtk {data.Atk}\nResist {data.ResistCapacity}";
+        descText.text = $"HP {data.Hp}\nDef {data.Def}\nAtk {data.Atk}\nTarget {data.ResistCapacity}";
         unitInfoPanel.SetActive(true);
     }
     private void HideInfo()
@@ -223,5 +224,10 @@ public class PreviewSummoner : MonoBehaviour
             blinkTile?.StopBlink();
         }
         _highlightBlinks.Clear();
+    }
+
+    public bool _previewSummonerIsNull()
+    {
+        return _preview == null;
     }
 }

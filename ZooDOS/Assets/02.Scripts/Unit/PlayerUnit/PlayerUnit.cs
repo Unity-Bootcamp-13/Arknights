@@ -2,21 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerUnit : Unit
 {
-    [SerializeField] protected Animator _animator;
+    [SerializeField] private Animator _animator;
     List<Maptile> _attackRange;
-
-
-    protected float _leftAttackTime;
-    protected int _resistCapacity;
-    protected int _placeCost;
-    protected float _replaceTime;
-    protected PlayerUnitType _playerUnitType;
-    protected TileType _tileType;
-    protected AttackType _attackType;
-    protected Projectile _projectilePrefab;
+    PlayerUnitStatus _status;
+    
+    private float _leftAttackTime;
+    private int _resistCapacity;
+    private int _placeCost;
+    private float _replaceTime;
+    private PlayerUnitType _playerUnitType;
+    private TileType _tileType;
+    private AttackType _attackType;
+    private Projectile _projectilePrefab;
 
     PlayerUnitBasicAttack _basicAttack;
 
@@ -33,6 +35,7 @@ public class PlayerUnit : Unit
         if (_leftAttackTime < _atkSpeed)
             return;
         _leftAttackTime = 0;
+
 
         _basicAttack.Attack();
     }
@@ -68,6 +71,8 @@ public class PlayerUnit : Unit
     public void Init(PlayerUnitData playerUnitData)
     {
         gameObject.SetActive(false);
+
+        _status = new PlayerUnitStatus(playerUnitData.UnitPortrait, playerUnitData.StandingIllust, playerUnitData.Name, playerUnitData.PlaceCost);
         _playerUnitType = playerUnitData.PlayerUnitType;
         _tileType = playerUnitData.TileType;
         _attackType = playerUnitData.AttackType;
@@ -80,6 +85,13 @@ public class PlayerUnit : Unit
         _placeCost = playerUnitData.PlaceCost;
         _replaceTime = playerUnitData.ReplaceTime;
         _projectilePrefab = playerUnitData.UnitProjectilePrefab;
+    }
+
+    public PlayerUnitStatus GetStatus()
+    {
+        _status.SetChangableStatus(_atk, _def, _resistCapacity, _hp.HP, _hp.MaxHP);
+
+        return _status;
     }
 
     public void ShootDamageProjectile(Unit target, float value)
@@ -98,12 +110,13 @@ public class PlayerUnit : Unit
         {
             target.Hp.GetDamage(damage);
         }
-        
     }
+
 
     public void ShootHealProjectile(Unit target, float value)
     {
         _animator.SetTrigger("Attack_t");
+
         if (_projectilePrefab != null)
         {
             Projectile projectile = Instantiate(_projectilePrefab);
@@ -116,6 +129,7 @@ public class PlayerUnit : Unit
             target.Hp.GetHeal(value);
         }
     }
+
 
     IEnumerator C_FallingCoroutine()
     {
