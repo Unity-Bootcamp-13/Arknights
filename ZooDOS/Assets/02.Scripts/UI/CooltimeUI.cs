@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 /// <summary>
 /// 부모 오브젝트가 활성화되면 곧바로 시작하는
@@ -9,70 +10,82 @@ using System.Collections;
 public class CooltimeUI : MonoBehaviour
 {
     [Header("필수 참조")]
-    [SerializeField] private Image radialImage;   
+    [SerializeField] private Image _radialImage;
+    [SerializeField] private TMP_Text _timeLabel;
+    
+    private float _cooldownSeconds;
+    private Coroutine _coroutine;
 
-    [Header("쿨타임(초)")]
-    [SerializeField] private float cooldownSeconds = 10f;    // 나중에 받아올거지만 테스트를 위해 우선 수동입력으로 해둠
-
-    private Coroutine routine;
-
-   
-    private void Reset()                       // 컴포넌트 추가 시 자동 연결
+    public void CooldownSetting(PlayerUnitData data)
     {
-        radialImage = GetComponent<Image>();
+        _cooldownSeconds = data.ReplaceTime;
+    }
+    private void Reset()                       
+    {
+        _radialImage = GetComponent<Image>();
+        _timeLabel = GetComponentInChildren<TMP_Text>();
     }
 
-    private void Awake()                       // 최초 1회 설정
+    private void Awake()                      
     {
-        if (radialImage == null) radialImage = GetComponent<Image>();
+        if (_radialImage == null) _radialImage = GetComponent<Image>(); 
+        if (_timeLabel == null) _timeLabel = GetComponentInChildren<TMP_Text>();
         InitImageSettings();
     }
 
     private void OnEnable()                    // 부모가 SetActive(true) 되는 순간 호출
     {
         InitImageSettings();                   // 항상 처음 상태로 리셋
-        routine = StartCoroutine(FillDown());
+        _coroutine = StartCoroutine(FillDown());
     }
 
     private void OnDisable()                   // 비활성화 시 코루틴 정리
     {
-        if (routine != null)
+        if (_coroutine != null)
         {
-            StopCoroutine(routine);
-            routine = null;
+            StopCoroutine(_coroutine);
+            _coroutine = null;
         }
     }
- 
-
-
 
     public void SetCooldown(float seconds)
     {
-        cooldownSeconds = Mathf.Max(0.1f, seconds);
+        _cooldownSeconds = Mathf.Max(0.1f, seconds);
         OnEnable();      // 재시작 (Enable 상태일 때도 호출 가능)
     }
 
     private void InitImageSettings()
     {
-        radialImage.type = Image.Type.Filled;
-        radialImage.fillMethod = Image.FillMethod.Radial360;
+        _radialImage.type = Image.Type.Filled;
+        _radialImage.fillMethod = Image.FillMethod.Radial360;
 
-        radialImage.fillOrigin = 2;   // 0:Top, 1:Right, 2:Bottom, 3:Left
-        radialImage.fillClockwise = false;
-        radialImage.fillAmount = 1f;
+        _radialImage.fillOrigin = 2;   // 0:Top, 1:Right, 2:Bottom, 3:Left
+        _radialImage.fillClockwise = false;
+        _radialImage.fillAmount = 1f;
+
+        if (_timeLabel != null)
+            _timeLabel.text = Mathf.CeilToInt(_cooldownSeconds).ToString();
+
     }
 
 
     private IEnumerator FillDown()             // 쿨타임 카운트다운
     {
-        float t = cooldownSeconds;
+        float t = _cooldownSeconds;
         while (t > 0f)
         {
             t -= Time.deltaTime;
-            radialImage.fillAmount = Mathf.Clamp01(t / cooldownSeconds);
+            _radialImage.fillAmount = Mathf.Clamp01(t / _cooldownSeconds);
+
+            if (_timeLabel != null)
+                _timeLabel.text = Mathf.CeilToInt(t).ToString();
+
             yield return null;
         }
-        radialImage.fillAmount = 0f;           // 완전히 사라진 뒤 종료
+        _radialImage.fillAmount = 0f;           // 완전히 사라진 뒤 종료
+        if (_timeLabel != null)
+            _timeLabel.text = "0";
+        gameObject.SetActive(false);
     }
-  
+
 }
