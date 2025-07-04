@@ -105,6 +105,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05a13010983aef1439a88fe2b141e3ed, type: 3}
+--- !u!223 &4565608972403951636 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 517237295986765540, guid: 05a13010983aef1439a88fe2b141e3ed, type: 3}
+  m_PrefabInstance: {fileID: 4067266955825293040}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4633640673025860563 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8663846080219481379, guid: 05a13010983aef1439a88fe2b141e3ed, type: 3}
@@ -274,4 +279,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975473027c4ecfc41a5c86227bed9a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthUI: {fileID: 4565608972403951636}
   _animator: {fileID: -2688189981875578273}

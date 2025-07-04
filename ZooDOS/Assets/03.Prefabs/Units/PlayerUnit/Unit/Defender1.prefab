@@ -105,6 +105,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05a13010983aef1439a88fe2b141e3ed, type: 3}
+--- !u!223 &2324896206316725635 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 517237295986765540, guid: 05a13010983aef1439a88fe2b141e3ed, type: 3}
+  m_PrefabInstance: {fileID: 2841252793454857063}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6868554889129233988 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8663846080219481379, guid: 05a13010983aef1439a88fe2b141e3ed, type: 3}
@@ -160,7 +165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8048aabc0c819c24cb51fb686623e9b9, type: 3}
       propertyPath: m_Name
-      value: Defender
+      value: Defender1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8048aabc0c819c24cb51fb686623e9b9, type: 3}
       propertyPath: m_IsActive
@@ -230,6 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975473027c4ecfc41a5c86227bed9a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthUI: {fileID: 2324896206316725635}
   _animator: {fileID: 1722632491730491394}
 --- !u!65 &6507138722839779968
 BoxCollider:

@@ -536,7 +536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 77b201613e9c1dd47a8c01ff3332b1ea, type: 3}
       propertyPath: m_Name
-      value: Sniper
+      value: Sniper1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 77b201613e9c1dd47a8c01ff3332b1ea, type: 3}
       propertyPath: m_IsActive
@@ -609,6 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975473027c4ecfc41a5c86227bed9a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthUI: {fileID: 3584472221604109004}
   _animator: {fileID: 1499882513393618644}
 --- !u!65 &8257644991443845739
 BoxCollider:

@@ -105,6 +105,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05a13010983aef1439a88fe2b141e3ed, type: 3}
+--- !u!223 &606473970542409986 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 517237295986765540, guid: 05a13010983aef1439a88fe2b141e3ed, type: 3}
+  m_PrefabInstance: {fileID: 1100910517421905894}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8609495260345144005 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8663846080219481379, guid: 05a13010983aef1439a88fe2b141e3ed, type: 3}
@@ -160,7 +165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ca14600e6c8ce1249ae50876f03de59e, type: 3}
       propertyPath: m_Name
-      value: Medic
+      value: Medic1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ca14600e6c8ce1249ae50876f03de59e, type: 3}
       propertyPath: m_IsActive
@@ -225,6 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975473027c4ecfc41a5c86227bed9a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthUI: {fileID: 606473970542409986}
   _animator: {fileID: 5657109131101087912}
 --- !u!54 &5486694821776566380
 Rigidbody:
