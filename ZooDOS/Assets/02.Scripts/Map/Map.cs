@@ -24,41 +24,45 @@ public class Map : MonoBehaviour
     [SerializeField] private GameObject _enemyEntryPointPrefab;
     [SerializeField] private GameObject _defensePointPrefab;
 
+    [SerializeField] private StageTileInfoSO _stageLayoutInfoSO;
+    
+    
     //타일의 타입에 따른 리스트 저장. start에 호출.
     private Dictionary<TileType, List<Maptile>> _tilesByType;
     private void Start()
     {
         _tilesByType = new();
 
+        _mapCoordX = _stageLayoutInfoSO.MapWidth;
+        _mapCoordY = _stageLayoutInfoSO.MapHeight;
+        
         _map = new Maptile[_mapCoordX, _mapCoordY];
-        //for문 내부는 Stage 1 구현부 (임시 맵 배치). 추후 함수 추가하여 SO 파일로 편집을 편하게 확장성을 가질 예정
+        
         for (int i = 0; i < _mapCoordX; ++i)
         {
             for (int j = 0; j < _mapCoordY; ++j)
             {
                 Position pos = new Position(i, j);
-                if (j == 0 || j == 5)
+                int index = j * _mapCoordX + i;
+                
+                TileType tileType = _stageLayoutInfoSO.TileLayout[index];
+                switch (tileType)
                 {
-                    PlaceMaptile(_restrictedPrefab, pos);
-                }
-                else if (j == 1 || j == 4)
-                {
-                    PlaceMaptile(_hillPrefab, pos);
-                }
-                else
-                {
-                    if (i == 0 && j == 3)
-                    {
+                    case TileType.Restricted:
+                        PlaceMaptile(_restrictedPrefab, pos);
+                        break;
+                    case TileType.Hill:
+                        PlaceMaptile(_hillPrefab, pos);
+                        break;
+                    case TileType.EnemyEntryPoint:
                         PlaceMaptile(_enemyEntryPointPrefab, pos);
-                    }
-                    else if (i == 11 && (j == 2 || j == 3))
-                    {
+                        break;
+                    case TileType.DefensePoint:
                         PlaceMaptile(_defensePointPrefab, pos);
-                    }
-                    else
-                    {
+                        break;
+                    case TileType.Ground:
                         PlaceMaptile(_groundPrefab, pos);
-                    }
+                        break;
                 }
             }
         }

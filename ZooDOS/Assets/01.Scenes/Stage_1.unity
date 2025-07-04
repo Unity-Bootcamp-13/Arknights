@@ -3730,6 +3730,7 @@ MonoBehaviour:
   _restrictedPrefab: {fileID: 2218204189450762703, guid: b87bbeecca10e3347b1e2fbf0933b1b7, type: 3}
   _enemyEntryPointPrefab: {fileID: 8409871894455403138, guid: 6350100e9c392424ba2166521d491a25, type: 3}
   _defensePointPrefab: {fileID: 8409871894455403138, guid: 3c877401414af5441b7e727a56c92e3c, type: 3}
+  _stageLayoutInfoSO: {fileID: 11400000, guid: 790e2000557a1b141b9baa7d0cc80d17, type: 2}
 --- !u!4 &1671331095
 Transform:
   m_ObjectHideFlags: 0
