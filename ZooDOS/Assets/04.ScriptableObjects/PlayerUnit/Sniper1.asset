@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sniper1
   m_EditorClassIdentifier: 
   Name: "\uB808\uACE8\uB77C\uC2A4 \uD638\uC18C\uC778"
-  Id: 0
+  Id: 1301
   Hp: 546
   Def: 46
   Atk: 200
@@ -32,4 +32,4 @@ MonoBehaviour:
   UnitPortrait: {fileID: 21300000, guid: 3a0abf1762b5c9545a0a7f494c1d4b31, type: 3}
   UnitPrefab: {fileID: 5758161919349873981, guid: 2cb8c6081e6cc4b48a1ad7ae4e19e641, type: 3}
   UnitTposePrefab: {fileID: 3392885724487588042, guid: f765c66cc0640194da63e72b077b43ce, type: 3}
-  UnitProjectilePrefab: {fileID: 0}
+  UnitProjectilePrefab: {fileID: 1480800973446613280, guid: 1455014717a48d445859878f1a75926a, type: 3}
