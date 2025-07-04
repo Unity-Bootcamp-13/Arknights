@@ -17,13 +17,22 @@ public class EnemyUnit : Unit
     private float _attackTime = 0;
 
     [SerializeField] private EnemyUnitData _enemyUnitData;
+    private Animator _animator;
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
+
     void Update()
     {
         if (_targetList.Count > 0)
         {
+            _animator.SetFloat("Speed_f", 0f);
             if (_attackTime > _enemyUnitData.AtkSpeed)
             {
                 _attackTime = 0;
+                _animator.SetTrigger("Attack_t");
                 Attack();
             }
 
@@ -31,6 +40,7 @@ public class EnemyUnit : Unit
         }
         else if (!isBlocked)
         {
+            _animator.SetFloat("Speed_f", 1f);
             MoveStep();
         }
     }
