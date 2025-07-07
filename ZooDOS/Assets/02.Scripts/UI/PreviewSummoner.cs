@@ -38,6 +38,12 @@ public class PreviewSummoner : MonoBehaviour
         ShowInfo(data);
     }
 
+    public void ShowInfoOnly(PlayerUnitData data)
+    {
+        CancelPreview();            
+        _currentUnit = data;
+        ShowInfo(data);            
+    }
     public void CancelPreview()
     {
         HideAttackRange();

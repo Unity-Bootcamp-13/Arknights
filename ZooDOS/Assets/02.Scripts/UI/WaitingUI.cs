@@ -15,7 +15,8 @@ public class WaitingUI : MonoBehaviour
     [Header("의존성 주입")]
     [SerializeField] private PlayerUnitSpawner _spawner;
     [SerializeField] private PreviewSummoner _previewSummoner;   // 인스펙터 연결
-
+    [SerializeField] private CostWallet _costWallet;
+    [SerializeField] private GameSpeedController _gameSpeedController;
     //private readonly List<WaitingSlotUI> _slots = new();
     private readonly Dictionary<int, WaitingSlotUI> _slotMap = new();
     void Start()
@@ -34,33 +35,37 @@ public class WaitingUI : MonoBehaviour
     }
     private void AddSlot(PlayerUnitData data)
     {
-        GameObject gameObject = Instantiate(slotPrefab, slotContainer);
-
-        WaitingSlotUI slot = gameObject.GetComponent<WaitingSlotUI>();
-        slot.SetupSlot(data, this);
-
-        int index = _slotMap.Count;
-        RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
-        rectTransform.sizeDelta = new Vector2(SlotSize, SlotSize);
-        rectTransform.anchoredPosition = new Vector2(-(SlotSize + SlotSpacing) * _slotMap.Count, 0);
+        GameObject go = Instantiate(slotPrefab, slotContainer);
+        WaitingSlotUI slot = go.GetComponent<WaitingSlotUI>();
+        slot.SetupSlot(data, this, _costWallet);
 
         _slotMap[data.Id] = slot;
-        UpdateBackgroundSize();
     }
 
-    private void UpdateBackgroundSize()
+    /*private void UpdateBackgroundSize()
     {
         int count = _slotMap.Count;
         float width = _slotMap.Count * SlotSize + Mathf.Max(0, _slotMap.Count - 1) * SlotSpacing;
         background.sizeDelta = new Vector2(width, SlotSize);
-    }
+    }*/
 
     public void OnSlotClicked(PlayerUnitData data)
     {
-        _previewSummoner.StartPreview(data); 
+        if (_gameSpeedController.IsPause == true)
+        {
+            OnInfoOnlyClicked(data);
+        }
+        else
+        {
+            _previewSummoner.StartPreview(data);
+        }
+           
     }
 
-
+    public void OnInfoOnlyClicked(PlayerUnitData data)
+    {
+        _previewSummoner.ShowInfoOnly(data);   // 프리뷰 없이 정보만
+    }
     private void RegisterExistingUnits()
     {
         foreach (var pair in _spawner.PlayerUnits)   // pair.Key = id

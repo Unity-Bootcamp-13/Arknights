@@ -18,7 +18,9 @@ public class WaitingSlotUI : MonoBehaviour, IPointerDownHandler
     [SerializeField] private Sprite _iconMedic;
 
     [SerializeField] private CooltimeUI _cooltimeUI;
-
+    [SerializeField] private Image _notEnoughCostImage;
+    
+    private bool _isEnoughCost = true;
     private void Awake()
     {
         _cooltimeUI.gameObject.SetActive(false);
@@ -47,7 +49,7 @@ public class WaitingSlotUI : MonoBehaviour, IPointerDownHandler
                     $"아이콘이 등록되지 않은 타입입니다.")
         };
     }
-    public void SetupSlot(PlayerUnitData data, WaitingUI waitingUI)
+    public void SetupSlot(PlayerUnitData data, WaitingUI waitingUI, CostWallet wallet)
     {
         _playerUnitData = data;
         _waitingUI = waitingUI;
@@ -55,10 +57,25 @@ public class WaitingSlotUI : MonoBehaviour, IPointerDownHandler
         _costText.text = data.PlaceCost.ToString();
         _cooltimeUI.CooldownSetting(_playerUnitData);
         GetClassIconSprite();
+        _notEnoughCostImage.gameObject.SetActive(false);
+        UpdateCostState(wallet.Current);                
+        wallet.OnCostChanged += UpdateCostState;
     }
+    private void UpdateCostState(Cost cost)
+    {
+        _isEnoughCost = cost.Value >= _playerUnitData.PlaceCost;
 
+        _notEnoughCostImage.gameObject.SetActive(!_isEnoughCost);
+    }
     public void OnPointerDown(PointerEventData eventData)
     {
-        _waitingUI.OnSlotClicked(_playerUnitData);
+        if (_isEnoughCost)
+        {
+            _waitingUI.OnSlotClicked(_playerUnitData);
+        }
+        else
+        {
+            _waitingUI.OnInfoOnlyClicked(_playerUnitData);
+        }
     }
 }
