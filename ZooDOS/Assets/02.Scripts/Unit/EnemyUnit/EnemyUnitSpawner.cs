@@ -48,7 +48,7 @@ public class EnemyUnitSpawner : MonoBehaviour
         }
         enemy.Init(path);
         //적유닛이 아니면 아래 로직 호출 x
-        if (enemy.EnemyUnitData.EnemyUnitType == EnemyUnitType.Nothing) return;;
+        if (enemy.EnemyUnitData.EnemyUnitType == EnemyUnitType.Nothing) return;
         
         enemy.Die += gameManager.OnEnemyDeath;
         enemy.OnArrived += gameManager.OnEnemyEnterDefensePoint;
