@@ -50,7 +50,7 @@ public class EnemyUnit : Unit
     /// 초기값세팅
     /// </summary>
     /// <param name="path">경로</param>
-    public void Init(List<Vector3> path)
+    public void Initialize(List<Vector3> path)
     {
         _path = path;
         currentPathIndex = 0;
@@ -81,8 +81,6 @@ public class EnemyUnit : Unit
         }
         
         transform.position = Vector3.MoveTowards(current, target, _enemyUnitData.MoveSpeed * Time.deltaTime);
-
-        _unitHealthUI.SetUIPosition(transform.position);
 
         if (Vector3.Distance(current, target) < 0.05f)
         {
@@ -119,7 +117,6 @@ public class EnemyUnit : Unit
     public override void OnDeath()
     {
         // 죽을 때 적리스트에서 자기 자신을 제거 요청
-        base.OnDeath();
         Die?.Invoke(this);
         Destroy(gameObject);
     }

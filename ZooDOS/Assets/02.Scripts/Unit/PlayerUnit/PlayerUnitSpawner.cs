@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerUnitSpawner : MonoBehaviour
 {
     [SerializeField] GameManager _gameManager;
-    [SerializeField] UnitHealthUIManager _unitHealthUIManager;
     [SerializeField] PlayerUnitData[] _playerUnitDatas;
     Dictionary<int, PlayerUnit> _units;
 
@@ -36,14 +35,7 @@ public class PlayerUnitSpawner : MonoBehaviour
         RotateUnitByDirection(playerUnit, direction);
         List<Maptile> Range = CalcRange(position, direction, playerUnitData);
         playerUnit.transform.position = worldPos;
-
-        UnitHealthUI ui = _unitHealthUIManager.GetPlayerUnitHealthUI();
-        playerUnit.SetHealthUI(ui);
-        ui.Init(playerUnit);
-
         playerUnit.OnPlace(Range);
-
-        
     }
 
     public void RotateUnitByDirection(PlayerUnit playerUnit, Vector3 direction)

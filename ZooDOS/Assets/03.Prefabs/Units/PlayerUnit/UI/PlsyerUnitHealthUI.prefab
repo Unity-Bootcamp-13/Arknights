@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8465003572582203939}
   - component: {fileID: 4005805586939173124}
+  - component: {fileID: 1213422615660266643}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -164,6 +165,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1213422615660266643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638720580004857206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f31102db853fad949b2e9e1981644b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unit: {fileID: 0}
+  _slider: {fileID: 4005805586939173124}
 --- !u!1 &3213180550554152640
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,9 +266,8 @@ GameObject:
   - component: {fileID: 517237295986765540}
   - component: {fileID: 1344994601762808733}
   - component: {fileID: 4422861310811527531}
-  - component: {fileID: 8054923989088494359}
   m_Layer: 5
-  m_Name: PlayerUnitHealthUI
+  m_Name: PlsyerUnitHealthUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -324,7 +338,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4422861310811527531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,20 +356,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8054923989088494359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7462499545121480861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f31102db853fad949b2e9e1981644b79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _unit: {fileID: 0}
-  _slider: {fileID: 4005805586939173124}
 --- !u!1 &8716236433164160498
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerUnit : Unit
 {
+    [SerializeField] private Canvas _healthUI;
     [SerializeField] private Animator _animator;
     List<Maptile> _attackRange;
     PlayerUnitStatus _status;
@@ -54,14 +55,17 @@ public class PlayerUnit : Unit
     /// <param name="placedTile"></param>
     public virtual void OnPlace(List<Maptile> attackRange)
     {
-        
         _leftAttackTime = 0;
         _attackRange = attackRange;
         _hp.RefillHp();
-        _basicAttack = new PlayerUnitBasicAttack(this, _resistCapacity, _attackRange, _atk, _attackType);
+        _basicAttack = new PlayerUnitBasicAttack(this, _resistCapacity, _attackRange, _atk, _attackType); 
+        
+        if (_healthUI != null)
+        {
+            // 회전을 항상 고정 (예: 정면 고정, XZ 평면 상에서 수평)
+            _healthUI.transform.rotation = Quaternion.Euler(0, 270, 0); // 필요 시 다른 각도로 조정 가능
+        }
 
-
-        _unitHealthUI.SetUIPosition(transform.position);
         transform.position += Vector3.up * Constants.FALLING_POS;
         StartCoroutine(C_FallingCoroutine());
     }
@@ -166,9 +170,7 @@ public class PlayerUnit : Unit
     
     public override void OnDeath()
     {
-        base.OnDeath();
-
-        if (TileType == TileType.Ground)
+        if(TileType == TileType.Ground)
         {
             List<Unit> targets = _basicAttack.GetTargets();
             foreach(Unit target in targets)
