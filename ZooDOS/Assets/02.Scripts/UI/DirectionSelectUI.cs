@@ -6,6 +6,9 @@ public class DirectionSelectUI : MonoBehaviour
     [SerializeField] private RectTransform _popupUI;
     [SerializeField] private Canvas _canvas;
 
+    [Header("UI – 방향 인디케이터")]
+    [SerializeField] private RectTransform _dirIndicator;
+
     [Header("의존성 주입")]
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private Map _map;
@@ -21,6 +24,9 @@ public class DirectionSelectUI : MonoBehaviour
     private Vector2 _startMousePos;
     private Vector3 _curDirection = Vector3.forward;
 
+    private Vector2 _indicatorBasePos;                      // 중앙 좌표 캐시
+    private const float INDICATOR_OFFSET = 30f;
+
     public void OpenDirectionUI(GameObject preview, PlayerUnitData data, PreviewSummoner summoner)
     {
         _preview = preview;
@@ -30,6 +36,9 @@ public class DirectionSelectUI : MonoBehaviour
         _isDragging = false;
 
         ShowPopupAtWorldPos(preview.transform.position);
+
+        _indicatorBasePos = _dirIndicator.anchoredPosition = Vector2.zero;
+        _dirIndicator.gameObject.SetActive(true);
     }
 
     void Update()
@@ -67,7 +76,7 @@ public class DirectionSelectUI : MonoBehaviour
         if (_isDragging && Input.GetMouseButton(0))
         {
             Vector2 delta = (Vector2)Input.mousePosition - _startMousePos;
-            if (delta.sqrMagnitude >= 100f)
+            if (delta.sqrMagnitude >= 50f)
             {
                 ApplyPreviewDirection(delta);
             }
@@ -76,7 +85,7 @@ public class DirectionSelectUI : MonoBehaviour
         if (_isDragging && Input.GetMouseButtonUp(0))
         {
             Vector2 delta = (Vector2)Input.mousePosition - _startMousePos;
-            if (delta.sqrMagnitude >= 100f)
+            if (delta.sqrMagnitude >= 50f)
             {
                 FinalizePlacement(delta);
             }
@@ -97,8 +106,24 @@ public class DirectionSelectUI : MonoBehaviour
 
         _preview.transform.rotation = Quaternion.LookRotation(dir);
 
+        UpdateDirIndicator(dir);
+
         Position pos = _map.Vector3ToCoord(_preview.transform.position);
         _summoner.ShowAttackRange(pos, dir); //사거리 하이라이트 갱신
+    }
+
+    private void UpdateDirIndicator(Vector3 dir)
+    {
+        Vector2 offset = Vector2.zero;
+        if (dir == Vector3.forward) offset = Vector2.up;
+        else if (dir == Vector3.back) offset = Vector2.down;
+        else if (dir == Vector3.left) offset = Vector2.left;
+        else if (dir == Vector3.right) offset = Vector2.right;
+
+        Vector3 localDir = Quaternion.Inverse(_popupUI.rotation) * offset;
+
+        _dirIndicator.anchoredPosition = _indicatorBasePos +
+                                         (Vector2)(localDir * INDICATOR_OFFSET);
     }
 
     private void FinalizePlacement(Vector2 delta)
@@ -117,6 +142,7 @@ public class DirectionSelectUI : MonoBehaviour
     {
         IsActive = false;
         _popupUI.gameObject.SetActive(false);
+        _dirIndicator.gameObject.SetActive(false);
         _summoner.CancelPreview();   
     }
 
