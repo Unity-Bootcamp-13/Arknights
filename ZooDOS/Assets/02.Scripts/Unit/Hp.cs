@@ -12,7 +12,7 @@ public class Hp
 
 
   
-    public Hp(float hp, Unit unit)
+    public Hp(Unit unit, float hp)
     {
         _maxHp = hp;
         _hp = _maxHp;
@@ -41,8 +41,12 @@ public class Hp
     public bool IsDead => _isDead;
     public float MaxHP => _maxHp;
 
+    public void SubscribeHpEvent(Action action)
+    {
+        OnHpChanged += action;
+    }
 
-    public void RefillHp()
+    public void ResetHp()
     {
         HP = _maxHp;
         _isDead = false;

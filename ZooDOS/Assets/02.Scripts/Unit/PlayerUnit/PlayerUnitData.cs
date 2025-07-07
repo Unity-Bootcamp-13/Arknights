@@ -28,7 +28,12 @@ public class PlayerUnitData : ScriptableObject
     [SerializeField] public Sprite UnitPortrait;
     [SerializeField] public PlayerUnit UnitPrefab;
     [SerializeField] public GameObject UnitTposePrefab;
-    [SerializeField] public Projectile UnitProjectilePrefab;
+    [SerializeField] public GameObject SkillActivateEffectPrefab;
+
+
+    [SerializeField] public SkillData BasicAttackData;
+    [SerializeField] public SkillData[] SkillAttackData;
+
 
 
 

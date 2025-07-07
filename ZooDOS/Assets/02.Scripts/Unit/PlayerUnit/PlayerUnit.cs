@@ -6,41 +6,88 @@ using UnityEngine;
 public class PlayerUnit : Unit
 {
     [SerializeField] private Animator _animator;
-    List<Maptile> _attackRange;
-    PlayerUnitStatus _status;
+
+    private GameObject _skillActivateEffect;
+
+    private List<Maptile> _attackRange;
+    private PlayerUnitStatus _status;
     
-    private float _leftAttackTime;
     private int _resistCapacity;
     private int _placeCost;
     private float _replaceTime;
     private PlayerUnitType _playerUnitType;
     private TileType _tileType;
     private AttackType _attackType;
-    private Projectile _projectilePrefab;
 
+    private Sp _sp;
+    private PlayerUnitSpUI _unitSpUI;
 
+    private PlayerUnitSKill _basicAttack;
+    private PlayerUnitSKill _skillAttack;
+    float _remainDuration;
+    float _skillDuration;
+    bool _isSkillActivated;
+    bool _isSpCharged;
 
-    PlayerUnitBasicAttack _basicAttack;
-
-    
     public TileType TileType => _tileType;
+    public Sp Sp => _sp;
+    
 
     void Update()
     {
+        if (_remainDuration>=0)
+        {
+            _remainDuration -= Time.deltaTime;
+            Attack(_skillAttack);
 
-        _basicAttack.AddTarget();
+            if(_remainDuration < 0)
+            {
+                _skillAttack.UnBlockTargets();
+                _skillActivateEffect.SetActive(false);
+                _isSkillActivated = false;
+            }
 
-        // 공격 딜레이
-        _leftAttackTime += Time.deltaTime;
-
-        if (_leftAttackTime < _atkSpeed)
             return;
-        _leftAttackTime = 0;
+        }
 
+        if (_isSpCharged == false)
+        {
+            _sp.ChargeSp(Time.deltaTime);
+        }
 
-        _basicAttack.Attack();
+        Attack(_basicAttack);
+       
     }
 
+
+    public void Attack(PlayerUnitSKill skill)
+    {
+        skill.AddTarget();
+
+        skill.Attack();
+    }
+
+
+    public void ActivateSkill()
+    {
+        if (_isSkillActivated||_isSpCharged== false)
+        {
+            return;
+        }
+
+        _isSkillActivated = true;
+        _isSpCharged = false;
+        _skillActivateEffect.SetActive(true);
+        _sp.ResetSp();
+        _basicAttack.UnBlockTargets();
+        _skillAttack.Init();
+        _remainDuration = _skillDuration;
+    }
+
+    public void SetSpCharged()
+    {
+        _isSpCharged = true;
+    }
 
     /// <summary>
     /// 배치 시 실행되는 메서드
@@ -54,14 +101,18 @@ public class PlayerUnit : Unit
     /// <param name="placedTile"></param>
     public virtual void OnPlace(List<Maptile> attackRange)
     {
-        
-        _leftAttackTime = 0;
         _attackRange = attackRange;
-        _hp.RefillHp();
-        _basicAttack = new PlayerUnitBasicAttack(this, _resistCapacity, _attackRange, _atk, _attackType);
+        _hp.ResetHp();
+        _sp.ResetSp();
 
+        _skillActivateEffect.transform.position = transform.position+Vector3.up;
 
-        _unitHealthUI.SetUIPosition(transform.position);
+        _basicAttack.SetRange(_attackRange);
+        _skillAttack.SetRange(_attackRange);
+        _remainDuration = -1;
+
+        _unitHpUI.SetUIPosition(transform.position);
+        _unitSpUI.SetUIPosition(transform.position);
         transform.position += Vector3.up * Constants.FALLING_POS;
         StartCoroutine(C_FallingCoroutine());
     }
@@ -77,11 +128,13 @@ public class PlayerUnit : Unit
     {
         gameObject.SetActive(false);
 
+        
+
         _status = new PlayerUnitStatus(playerUnitData.UnitPortrait, playerUnitData.StandingIllust, playerUnitData.Name, playerUnitData.PlaceCost);
         _playerUnitType = playerUnitData.PlayerUnitType;
         _tileType = playerUnitData.TileType;
         _attackType = playerUnitData.AttackType;
-        _hp = new Hp(playerUnitData.Hp, this);
+        _hp = new Hp(this, playerUnitData.Hp);
         _def = playerUnitData.Def;
         _atk = playerUnitData.Atk;
         _atkSpeed = playerUnitData.AtkSpeed;
@@ -89,7 +142,14 @@ public class PlayerUnit : Unit
         _resistCapacity = playerUnitData.ResistCapacity;
         _placeCost = playerUnitData.PlaceCost;
         _replaceTime = playerUnitData.ReplaceTime;
-        _projectilePrefab = playerUnitData.UnitProjectilePrefab;
+        _skillDuration = playerUnitData.SkillAttackData[0].Duration;
+
+        _basicAttack = new PlayerUnitSKill(this, _atk, _atkSpeed, playerUnitData.BasicAttackData);
+        _skillAttack = new PlayerUnitSKill(this, _atk, _atkSpeed, playerUnitData.SkillAttackData[0]);
+        _sp = new Sp(this, playerUnitData.SkillAttackData[0].SkillCost);
+        _skillActivateEffect = Instantiate(playerUnitData.SkillActivateEffectPrefab);
+        _skillActivateEffect.transform.parent = transform.parent;
+        _skillActivateEffect.SetActive(false);
     }
 
     public PlayerUnitStatus GetStatus()
@@ -99,55 +159,65 @@ public class PlayerUnit : Unit
         return _status;
     }
 
-    public void ShootDamageProjectile(Unit target, float value)
+    public void SetSpUI(PlayerUnitSpUI ui)
     {
-        _animator.SetTrigger("Attack_t");
-
-        StartCoroutine(C_AttackDelay(target, value));
+        _unitSpUI = ui;
     }
 
-
-    public void ShootHealProjectile(Unit target, float value)
+    public void ShootDamageProjectile(Unit target, float value, Projectile projectile)
     {
-        _animator.SetTrigger("Attack_t");
-
-        StartCoroutine(C_HealDelay(target, value));
-    }
-
-    IEnumerator C_AttackDelay(Unit target, float value)
-    {
-
-        yield return new WaitForSeconds(1);
-        float damage = Math.Max(1, value - target.Def);
-
-        if (_projectilePrefab != null)
+        if (_isSkillActivated)
         {
-            Projectile projectile = Instantiate(_projectilePrefab);
-            projectile.Init(target, _projectileSpeed);
-            projectile.transform.position = transform.position + Vector3.up;
-            projectile.SetProjectileAction(() => target.Hp.GetDamage(damage));
+            _animator.SetTrigger("SkillAttack_t");
+        }
+        else
+        {
+            _animator.SetTrigger("Attack_t");
+        }
+
+            float damage = Math.Max(1, value - target.Def);
+
+        if (projectile != null)
+        {
+            Projectile proj = Instantiate(projectile);
+            proj.Init(target, _projectileSpeed);
+            proj.transform.position = transform.position + Vector3.up;
+            proj.SetProjectileAction(() => target.Hp.GetDamage(damage));
         }
         else
         {
             target.Hp.GetDamage(damage);
         }
+
     }
 
-    IEnumerator C_HealDelay(Unit target, float value)
+
+    public void ShootHealProjectile(Unit target, float value, Projectile projectile)
     {
-        yield return new WaitForSeconds(1);
-        if (_projectilePrefab != null)
+        if (_isSkillActivated)
         {
-            Projectile projectile = Instantiate(_projectilePrefab);
-            projectile.Init(target, _projectileSpeed);
-            projectile.transform.position = transform.position + Vector3.up;
-            projectile.SetProjectileAction(() => target.Hp.GetHeal(value));
+            _animator.SetTrigger("SkillAttack_t");
+        }
+        else
+        {
+            _animator.SetTrigger("Attack_t");
+        }
+
+
+        if (projectile != null)
+        {
+            Projectile proj = Instantiate(projectile);
+            proj.Init(target, _projectileSpeed);
+            proj.transform.position = transform.position + Vector3.up;
+            proj.SetProjectileAction(() => target.Hp.GetHeal(value));
         }
         else
         {
             target.Hp.GetHeal(value);
         }
+
     }
+
 
     IEnumerator C_FallingCoroutine()
     {
@@ -163,21 +233,12 @@ public class PlayerUnit : Unit
     }
 
 
-    
     public override void OnDeath()
     {
         base.OnDeath();
 
-        if (TileType == TileType.Ground)
-        {
-            List<Unit> targets = _basicAttack.GetTargets();
-            foreach(Unit target in targets)
-            {
-                EnemyUnit enemy = target as EnemyUnit;
-                enemy.Unblock();
-            }
-
-        }
+        _basicAttack.UnBlockTargets();
+        _skillAttack.UnBlockTargets();
 
         Die?.Invoke(this);
         gameObject.SetActive(false);
