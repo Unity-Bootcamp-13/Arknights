@@ -497,6 +497,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _map: {fileID: 1671331094}
+  _gameResultPopup: {fileID: 1747672987}
+  characterPortrait: {fileID: 0}
 --- !u!4 &167409845
 Transform:
   m_ObjectHideFlags: 0
@@ -1584,6 +1586,7 @@ MonoBehaviour:
   map: {fileID: 1671331094}
   _unitHealthUIManager: {fileID: 603207805}
   waveData: {fileID: 11400000, guid: ded40003f4b4cf64eb6de2907dd933b2, type: 2}
+  gameManager: {fileID: 167409844}
 --- !u!4 &647686781
 Transform:
   m_ObjectHideFlags: 0
