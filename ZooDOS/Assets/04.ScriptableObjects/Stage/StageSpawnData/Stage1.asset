@@ -17,64 +17,64 @@ MonoBehaviour:
     spawnTime: 3
     path:
     - x: 0
+      y: 2
+    - x: 5
+      y: 2
+    - x: 5
+      y: 3
+    - x: 8
+      y: 3
+    - x: 8
       y: 0
-    - x: 0
-      y: 2
-    - x: 9
-      y: 2
-    - x: 9
-      y: 3
-    - x: 9
-      y: 3
   - enemyPrefab: {fileID: 4352046269588137532, guid: ee76472b5ec68404782b9a2f26512ae1, type: 3}
     spawnTime: 3
     path:
     - x: 0
+      y: 2
+    - x: 5
+      y: 2
+    - x: 5
+      y: 3
+    - x: 8
+      y: 3
+    - x: 8
       y: 0
-    - x: 0
-      y: 2
-    - x: 9
-      y: 2
-    - x: 9
-      y: 3
-    - x: 9
-      y: 3
   - enemyPrefab: {fileID: 3866023922725468305, guid: 67ffe65f00d052d44bda4ba5aa17418d, type: 3}
     spawnTime: 1
     path:
     - x: 0
+      y: 2
+    - x: 5
+      y: 2
+    - x: 5
+      y: 3
+    - x: 8
+      y: 3
+    - x: 8
       y: 0
-    - x: 0
-      y: 2
-    - x: 9
-      y: 2
-    - x: 9
-      y: 3
-    - x: 9
-      y: 3
   - enemyPrefab: {fileID: 4440267623528671004, guid: 3fb1c7bca51e0da428da0b498bd646e2, type: 3}
     spawnTime: 3
     path:
     - x: 0
+      y: 2
+    - x: 5
+      y: 2
+    - x: 5
+      y: 3
+    - x: 8
+      y: 3
+    - x: 8
       y: 0
-    - x: 0
-      y: 2
-    - x: 9
-      y: 2
-    - x: 9
-      y: 3
-    - x: 9
-      y: 3
   - enemyPrefab: {fileID: 3866023922725468305, guid: 67ffe65f00d052d44bda4ba5aa17418d, type: 3}
     spawnTime: 3
     path:
     - x: 0
+      y: 2
+    - x: 5
+      y: 2
+    - x: 5
+      y: 3
+    - x: 8
+      y: 3
+    - x: 8
       y: 0
-    - x: 0
-      y: 2
-    - x: 9
-      y: 2
-    - x: 9
-      y: 3
-    - x: 9
-      y: 3
