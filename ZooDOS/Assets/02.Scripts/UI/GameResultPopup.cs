@@ -24,7 +24,7 @@ public class GameResultPopup : MonoBehaviour
 
     private void Start()
     {
-        fullScreenButton.onClick.AddListener(() => SceneManager.LoadScene("SampleScene"));
+        fullScreenButton.onClick.AddListener(() => SceneManager.LoadScene("MainLobbyScene"));
     }
 
     /// <summary>
@@ -33,7 +33,6 @@ public class GameResultPopup : MonoBehaviour
     public void InitResultPopup(
         bool isVictory,
         int starCount,
-        List<RewardData> rewards,
         string stageName,
         string stageCode,
         Sprite characterPortrait,
