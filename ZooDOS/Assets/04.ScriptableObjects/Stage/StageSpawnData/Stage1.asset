@@ -78,3 +78,4 @@ MonoBehaviour:
       y: 3
     - x: 8
       y: 0
+  waveCount: 3
