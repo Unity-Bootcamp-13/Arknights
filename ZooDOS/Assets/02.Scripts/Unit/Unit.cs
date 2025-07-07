@@ -8,7 +8,7 @@ public class Unit : MonoBehaviour, IDamagable
     protected float _atk;
     protected float _atkSpeed;
     protected float _projectileSpeed;
-    [SerializeField] protected UnitHealthUI _unitHealthUI;
+    [SerializeField] protected UnitHpUI _unitHpUI;
 
     public Hp Hp => _hp;
     public float Def => _def;
@@ -20,20 +20,18 @@ public class Unit : MonoBehaviour, IDamagable
     }
 
 
-    public void HpEventSubscribe(Action action)
+   
+
+    public void SetHpUI(UnitHpUI ui)
     {
-        _hp.OnHpChanged += action;
+        _unitHpUI = ui;
     }
 
-    public void SetHealthUI(UnitHealthUI ui)
-    {
-        _unitHealthUI = ui;
-    }
 
     public Action<Unit> Die;
 
     public virtual void OnDeath() 
     {
-        _unitHealthUI.DisableUI();
+        _unitHpUI.DisableUI();
     }
 }

@@ -502,8 +502,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitHealthUI: {fileID: 0}
-  _healthUI: {fileID: 0}
   _animator: {fileID: 1499882513393618644}
+  _basicAttackData: {fileID: 11400000, guid: e1c039f0a92e9ae418a2653b828aa163, type: 2}
+  _skillAttackData: {fileID: 11400000, guid: 279c634ef0d7f2d44b5d01fdef1bfa3a, type: 2}
 --- !u!65 &8257644991443845739
 BoxCollider:
   m_ObjectHideFlags: 0

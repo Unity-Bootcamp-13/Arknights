@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyUnitSpawner : MonoBehaviour
 {
     [SerializeField] private Map map;
-    [SerializeField] private UnitHealthUIManager _unitHealthUIManager;
+    [SerializeField] private UnitHpSpUIManager _unitHpSpUIManager;
     [SerializeField] private WaveData waveData;
     [SerializeField] private GameManager gameManager;
     
@@ -53,8 +53,8 @@ public class EnemyUnitSpawner : MonoBehaviour
         enemy.Die += gameManager.OnEnemyDeath;
         enemy.OnArrived += gameManager.OnEnemyEnterDefensePoint;
         
-        UnitHealthUI ui = _unitHealthUIManager.GetEnemyUnitHealthUI();
-        enemy.SetHealthUI(ui);
+        UnitHpUI ui = _unitHpSpUIManager.GetEnemyUnitHpUI();
+        enemy.SetHpUI(ui);
         ui.Init(enemy);
 
         
