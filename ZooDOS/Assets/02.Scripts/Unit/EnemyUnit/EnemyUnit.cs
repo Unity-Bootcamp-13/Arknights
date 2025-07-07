@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 public class EnemyUnit : Unit
 {
     
-    private List<Vector3> _path;
+    protected List<Vector3> _path;
     public int currentPathIndex = 0;
     private float rotationSpeed = 10;
     private bool isBlocked = false;
@@ -19,13 +19,15 @@ public class EnemyUnit : Unit
     [SerializeField] private EnemyUnitData _enemyUnitData;
     private Animator _animator;
 
+    public EnemyUnitData EnemyUnitData => _enemyUnitData;
+    
     public event Action OnArrived;
     private void Awake()
     {
         _animator = GetComponent<Animator>();
     }
 
-    void Update()
+    private void Update()
     {
         if (_targetList.Count > 0)
         {
@@ -51,8 +53,7 @@ public class EnemyUnit : Unit
     /// 초기값세팅
     /// </summary>
     /// <param name="path">경로</param>
-    public void Init(List<Vector3> path)
-    {
+    public virtual void Init(List<Vector3> path) {
         _path = path;
         currentPathIndex = 0;
         transform.position = _path[0]; 
@@ -69,7 +70,7 @@ public class EnemyUnit : Unit
     /// <summary>
     /// 다음 경로를 향해 이동
     /// </summary>
-    private void MoveStep()
+    protected virtual void MoveStep()
     {
         Vector3 current = transform.position;
         Vector3 target =_path[currentPathIndex + 1];
@@ -128,7 +129,7 @@ public class EnemyUnit : Unit
     /// <summary>
     /// 적 목적지 도착
     /// </summary>
-    private void OnArriveAtEnd()
+    protected virtual void OnArriveAtEnd()
     {
         base.OnDeath();
         Die?.Invoke(this);
