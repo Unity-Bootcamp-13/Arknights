@@ -3155,8 +3155,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1401477016}
+  m_Children: []
   m_Father: {fileID: 1208255863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3367,6 +3366,7 @@ RectTransform:
   - {fileID: 1886352660}
   - {fileID: 1147764345}
   - {fileID: 289810108}
+  - {fileID: 1401477016}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3972,7 +3972,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1358703618}
-  m_Father: {fileID: 1147764345}
+  m_Father: {fileID: 1208255863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4612,6 +4612,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aa821cc853b36744f90f5b2de83a0f3d, type: 2}
   _spawner: {fileID: 1953823499}
   _previewSummoner: {fileID: 886914838}
+  _dirSelectUI: {fileID: 1567591420}
   _costWallet: {fileID: 348350262}
   _gameSpeedController: {fileID: 1886352661}
 --- !u!1 &1505216018

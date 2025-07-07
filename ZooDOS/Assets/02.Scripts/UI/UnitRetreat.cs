@@ -109,8 +109,12 @@ public class UnitRetreat : MonoBehaviour
         Vector3 dir = unit.transform.forward.normalized;
         _previewSummoner.ShowAttackRange(pos, dir);
 
+        int top = _canvas.transform.childCount - 1;   // 최상위 인덱스
+       
         _blockerButton.gameObject.SetActive(true);
+        _blockerButton.transform.SetSiblingIndex(top - 1);
         _unitDiamondPanel.SetActive(true);
+        _unitDiamondPanel.transform.SetAsLastSibling();
         _standingIllustPanel.gameObject.SetActive(true);
         PositionPanelAtWorld(unit.transform.position);
     }

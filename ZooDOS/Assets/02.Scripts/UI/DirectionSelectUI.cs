@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class DirectionSelectUI : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class DirectionSelectUI : MonoBehaviour
     [SerializeField] private CostWallet _costWallet;
     [SerializeField] private PlayerUnitSpawner _playerUnitSpanwer;
 
+    public event Action<int> Spawn;
     public bool IsActive { get; private set; }
 
     private GameObject _preview;
@@ -134,6 +136,7 @@ public class DirectionSelectUI : MonoBehaviour
         if (_map.IsInsideMap(pos) && _costWallet.TrySpendCost(new Cost(_playerUnitData.PlaceCost)))
         {
             _playerUnitSpanwer.PlayerUnitSpawn(pos, dirVector, _playerUnitData);
+            Spawn.Invoke(_playerUnitData.Id);
         }
         CloseDirectionPopup();
     }
