@@ -175,7 +175,7 @@ public class PlayerUnit : Unit
             _animator.SetTrigger("Attack_t");
         }
 
-            float damage = Math.Max(1, value - target.Def);
+        float damage = Math.Max(1, value - target.Def);
 
         if (projectile != null)
         {

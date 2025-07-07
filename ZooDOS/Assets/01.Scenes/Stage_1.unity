@@ -498,7 +498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _map: {fileID: 1671331094}
   _gameResultPopup: {fileID: 1747672987}
-  characterPortrait: {fileID: 0}
+  characterPortrait: {fileID: 21300000, guid: 268af441378e61b439424e95703139ae, type: 3}
 --- !u!4 &167409845
 Transform:
   m_ObjectHideFlags: 0
@@ -1383,7 +1383,7 @@ GameObject:
   - component: {fileID: 603207804}
   - component: {fileID: 603207805}
   m_Layer: 0
-  m_Name: HealthUIManager
+  m_Name: UnitHpSpUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1416,8 +1416,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26ebd3ef017b81349b19fedb693de76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerUnitHealthUI: {fileID: 8054923989088494359, guid: 05a13010983aef1439a88fe2b141e3ed, type: 3}
-  _enemyUnitHealthUI: {fileID: 8054923989088494359, guid: 3cea13205bf292d46898826129147b39, type: 3}
+  _playerUnitHpUI: {fileID: 8054923989088494359, guid: af432645acf11f54fae8ca1fa23ee4b5, type: 3}
+  _playerUnitSpUI: {fileID: 7613459818155831095, guid: 3972a2f1259e3a842a92495410c66fb7, type: 3}
+  _enemyUnitHpUI: {fileID: 8054923989088494359, guid: 3cea13205bf292d46898826129147b39, type: 3}
 --- !u!1 &639261786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,7 +1585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 1671331094}
-  _unitHealthUIManager: {fileID: 603207805}
+  _unitHpSpUIManager: {fileID: 603207805}
   waveData: {fileID: 11400000, guid: ded40003f4b4cf64eb6de2907dd933b2, type: 2}
   gameManager: {fileID: 167409844}
 --- !u!4 &647686781
@@ -5916,7 +5917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameManager: {fileID: 167409844}
-  _unitHealthUIManager: {fileID: 603207805}
+  _unitHpSpUIManager: {fileID: 603207805}
   _playerUnitDatas:
   - {fileID: 11400000, guid: 8afbbacb97132ab4185035b1a0e806f8, type: 2}
   - {fileID: 11400000, guid: 806c620d2bb203f4a94f7f9b86d2897c, type: 2}
