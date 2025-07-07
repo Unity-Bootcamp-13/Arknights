@@ -19,6 +19,7 @@ public class EnemyUnit : Unit
     [SerializeField] private EnemyUnitData _enemyUnitData;
     private Animator _animator;
 
+    public event Action OnArrived;
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -118,7 +119,6 @@ public class EnemyUnit : Unit
     /// </summary>
     public override void OnDeath()
     {
-        // 죽을 때 적리스트에서 자기 자신을 제거 요청
         base.OnDeath();
         Die?.Invoke(this);
         Destroy(gameObject);
@@ -130,8 +130,9 @@ public class EnemyUnit : Unit
     /// </summary>
     private void OnArriveAtEnd()
     {
-        // + 라이프 차감 로직 추가 필요
+        base.OnDeath();
         Die?.Invoke(this);
+        OnArrived?.Invoke();
         Destroy(gameObject);
     }
 

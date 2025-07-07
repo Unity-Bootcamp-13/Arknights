@@ -32,6 +32,8 @@ public class GameSpeedController : MonoBehaviour
 
 
     private bool _isPauseButtonPushed;
+    public bool IsPause => _isPauseButtonPushed;
+
     private bool _isPlayBackButtonPushed;
 
 

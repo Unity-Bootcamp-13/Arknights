@@ -7,12 +7,14 @@ public class EnemyUnitSpawner : MonoBehaviour
     [SerializeField] private Map map;
     [SerializeField] private UnitHealthUIManager _unitHealthUIManager;
     [SerializeField] private WaveData waveData;
+    [SerializeField] private GameManager gameManager;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
        
         StartCoroutine(CallWave());
+        gameManager.SetEnemyCountOfThisStage(waveData.WaveCount);
     }
 
     /// <summary>
@@ -45,7 +47,9 @@ public class EnemyUnitSpawner : MonoBehaviour
             path.Add(map.CoordToVector3(waypoint));
         }
         enemy.Init(path);
-
+        enemy.Die += gameManager.OnEnemyDeath;
+        enemy.OnArrived += gameManager.OnEnemyEnterDefensePoint;
+        
         UnitHealthUI ui = _unitHealthUIManager.GetEnemyUnitHealthUI();
         enemy.SetHealthUI(ui);
         ui.Init(enemy);

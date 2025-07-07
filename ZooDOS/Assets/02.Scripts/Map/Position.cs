@@ -16,6 +16,8 @@ public struct Position
         this.y = y;
     }
 
+    public bool IsValid => !(X == 0 && Y == 0); 
+
     // == 연산자 오버로드
     public static bool operator ==(Position a, Position b)
     {
