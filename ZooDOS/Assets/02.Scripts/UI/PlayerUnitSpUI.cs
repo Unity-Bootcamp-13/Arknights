@@ -1,31 +1,30 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class UnitHealthUI : MonoBehaviour
+public class PlayerUnitSpUI : MonoBehaviour
 {
-    [SerializeField] private Unit _unit;
+    [SerializeField] private PlayerUnit _unit;
     [SerializeField] private Slider _slider;
 
     private Vector3 _offset;
     private Camera _mainCamera;
 
-   
 
-    public void Init(Unit unit)
+    public void Init(PlayerUnit unit)
     {
         _unit = unit;
 
-        _unit.HpEventSubscribe(() => SetSlider());
+        _unit.Sp.SubscribeSpEvent(() => SetSlider());
 
         _offset = new Vector3(0, 0, -0.5f);
         _mainCamera = Camera.main;
 
-        _slider.value = 1;
+        _slider.value = 0;
     }
 
     private void SetSlider()
     {
-        _slider.value = _unit.Hp.HpRatio;
+        _slider.value = _unit.Sp.SpRatio;
     }
 
     /// <summary>

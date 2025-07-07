@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyUnitSpawner : MonoBehaviour
 {
     [SerializeField] private Map map;
-    [SerializeField] private UnitHealthUIManager _unitHealthUIManager;
+    [SerializeField] private UnitHpSpUIManager _unitHealthUIManager;
     [SerializeField] private WaveData waveData;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -46,8 +46,8 @@ public class EnemyUnitSpawner : MonoBehaviour
         }
         enemy.Init(path);
 
-        UnitHealthUI ui = _unitHealthUIManager.GetEnemyUnitHealthUI();
-        enemy.SetHealthUI(ui);
+        UnitHpUI ui = _unitHealthUIManager.GetEnemyUnitHpUI();
+        enemy.SetHpUI(ui);
         ui.Init(enemy);
 
         

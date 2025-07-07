@@ -56,7 +56,7 @@ public class EnemyUnit : Unit
         currentPathIndex = 0;
         transform.position = _path[0]; 
         
-        _hp = new Hp(_enemyUnitData.Hp, this);
+        _hp = new Hp(this, _enemyUnitData.Hp);
         _def = _enemyUnitData.Def;
         _atk = _enemyUnitData.Atk;
         _atkSpeed = _enemyUnitData.AtkSpeed;
@@ -82,7 +82,7 @@ public class EnemyUnit : Unit
         
         transform.position = Vector3.MoveTowards(current, target, _enemyUnitData.MoveSpeed * Time.deltaTime);
 
-        _unitHealthUI.SetUIPosition(transform.position);
+        _unitHpUI.SetUIPosition(transform.position);
 
         if (Vector3.Distance(current, target) < 0.05f)
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerUnitSpawner : MonoBehaviour
 {
     [SerializeField] GameManager _gameManager;
-    [SerializeField] UnitHealthUIManager _unitHealthUIManager;
+    [SerializeField] UnitHpSpUIManager _unitHpSpUIManager;
     [SerializeField] PlayerUnitData[] _playerUnitDatas;
     Dictionary<int, PlayerUnit> _units;
 
@@ -37,9 +37,13 @@ public class PlayerUnitSpawner : MonoBehaviour
         List<Maptile> Range = CalcRange(position, direction, playerUnitData);
         playerUnit.transform.position = worldPos;
 
-        UnitHealthUI ui = _unitHealthUIManager.GetPlayerUnitHealthUI();
-        playerUnit.SetHealthUI(ui);
-        ui.Init(playerUnit);
+        UnitHpUI hpUI = _unitHpSpUIManager.GetPlayerUnitHpUI();
+        playerUnit.SetHpUI(hpUI);
+        hpUI.Init(playerUnit);
+
+        PlayerUnitSpUI spUI = _unitHpSpUIManager.GetPlayerUnitSpUI();
+        playerUnit.SetSpUI(spUI);
+        spUI.Init(playerUnit);
 
         playerUnit.OnPlace(Range);
 

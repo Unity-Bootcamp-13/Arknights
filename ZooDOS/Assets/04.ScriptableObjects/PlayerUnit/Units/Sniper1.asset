@@ -32,4 +32,7 @@ MonoBehaviour:
   UnitPortrait: {fileID: 21300000, guid: 3a0abf1762b5c9545a0a7f494c1d4b31, type: 3}
   UnitPrefab: {fileID: 5758161919349873981, guid: 2cb8c6081e6cc4b48a1ad7ae4e19e641, type: 3}
   UnitTposePrefab: {fileID: 3392885724487588042, guid: f765c66cc0640194da63e72b077b43ce, type: 3}
-  UnitProjectilePrefab: {fileID: 1480800973446613280, guid: 1455014717a48d445859878f1a75926a, type: 3}
+  SkillActivateEffectPrefab: {fileID: 1625816069985526, guid: 3c1cb9043ada1994c9d5c83863783eab, type: 3}
+  BasicAttackData: {fileID: 11400000, guid: d9fb623a77ba7064a94a491154a55465, type: 2}
+  SkillAttackData:
+  - {fileID: 11400000, guid: c064278fa489d8841ba99dd02a596513, type: 2}

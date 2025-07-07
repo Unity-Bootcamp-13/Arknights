@@ -1,38 +1,55 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class PlayerUnitBasicAttack
+public class PlayerUnitSKill
 {
     List<Unit> _targets;
     PlayerUnit _playerUnit;
     List<Maptile> _attackRange;
 
     float _atk;
+    float _atkSpeed;
     AttackType _attackType;
 
-    public PlayerUnitBasicAttack(PlayerUnit playerUnit, int resistCapacity, List<Maptile> attackRange, float atk, AttackType attackType)
+    private float _leftAttackTime;
+    Projectile _projectile;
+
+
+    public PlayerUnitSKill(PlayerUnit playerUnit, float atk, float atkSpeed, SkillData skillData)
     {
         _playerUnit = playerUnit;
-        _targets = new List<Unit>(resistCapacity);
-        _attackRange = attackRange;
-        _atk = atk;
-        _attackType = attackType;
+        _targets = new List<Unit>(skillData.TargetCapacity);
+        _attackRange = new List<Maptile>();
+        _atk = atk * skillData.AtkCoefficient;
+        _atkSpeed = atkSpeed * skillData.AtkSpeedCoefficient;
+        _attackType = skillData.AttackType;
+        _projectile = skillData.ProjectilePrefab;
+    }
+
+    public void SetRange(List<Maptile> range)
+    {
+        _attackRange = range;
+    }
+
+    public void Init()
+    {
+        _leftAttackTime = 0;
     }
 
     public void Attack()
     {
-        if (_attackType == AttackType.Damage)
-        {
-            AttackToEnemyUnit();
-        }
-        else if (_attackType == AttackType.Heal)
-        {
-            HealToPlayerUnit();
-        }
-        else
+        // 공격 딜레이
+        _leftAttackTime += Time.deltaTime;
+
+        if (_leftAttackTime < _atkSpeed)
         {
             return;
         }
+
+        _leftAttackTime = 0;
+
+
+        AttackUnit();
     }
 
     public void AddTarget()
@@ -51,47 +68,30 @@ public class PlayerUnitBasicAttack
         }
     }
 
-    /// <summary>
-    /// FindEnemyUnitTarget + ShooDamageProjectile
-    ///  = 적 타겟 탐지 + 공격 투사체 발사 
-    ///  = 적에게 공격
-    /// </summary>
-    public void AttackToEnemyUnit()
+    public void AttackUnit()
     {
         if (_targets.Count > 0)
         {
-            foreach (EnemyUnit target in _targets)
+            foreach (Unit target in _targets)
             {
                 if (IsInRange(target) == false && target.Hp.IsDead == true)
                 {
                     continue;
                 }
-                _playerUnit.ShootDamageProjectile(target, _atk);
+
+                if(_attackType == AttackType.Damage)
+                {
+                    _playerUnit.ShootDamageProjectile(target, _atk, _projectile);
+                }
+
+                if(_attackType == AttackType.Heal)
+                {
+                    _playerUnit.ShootHealProjectile(target, _atk, _projectile);
+                }
             }
-            //Debug.Log("적 공격 중");
         }
     }
 
-    /// <summary>
-    /// FindPlayerUnitTarget + ShooHealProjectile
-    /// = 아군 타겟 탐지 + 공격 투사체 발사
-    /// = 아군에게 힐
-    /// </summary>
-    public void HealToPlayerUnit()
-    {
-        if (_targets.Count > 0)
-        {
-            foreach (PlayerUnit target in _targets)
-            {
-                if (IsInRange(target) == false && (target.Hp.IsDead == true))
-                {
-                    continue;
-                }
-                _playerUnit.ShootHealProjectile(target, _atk);
-            }
-            Debug.Log("아군 회복 중");
-        }
-    }
     private void AddEnemyUnitToTargets()
     {
         _targets.RemoveAll(t => t == null || t.Hp.IsDead);
@@ -104,7 +104,6 @@ public class PlayerUnitBasicAttack
                 _targets.Add(target);
             }
 
-            Debug.Log("적 탐지 중");
         }
 
         if (_playerUnit.TileType == TileType.Ground)
@@ -115,6 +114,8 @@ public class PlayerUnitBasicAttack
             }
         }
     }
+
+   
 
     private void AddPlayerUnitToTargets()
     {
@@ -127,7 +128,6 @@ public class PlayerUnitBasicAttack
             {
                 _targets.Add(target);
             }
-            Debug.Log("아군 탐지 중");
         }
     }
 
@@ -184,11 +184,19 @@ public class PlayerUnitBasicAttack
         return ClosestUnit;
     }
 
-    public List<Unit> GetTargets()
+    public void UnBlockTargets()
     {
-        return _targets;
-    }
+        if (_attackType == AttackType.Heal || _attackType == AttackType.Nothing || _playerUnit.TileType != TileType.Ground)
+        {
+            return;
+        }
 
+        foreach (Unit target in _targets)
+        {
+            EnemyUnit enemy = target as EnemyUnit;
+            enemy.Unblock();
+        }
+    }
 
     public bool IsInRange(Unit target)
     {
