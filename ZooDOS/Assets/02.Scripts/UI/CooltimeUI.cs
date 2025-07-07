@@ -33,13 +33,16 @@ public class CooltimeUI : MonoBehaviour
         InitImageSettings();
     }
 
-    private void OnEnable()                    // 부모가 SetActive(true) 되는 순간 호출
+    private void OnEnable()                    
     {
-        InitImageSettings();                   // 항상 처음 상태로 리셋
-        _coroutine = StartCoroutine(FillDown());
+        if (_coroutine == null)
+        {
+            InitImageSettings();
+            _coroutine = StartCoroutine(FillDown());
+        }
     }
 
-    private void OnDisable()                   // 비활성화 시 코루틴 정리
+    private void OnDisable()                   
     {
         if (_coroutine != null)
         {
@@ -51,7 +54,15 @@ public class CooltimeUI : MonoBehaviour
     public void SetCooldown(float seconds)
     {
         _cooldownSeconds = Mathf.Max(0.1f, seconds);
-        OnEnable();      // 재시작 (Enable 상태일 때도 호출 가능)
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+            _coroutine = null;
+        }
+
+        gameObject.SetActive(true);        // 비활성 상태였다면 켠다
+        InitImageSettings();               // 처음 상태로 리셋
+        _coroutine = StartCoroutine(FillDown());
     }
 
     private void InitImageSettings()

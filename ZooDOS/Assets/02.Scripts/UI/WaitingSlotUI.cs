@@ -8,6 +8,7 @@ public class WaitingSlotUI : MonoBehaviour, IPointerDownHandler
 {
     private PlayerUnitData _playerUnitData;
     private WaitingUI _waitingUI;
+    private CostWallet _wallet;
     [SerializeField] private Image _unitPortrait;
     [SerializeField] private TextMeshProUGUI _costText;
     [SerializeField] private Image _classIcon;
@@ -28,14 +29,16 @@ public class WaitingSlotUI : MonoBehaviour, IPointerDownHandler
 
     public void StartCooldownProxy(Unit _)
     {
+        if (!this || !gameObject.activeInHierarchy)
+        {
+            return;
+        }
         StartCooldown();            
     }
 
     public void StartCooldown()
     {
-        _cooltimeUI.gameObject.SetActive(true);  
         _cooltimeUI.SetCooldown(_playerUnitData.ReplaceTime);
-
     }
 
     public void GetClassIconSprite()
@@ -53,13 +56,14 @@ public class WaitingSlotUI : MonoBehaviour, IPointerDownHandler
     {
         _playerUnitData = data;
         _waitingUI = waitingUI;
+        _wallet = wallet;
         _unitPortrait.sprite = data.UnitPortrait;
         _costText.text = data.PlaceCost.ToString();
         _cooltimeUI.CooldownSetting(_playerUnitData);
         GetClassIconSprite();
         _notEnoughCostImage.gameObject.SetActive(false);
-        UpdateCostState(wallet.Current);                
-        wallet.OnCostChanged += UpdateCostState;
+        UpdateCostState(_wallet.Current);                
+        _wallet.OnCostChanged += UpdateCostState;
     }
     private void UpdateCostState(Cost cost)
     {
@@ -77,5 +81,11 @@ public class WaitingSlotUI : MonoBehaviour, IPointerDownHandler
         {
             _waitingUI.OnInfoOnlyClicked(_playerUnitData);
         }
+    }
+
+    void OnDestroy()
+    {
+        if (_wallet != null)
+            _wallet.OnCostChanged -= UpdateCostState;
     }
 }

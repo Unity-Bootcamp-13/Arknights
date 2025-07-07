@@ -15,6 +15,7 @@ public class WaitingUI : MonoBehaviour
     [Header("의존성 주입")]
     [SerializeField] private PlayerUnitSpawner _spawner;
     [SerializeField] private PreviewSummoner _previewSummoner;   // 인스펙터 연결
+    [SerializeField] private DirectionSelectUI _dirSelectUI;
     [SerializeField] private CostWallet _costWallet;
     [SerializeField] private GameSpeedController _gameSpeedController;
     //private readonly List<WaitingSlotUI> _slots = new();
@@ -26,12 +27,30 @@ public class WaitingUI : MonoBehaviour
             AddSlot(data);
         }
         RegisterExistingUnits();
+        _dirSelectUI.Spawn += HandleUnitSpawned;
+    }
+
+    void OnDestroy()
+    {
+        _dirSelectUI.Spawn -= HandleUnitSpawned;
+    }
+
+    private void HandleUnitSpawned(int id)
+    {
+        if (_slotMap.TryGetValue(id, out var slot))
+        {
+            slot.gameObject.SetActive(false);
+        }
     }
 
     private void HandleUnitDie(int id)
     {
         if (_slotMap.TryGetValue(id, out var slot))
-            slot.StartCooldown();
+        {
+            slot.gameObject.SetActive(true);    // 다시 보이기
+            slot.StartCooldown();               // 쿨타임 시작
+            return;
+        }
     }
     private void AddSlot(PlayerUnitData data)
     {
