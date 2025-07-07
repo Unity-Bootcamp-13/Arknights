@@ -7,6 +7,8 @@ public class PlayerUnitSpawner : MonoBehaviour
     [SerializeField] PlayerUnitData[] _playerUnitDatas;
     Dictionary<int, PlayerUnit> _units;
 
+    public Dictionary<int, PlayerUnit> PlayerUnits => _units;
+
     private void Awake()
     {
         _units = new Dictionary<int, PlayerUnit>(_playerUnitDatas.Length);

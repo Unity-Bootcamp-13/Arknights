@@ -2,11 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerUnit : Unit
 {
+    [SerializeField] private Canvas _healthUI;
     [SerializeField] private Animator _animator;
     List<Maptile> _attackRange;
     PlayerUnitStatus _status;
@@ -20,13 +19,16 @@ public class PlayerUnit : Unit
     private AttackType _attackType;
     private Projectile _projectilePrefab;
 
+
+
     PlayerUnitBasicAttack _basicAttack;
 
-
+    
     public TileType TileType => _tileType;
 
     void Update()
     {
+
         _basicAttack.AddTarget();
 
         // 공격 딜레이
@@ -56,7 +58,14 @@ public class PlayerUnit : Unit
         _leftAttackTime = 0;
         _attackRange = attackRange;
         _hp.RefillHp();
-        _basicAttack = new PlayerUnitBasicAttack(this, _resistCapacity, _attackRange, _atk, _attackType);
+        _basicAttack = new PlayerUnitBasicAttack(this, _resistCapacity, _attackRange, _atk, _attackType); 
+        
+        if (_healthUI != null)
+        {
+            // 회전을 항상 고정 (예: 정면 고정, XZ 평면 상에서 수평)
+            _healthUI.transform.rotation = Quaternion.Euler(0, 270, 0); // 필요 시 다른 각도로 조정 가능
+        }
+
         transform.position += Vector3.up * Constants.FALLING_POS;
         StartCoroutine(C_FallingCoroutine());
     }
@@ -97,13 +106,29 @@ public class PlayerUnit : Unit
     public void ShootDamageProjectile(Unit target, float value)
     {
         _animator.SetTrigger("Attack_t");
-        float damage = Math.Min(-1, target.Def - value);
+
+        StartCoroutine(C_AttackDelay(target, value));
+    }
+
+
+    public void ShootHealProjectile(Unit target, float value)
+    {
+        _animator.SetTrigger("Attack_t");
+
+        StartCoroutine(C_HealDelay(target, value));
+    }
+
+    IEnumerator C_AttackDelay(Unit target, float value)
+    {
+
+        yield return new WaitForSeconds(1);
+        float damage = Math.Max(1, value - target.Def);
 
         if (_projectilePrefab != null)
         {
             Projectile projectile = Instantiate(_projectilePrefab);
             projectile.Init(target, _projectileSpeed);
-            projectile.transform.position = transform.position;
+            projectile.transform.position = transform.position + Vector3.up;
             projectile.SetProjectileAction(() => target.Hp.GetDamage(damage));
         }
         else
@@ -112,16 +137,14 @@ public class PlayerUnit : Unit
         }
     }
 
-
-    public void ShootHealProjectile(Unit target, float value)
+    IEnumerator C_HealDelay(Unit target, float value)
     {
-        _animator.SetTrigger("Attack_t");
-
+        yield return new WaitForSeconds(1);
         if (_projectilePrefab != null)
         {
             Projectile projectile = Instantiate(_projectilePrefab);
             projectile.Init(target, _projectileSpeed);
-            projectile.transform.position = transform.position;
+            projectile.transform.position = transform.position + Vector3.up;
             projectile.SetProjectileAction(() => target.Hp.GetHeal(value));
         }
         else
@@ -129,7 +152,6 @@ public class PlayerUnit : Unit
             target.Hp.GetHeal(value);
         }
     }
-
 
     IEnumerator C_FallingCoroutine()
     {

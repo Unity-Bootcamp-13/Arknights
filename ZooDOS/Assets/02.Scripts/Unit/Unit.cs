@@ -12,6 +12,16 @@ public class Unit : MonoBehaviour, IDamagable
     public Hp Hp => _hp;
     public float Def => _def;
 
+
+
+
+
+    public void HpEventSubscribe(Action action)
+    {
+        _hp.OnHpChanged += action;
+    }
+
+
     public Action<Unit> Die;
     public virtual void OnDeath() { }
 }
