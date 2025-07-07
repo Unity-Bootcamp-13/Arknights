@@ -24,6 +24,7 @@ public class PreviewSummoner : MonoBehaviour
     private readonly List<BlinkSpriteBehaviour> _highlightBlinks = new();
     private readonly List<BlinkSpriteBehaviour> _rangeBlinks = new();
 
+    private bool _isSameTileType = false;
     private void Awake()
     {
         _tileMask = LayerMask.GetMask("Tile");
@@ -81,7 +82,8 @@ public class PreviewSummoner : MonoBehaviour
             if (tile != null)
             {
                 Position pos = tile.GetPosition();
-                if (IsSameTileType(pos))
+                _isSameTileType = IsSameTileType(pos);
+                if (_isSameTileType)
                 {
                     _preview.transform.position = _map.CoordToVector3(pos);
                     if (!_cursorOnMap)
@@ -106,9 +108,16 @@ public class PreviewSummoner : MonoBehaviour
 
     private void HandleMouseClick()
     {
-        if (Input.GetMouseButtonUp(0) && _cursorOnMap)
+        if (Input.GetMouseButtonUp(0))
         {
-            TryLockPreview();
+            if (_isSameTileType)
+            {
+                TryLockPreview();
+            }
+            else
+            {
+                CancelPreview();
+            }
         }
     }
     private void TryLockPreview()

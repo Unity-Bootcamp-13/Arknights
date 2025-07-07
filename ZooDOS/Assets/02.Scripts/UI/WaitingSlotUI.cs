@@ -22,6 +22,7 @@ public class WaitingSlotUI : MonoBehaviour, IPointerDownHandler
     [SerializeField] private Image _notEnoughCostImage;
     
     private bool _isEnoughCost = true;
+    private bool _isCooldown = false;
     private void Awake()
     {
         _cooltimeUI.gameObject.SetActive(false);
@@ -38,6 +39,7 @@ public class WaitingSlotUI : MonoBehaviour, IPointerDownHandler
 
     public void StartCooldown()
     {
+        _isCooldown = true;
         _cooltimeUI.SetCooldown(_playerUnitData.ReplaceTime);
     }
 
@@ -64,6 +66,11 @@ public class WaitingSlotUI : MonoBehaviour, IPointerDownHandler
         _notEnoughCostImage.gameObject.SetActive(false);
         UpdateCostState(_wallet.Current);                
         _wallet.OnCostChanged += UpdateCostState;
+        _cooltimeUI.CooldownFinished += OnCooldownFinished;
+    }
+    private void OnCooldownFinished()
+    {
+        _isCooldown = false;          
     }
     private void UpdateCostState(Cost cost)
     {
@@ -73,7 +80,7 @@ public class WaitingSlotUI : MonoBehaviour, IPointerDownHandler
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (_isEnoughCost)
+        if (_isEnoughCost && !_isCooldown)
         {
             _waitingUI.OnSlotClicked(_playerUnitData);
         }
@@ -86,6 +93,9 @@ public class WaitingSlotUI : MonoBehaviour, IPointerDownHandler
     void OnDestroy()
     {
         if (_wallet != null)
+        {
             _wallet.OnCostChanged -= UpdateCostState;
+        }
+        _cooltimeUI.CooldownFinished -= OnCooldownFinished;
     }
 }

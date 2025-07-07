@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
+using System;
 
 /// <summary>
 /// 부모 오브젝트가 활성화되면 곧바로 시작하는
@@ -15,7 +16,7 @@ public class CooltimeUI : MonoBehaviour
     
     private float _cooldownSeconds;
     private Coroutine _coroutine;
-
+    public event Action CooldownFinished;
     public void CooldownSetting(PlayerUnitData data)
     {
         _cooldownSeconds = data.ReplaceTime;
@@ -96,6 +97,7 @@ public class CooltimeUI : MonoBehaviour
         _radialImage.fillAmount = 0f;           // 완전히 사라진 뒤 종료
         if (_timeLabel != null)
             _timeLabel.text = "0";
+        CooldownFinished?.Invoke();
         gameObject.SetActive(false);
     }
 
