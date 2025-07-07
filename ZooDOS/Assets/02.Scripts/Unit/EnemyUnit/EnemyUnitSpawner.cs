@@ -1,11 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 public class EnemyUnitSpawner : MonoBehaviour
 {
     [SerializeField] private Map map;
-
+    [SerializeField] private UnitHealthUIManager _unitHealthUIManager;
     [SerializeField] private WaveData waveData;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,7 +44,12 @@ public class EnemyUnitSpawner : MonoBehaviour
         {
             path.Add(map.CoordToVector3(waypoint));
         }
-        enemy.Initialize(path);
+        enemy.Init(path);
+
+        UnitHealthUI ui = _unitHealthUIManager.GetEnemyUnitHealthUI();
+        enemy.SetHealthUI(ui);
+        ui.Init(enemy);
+
         
     }
     
