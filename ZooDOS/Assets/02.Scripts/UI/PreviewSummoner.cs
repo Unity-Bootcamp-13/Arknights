@@ -81,7 +81,7 @@ public class PreviewSummoner : MonoBehaviour
             if (tile != null)
             {
                 Position pos = tile.GetPosition();
-                if (_map.IsInsideMap(pos) && IsSameTileType(pos))
+                if (IsSameTileType(pos))
                 {
                     _preview.transform.position = _map.CoordToVector3(pos);
                     if (!_cursorOnMap)
@@ -114,7 +114,7 @@ public class PreviewSummoner : MonoBehaviour
     private void TryLockPreview()
     {
         Position pos = _map.Vector3ToCoord(_preview.transform.position);
-        if (!_map.IsInsideMap(pos))
+        if (!pos.IsValid || !_map.IsInsideMap(pos))
         {
             CancelPreview();
             return;
