@@ -142,7 +142,7 @@ public class EnemyUnit : Unit
     public void Attack()
     {
         Unit _target = LastDeployUnit(); 
-        float dmg = Math.Min(-1, _target.Def - _atk);
+        float dmg = Math.Max(1,_atk - _target.Def);
         
         if (_enemyUnitData.ProjectilePrefab != null)
         {

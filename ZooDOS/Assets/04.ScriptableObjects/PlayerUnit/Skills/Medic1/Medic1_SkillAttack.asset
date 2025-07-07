@@ -18,3 +18,4 @@ MonoBehaviour:
   Duration: 15
   TargetCapacity: 2
   ProjectilePrefab: {fileID: 0}
+  SkillCost: 30
