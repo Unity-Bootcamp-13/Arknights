@@ -148,7 +148,7 @@ public class UnitRetreat : MonoBehaviour
         _costWallet.RefundHalf(new Cost(10));
 
         // 2) 유닛 제거
-        _selectedUnit.OnDeath();
+        _selectedUnit.Hp.OnDeath();
 
         // 3) UI 정리
         _previewSummoner.HideAttackRange();

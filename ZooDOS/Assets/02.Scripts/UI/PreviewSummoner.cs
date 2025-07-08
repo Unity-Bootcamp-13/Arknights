@@ -73,6 +73,11 @@ public class PreviewSummoner : MonoBehaviour
         return _currentUnit.TileType == _map.GetTile(pos).TileType;
     }
 
+    bool IsPlacableTile(Position pos)
+    {
+        return (_map.GetTile(pos).GetPlayerUnit() == null);
+    }
+    
     private void UpdatePreviewPosition()
     {
         Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -83,10 +88,17 @@ public class PreviewSummoner : MonoBehaviour
             {
                 Position pos = tile.GetPosition();
                 _isSameTileType = IsSameTileType(pos);
+                
                 if (_isSameTileType)
                 {
                     _preview.transform.position = _map.CoordToVector3(pos);
-                    if (!_cursorOnMap)
+                    if (!IsPlacableTile(pos))
+                    {
+                        _preview.SetActive(false);
+                        _cursorOnMap = false;
+
+                    }
+                    else if (!_cursorOnMap)
                     {
                         _preview.SetActive(true);
                         _cursorOnMap = true;
@@ -123,7 +135,7 @@ public class PreviewSummoner : MonoBehaviour
     private void TryLockPreview()
     {
         Position pos = _map.Vector3ToCoord(_preview.transform.position);
-        if (!pos.IsValid || !_map.IsInsideMap(pos))
+        if (!pos.IsValid || !_map.IsInsideMap(pos) || !IsPlacableTile(pos))
         {
             CancelPreview();
             return;
