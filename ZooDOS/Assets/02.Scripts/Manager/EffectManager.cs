@@ -27,26 +27,26 @@ public class EffectManager : MonoBehaviour
 
         for (int i = 0; i < HIT_EFFECT_COUNT; i++)
         {
-            GameObject ui = Instantiate(_hitEffectPrefab);
-            _hitEffects.Add(ui);
-            ui.transform.parent = transform;
-            ui.gameObject.SetActive(false);
+            GameObject effect = Instantiate(_hitEffectPrefab);
+            _hitEffects.Add(effect);
+            effect.transform.parent = transform;
+            effect.gameObject.SetActive(false);
         }
 
         for (int i = 0; i < HEAL_EFFECT_COUNT; i++)
         {
-            GameObject ui = Instantiate(_healEffectPrefab);
-            _healEffects.Add(ui);
-            ui.transform.parent = transform;
-            ui.gameObject.SetActive(false);
+            GameObject effect = Instantiate(_healEffectPrefab);
+            _healEffects.Add(effect);
+            effect.transform.parent = transform;
+            effect.gameObject.SetActive(false);
         }
 
         for (int i = 0; i < PLAYER_SKILL_EFFECT_COUNT; i++)
         {
-            GameObject ui = Instantiate(_playerSkillEffectPrefab);
-            _playerSkillEffects.Add(ui);
-            ui.transform.parent = transform;
-            ui.gameObject.SetActive(false);
+            GameObject effect = Instantiate(_playerSkillEffectPrefab);
+            _playerSkillEffects.Add(effect);
+            effect.transform.parent = transform;
+            effect.gameObject.SetActive(false);
         }
     }
 
