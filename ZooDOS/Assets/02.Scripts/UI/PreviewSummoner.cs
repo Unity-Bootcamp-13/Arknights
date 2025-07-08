@@ -11,6 +11,7 @@ public class PreviewSummoner : MonoBehaviour
     [SerializeField] private DirectionSelectUI _directionUI;
 
     [Header("유닛 정보 UI")]
+
     [SerializeField] private Image unitInfoPanel;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI descText;
@@ -191,7 +192,13 @@ public class PreviewSummoner : MonoBehaviour
 
     private void ClearRangeHighlights()
     {
-        foreach (var b in _rangeBlinks) b?.StopBlink();
+        foreach (var blink in _rangeBlinks)
+        {
+            if (blink != null)
+            {
+                blink.StopBlink();
+            }
+        }
         _rangeBlinks.Clear();
     }
 

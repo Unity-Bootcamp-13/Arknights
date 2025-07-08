@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using System.Collections;
+using Unity.VisualScripting;
 
 public class WaitingUI : MonoBehaviour
 {
@@ -37,11 +40,20 @@ public class WaitingUI : MonoBehaviour
 
     private void HandleUnitSpawned(int id)
     {
+        var data = unitDataList.FirstOrDefault(data => data.Id == id);
+        if (data == null) return;
+
+        // 코스트 재계산 (현재 소환 횟수 기반)
+        int spawnCount = _dirSelectUI.SpawnCounts.TryGetValue(id, out var count) ? count : 0;
+        int cost = Mathf.RoundToInt(data.PlaceCost * Mathf.Pow(1.5f, spawnCount));
+
         if (_slotMap.TryGetValue(id, out var slot))
         {
+            slot.UpdateSpawnCost(cost);
             slot.gameObject.SetActive(false);
         }
     }
+  
 
     private void HandleUnitDie(int id)
     {

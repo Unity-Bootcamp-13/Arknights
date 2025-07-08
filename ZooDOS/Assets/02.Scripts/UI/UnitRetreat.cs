@@ -19,7 +19,8 @@ public class UnitRetreat : MonoBehaviour
     [SerializeField] private TMP_Text _nameLabel;
     [SerializeField] private Image _standingIllustPanel;
     [SerializeField] private Image _ClassIcon;
-    
+    [SerializeField] private UIFocusMask _focusMaskPanel;
+
     private Button _blockerButton;
     private LayerMask _playerUnitMask;   // PlayerUnit 레이어
     private PlayerUnit _selectedUnit;
@@ -31,11 +32,12 @@ public class UnitRetreat : MonoBehaviour
         _playerUnitMask = LayerMask.GetMask("PlayerUnit");
         CreateBlocker();
         _unitDiamondPanel.SetActive(false);
+        _focusMaskPanel.Hide();
         _standingIllustPanel.gameObject.SetActive(false);
-        
+
     }
 
-   
+
 
     void CreateBlocker()
     {
@@ -57,7 +59,7 @@ public class UnitRetreat : MonoBehaviour
 
         // 4) 이미지 → 완전 투명
         Image img = go.GetComponent<Image>();
-        img.color = new Color(0, 0, 0, 0);   
+        img.color = new Color(0, 0, 0, 0);
         img.raycastTarget = true;
 
         // 5) 버튼 클릭 → ClosePanel
@@ -69,11 +71,11 @@ public class UnitRetreat : MonoBehaviour
         go.transform.SetSiblingIndex(panelIndex);
         _unitDiamondPanel.transform.SetSiblingIndex(panelIndex + 1);
 
-        go.SetActive(false);          
+        go.SetActive(false);
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && 
+        if (Input.GetMouseButtonDown(0) &&
             _previewSummoner._previewSummonerIsNull() &&
             !_unitDiamondPanel.activeSelf)
         {
@@ -86,7 +88,7 @@ public class UnitRetreat : MonoBehaviour
         Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
         if (!Physics.Raycast(ray, out var hit, 100f, _playerUnitMask))
         {
-            
+
             return;
         }
 
@@ -115,11 +117,12 @@ public class UnitRetreat : MonoBehaviour
         _previewSummoner.ShowAttackRange(pos, dir);
 
         int top = _canvas.transform.childCount - 1;   // 최상위 인덱스
-       
+
         _blockerButton.gameObject.SetActive(true);
         _blockerButton.transform.SetSiblingIndex(top - 1);
         _unitDiamondPanel.SetActive(true);
         _unitDiamondPanel.transform.SetAsLastSibling();
+        _focusMaskPanel.Show(unit.transform.position);
         _standingIllustPanel.gameObject.SetActive(true);
         PositionPanelAtWorld(unit.transform.position);
 
@@ -129,7 +132,7 @@ public class UnitRetreat : MonoBehaviour
     void PositionPanelAtWorld(Vector3 worldPos)
     {
         // 1) 월드 → 스크린
-        Vector3 screenPos = _mainCamera.WorldToScreenPoint(worldPos);       
+        Vector3 screenPos = _mainCamera.WorldToScreenPoint(worldPos);
 
         // 2) 스크린 → 캔버스 로컬
         RectTransform canvasRect = _canvas.transform as RectTransform;
@@ -144,7 +147,7 @@ public class UnitRetreat : MonoBehaviour
         RectTransform panelRect = _unitDiamondPanel.transform as RectTransform;
         panelRect.anchoredPosition = localPos;
     }
-    
+
     private void OnRetreatClicked()
     {
         if (_selectedUnit == null)
@@ -179,12 +182,13 @@ public class UnitRetreat : MonoBehaviour
     {
         _unitDiamondPanel.SetActive(false);
         _standingIllustPanel.gameObject.SetActive(false);
+        _focusMaskPanel.Hide();
         _blockerButton.gameObject.SetActive(false);
 
-        _previewSummoner.HideAttackRange();     
+        _previewSummoner.HideAttackRange();
 
         if (_selectedUnit != null)
-            _selectedUnit.Die -= HandleUnitDie; 
+            _selectedUnit.Die -= HandleUnitDie;
 
         _selectedUnit = null;
         _skillCooldown.DeleteUnit();
