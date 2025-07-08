@@ -9,8 +9,8 @@ public class Map : MonoBehaviour
 {
     private Maptile[,] _map;
 
-    const float GROUND_HEIGHT = 0.03f;
-    const float HILL_HEIGHT = 0.31f;
+    const float GROUND_HEIGHT = 0.17f;
+    const float HILL_HEIGHT = 0.6f;
     const float RESTRICTED_HEIGHT = 0.61f;
 
     [Header("맵 크기 조절")]
