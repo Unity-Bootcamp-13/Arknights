@@ -15,6 +15,7 @@ public class DirectionSelectUI : MonoBehaviour
     [SerializeField] private Map _map;
     [SerializeField] private CostWallet _costWallet;
     [SerializeField] private PlayerUnitSpawner _playerUnitSpanwer;
+    [SerializeField] private GameSpeedController _gameSpeedController;
 
     public event Action<int> Spawn;
     public bool IsActive { get; private set; }
@@ -149,6 +150,9 @@ public class DirectionSelectUI : MonoBehaviour
         _popupUI.gameObject.SetActive(false);
         _dirIndicator.gameObject.SetActive(false);
         _summoner.CancelPreview();   
+        _gameSpeedController.UpdateTimeScale();
+
+
     }
 
     private Vector3 GetSwipeDirection(Vector2 delta)
