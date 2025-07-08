@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyUnitData", menuName = "Scriptable Objects/EnemyUnitData")]
 public class EnemyUnitData : ScriptableObject
@@ -13,5 +13,4 @@ public class EnemyUnitData : ScriptableObject
     [SerializeField] public int RangeRadius;
     [SerializeField] public GameObject ProjectilePrefab;
     [SerializeField] public float ProjectileSpeed;
-
 }

@@ -65,7 +65,6 @@ public class EnemyUnit : Unit
         _atkSpeed = _enemyUnitData.AtkSpeed;
         _projectileSpeed = _enemyUnitData.ProjectileSpeed;
         
-        
     }
     
     /// <summary>

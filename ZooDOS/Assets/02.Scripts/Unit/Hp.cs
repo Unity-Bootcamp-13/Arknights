@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 
 
 public class Hp
@@ -59,6 +60,8 @@ public class Hp
         float newHp = Math.Clamp(_hp - value, 0, _maxHp);
         HP = newHp;
 
+        _unit.OnGetDamage();
+
         if (_hp <= 0)
         {
             OnDeath();
@@ -71,6 +74,8 @@ public class Hp
 
         float newHp = Math.Clamp(_hp + value, 0, _maxHp);
         HP = newHp;
+
+        _unit.OnGetHeal();
     }
 
     public void OnDeath()

@@ -6,6 +6,7 @@ public class EnemyUnitSpawner : MonoBehaviour
 {
     [SerializeField] private Map map;
     [SerializeField] private UnitHpSpUIManager _unitHpSpUIManager;
+    [SerializeField] private EffectManager _effectManager;
     [SerializeField] private WaveData waveData;
     [SerializeField] private GameManager gameManager;
     
@@ -52,6 +53,8 @@ public class EnemyUnitSpawner : MonoBehaviour
         
         enemy.Die += gameManager.OnEnemyDeath;
         enemy.OnArrived += gameManager.OnEnemyEnterDefensePoint;
+
+        enemy.PlayHitEffect += _effectManager.PlayHitEffect;
         
         UnitHpUI ui = _unitHpSpUIManager.GetEnemyUnitHpUI();
         enemy.SetHpUI(ui);

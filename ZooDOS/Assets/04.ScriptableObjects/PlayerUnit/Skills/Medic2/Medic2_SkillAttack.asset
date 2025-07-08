@@ -17,4 +17,5 @@ MonoBehaviour:
   AttackType: 2
   Duration: 15
   TargetCapacity: 1
-  ProjectilePrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 8649918091146281046, guid: 8dfb2adb9eded7c45a2b12332fd0d380, type: 3}
+  SkillCost: 0

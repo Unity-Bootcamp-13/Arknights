@@ -115,11 +115,10 @@ public class PlayerUnitSKill
         }
     }
 
-   
-
     private void AddPlayerUnitToTargets()
     {
         _targets.RemoveAll(t => t == null || t.Hp.IsDead);
+        
 
         if (_targets.Count < _targets.Capacity)
         {
@@ -129,6 +128,7 @@ public class PlayerUnitSKill
                 _targets.Add(target);
             }
         }
+        _targets.RemoveAll(t=>t.Hp.HpRatio == 1);
     }
 
     public PlayerUnit FindPlayerUnitTarget()
@@ -142,7 +142,9 @@ public class PlayerUnitSKill
                 continue;
             }
 
-            float ratio = maptile.GetPlayerUnit().Hp.HpRatio;
+            PlayerUnit target = maptile.GetPlayerUnit();
+
+            float ratio = target.Hp.HpRatio;
 
             if (ratio < 1f && ratio < lowestHpRatio)
             {

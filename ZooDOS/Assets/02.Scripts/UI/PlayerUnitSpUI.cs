@@ -16,7 +16,7 @@ public class PlayerUnitSpUI : MonoBehaviour
 
         _unit.Sp.SubscribeSpEvent(() => SetSlider());
 
-        _offset = new Vector3(0, 0, -0.5f);
+        _offset = new Vector3(0, 0.2f, -0.5f);
         _mainCamera = Camera.main;
 
         _slider.value = 0;
