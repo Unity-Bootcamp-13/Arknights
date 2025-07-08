@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class UnitRetreat : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class UnitRetreat : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject _unitDiamondPanel;
     [SerializeField] private Button _retreatButton;
+    [SerializeField] private SkillButtonCooldown _skillCooldown;
     [SerializeField] private Canvas _canvas;
     [SerializeField] private TMP_Text _statusLabel;
     [SerializeField] private TMP_Text _nameLabel;
@@ -26,11 +28,15 @@ public class UnitRetreat : MonoBehaviour
     void Awake()
     {
         _retreatButton.onClick.AddListener(OnRetreatClicked);
+        _skillCooldown.Clicked += OnSkillClicked;
         _playerUnitMask = LayerMask.GetMask("PlayerUnit");
         CreateBlocker();
         _unitDiamondPanel.SetActive(false);
         _standingIllustPanel.gameObject.SetActive(false);
+        
     }
+
+   
 
     void CreateBlocker()
     {
@@ -117,6 +123,8 @@ public class UnitRetreat : MonoBehaviour
         _unitDiamondPanel.transform.SetAsLastSibling();
         _standingIllustPanel.gameObject.SetActive(true);
         PositionPanelAtWorld(unit.transform.position);
+
+        _skillCooldown.InitSkillData(unit);
     }
 
     void PositionPanelAtWorld(Vector3 worldPos)
@@ -137,15 +145,15 @@ public class UnitRetreat : MonoBehaviour
         RectTransform panelRect = _unitDiamondPanel.transform as RectTransform;
         panelRect.anchoredPosition = localPos;
     }
-
-    void OnRetreatClicked()
+    
+    private void OnRetreatClicked()
     {
         if (_selectedUnit == null)
         {
             return;
         }
         // 1) 코스트 환급 => 추후 PlayerUnit이 전달해주는 정보로 수정
-        _costWallet.RefundHalf(new Cost(10));
+        _costWallet.RefundHalf(new Cost(_selectedUnit.GetStatus().Cost));
 
         // 2) 유닛 제거
         _selectedUnit.Hp.OnDeath();
@@ -155,6 +163,19 @@ public class UnitRetreat : MonoBehaviour
         _selectedUnit = null;
         ClosePanel();
     }
+
+    private void OnSkillClicked()
+    {
+        if (_selectedUnit == null)
+        {
+            return;
+        }
+        _selectedUnit.ActivateSkill();
+        _previewSummoner.HideAttackRange();
+        _selectedUnit = null;
+        ClosePanel();
+    }
+
     void ClosePanel()
     {
         _unitDiamondPanel.SetActive(false);
@@ -167,6 +188,7 @@ public class UnitRetreat : MonoBehaviour
             _selectedUnit.Die -= HandleUnitDie; 
 
         _selectedUnit = null;
+        _skillCooldown.DeleteUnit();
     }
 
     void HandleUnitDie(Unit unit)
