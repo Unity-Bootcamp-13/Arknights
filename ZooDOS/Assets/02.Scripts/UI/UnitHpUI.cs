@@ -17,7 +17,7 @@ public class UnitHpUI : MonoBehaviour
 
         _unit.Hp.SubscribeHpEvent(() => SetSlider());
 
-        _offset = new Vector3(0, 0, -0.3f);
+        _offset = new Vector3(0, 0.2f, -0.3f);
         _mainCamera = Camera.main;
 
         _slider.value = 1;

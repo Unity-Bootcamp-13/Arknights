@@ -5,7 +5,9 @@ public class PlayerUnitSpawner : MonoBehaviour
 {
     [SerializeField] GameManager _gameManager;
     [SerializeField] UnitHpSpUIManager _unitHpSpUIManager;
+    [SerializeField] EffectManager _effectManager;
     [SerializeField] PlayerUnitData[] _playerUnitDatas;
+
     Dictionary<int, PlayerUnit> _units;
 
     public Dictionary<int, PlayerUnit> PlayerUnits => _units;
@@ -17,6 +19,9 @@ public class PlayerUnitSpawner : MonoBehaviour
         {
             PlayerUnit playerUnit = Instantiate(_playerUnitDatas[i].UnitPrefab);
             playerUnit.Init(_playerUnitDatas[i]);
+            playerUnit.PlayHitEffect += _effectManager.PlayHitEffect;
+            playerUnit.PlayHealEffect += _effectManager.PlayHealEffect;
+            playerUnit.GetSkillEffect += _effectManager.GetPlayerSkillEffect;
             _units.Add(_playerUnitDatas[i].Id, playerUnit);
         }
     }

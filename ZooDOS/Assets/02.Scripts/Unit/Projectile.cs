@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_target == null)
+        if(_target == null || _target.gameObject.activeSelf==false)
         {
             Destroy(gameObject);
             return;

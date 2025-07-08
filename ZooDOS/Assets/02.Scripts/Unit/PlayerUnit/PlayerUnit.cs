@@ -7,24 +7,23 @@ public class PlayerUnit : Unit
 {
     [SerializeField] private Animator _animator;
 
+
+    public Func<Vector3, GameObject> GetSkillEffect;
     private GameObject _skillActivateEffect;
 
     private List<Maptile> _attackRange;
     private PlayerUnitStatus _status;
     
     private int _resistCapacity;
-    private int _placeCost;
-    private float _replaceTime;
-    private PlayerUnitType _playerUnitType;
     private TileType _tileType;
-    private AttackType _attackType;
 
     private Sp _sp;
     private PlayerUnitSpUI _unitSpUI;
 
     private PlayerUnitSKill _basicAttack;
     private PlayerUnitSKill _skillAttack;
-    float _remainDuration;
+
+    float _remainSkillDuration;
     float _skillDuration;
     bool _isSkillActivated;
     bool _isSpCharged;
@@ -35,15 +34,15 @@ public class PlayerUnit : Unit
 
     void Update()
     {
-        if (_remainDuration>=0)
+        if (_remainSkillDuration>=0)
         {
-            _remainDuration -= Time.deltaTime;
+            _remainSkillDuration -= Time.deltaTime;
             Attack(_skillAttack);
 
-            if(_remainDuration < 0)
+            if(_remainSkillDuration < 0)
             {
                 _skillAttack.UnBlockTargets();
-                _skillActivateEffect.SetActive(false);
+                FinishSkillEffect();
                 _isSkillActivated = false;
             }
 
@@ -67,6 +66,20 @@ public class PlayerUnit : Unit
         skill.Attack();
     }
 
+    public void StartSkillEffect()
+    {
+        _skillActivateEffect = GetSkillEffect?.Invoke(transform.position);
+    }  
+    
+    public void FinishSkillEffect()
+    {
+        if(_skillActivateEffect== null)
+        {
+            return;
+        }
+
+        _skillActivateEffect.SetActive(false);
+    }
 
     public void ActivateSkill()
     {
@@ -77,11 +90,11 @@ public class PlayerUnit : Unit
 
         _isSkillActivated = true;
         _isSpCharged = false;
-        _skillActivateEffect.SetActive(true);
+        StartSkillEffect();
         _sp.ResetSp();
         _basicAttack.UnBlockTargets();
         _skillAttack.Init();
-        _remainDuration = _skillDuration;
+        _remainSkillDuration = _skillDuration;
     }
 
     public void SetSpCharged()
@@ -105,14 +118,14 @@ public class PlayerUnit : Unit
         _hp.ResetHp();
         _sp.ResetSp();
 
-        _skillActivateEffect.transform.position = transform.position+Vector3.up;
 
         _basicAttack.SetRange(_attackRange);
         _skillAttack.SetRange(_attackRange);
-        _remainDuration = -1;
+        _remainSkillDuration = -1;
 
         _unitHpUI.SetUIPosition(transform.position);
         _unitSpUI.SetUIPosition(transform.position);
+
         transform.position += Vector3.up * Constants.FALLING_POS;
         StartCoroutine(C_FallingCoroutine());
     }
@@ -128,28 +141,19 @@ public class PlayerUnit : Unit
     {
         gameObject.SetActive(false);
 
-        
-
         _status = new PlayerUnitStatus(playerUnitData.UnitPortrait, playerUnitData.StandingIllust, playerUnitData.Name, playerUnitData.PlaceCost);
-        _playerUnitType = playerUnitData.PlayerUnitType;
         _tileType = playerUnitData.TileType;
-        _attackType = playerUnitData.AttackType;
         _hp = new Hp(this, playerUnitData.Hp);
         _def = playerUnitData.Def;
         _atk = playerUnitData.Atk;
         _atkSpeed = playerUnitData.AtkSpeed;
         _projectileSpeed = playerUnitData.ProjectileSpeed;
         _resistCapacity = playerUnitData.ResistCapacity;
-        _placeCost = playerUnitData.PlaceCost;
-        _replaceTime = playerUnitData.ReplaceTime;
         _skillDuration = playerUnitData.SkillAttackData[0].Duration;
 
         _basicAttack = new PlayerUnitSKill(this, _atk, _atkSpeed, playerUnitData.BasicAttackData);
         _skillAttack = new PlayerUnitSKill(this, _atk, _atkSpeed, playerUnitData.SkillAttackData[0]);
         _sp = new Sp(this, playerUnitData.SkillAttackData[0].SkillCost);
-        _skillActivateEffect = Instantiate(playerUnitData.SkillActivateEffectPrefab);
-        _skillActivateEffect.transform.parent = transform.parent;
-        _skillActivateEffect.SetActive(false);
     }
 
     public PlayerUnitStatus GetStatus()
@@ -166,14 +170,9 @@ public class PlayerUnit : Unit
 
     public void ShootDamageProjectile(Unit target, float value, Projectile projectile)
     {
-        if (_isSkillActivated)
-        {
-            _animator.SetTrigger("SkillAttack_t");
-        }
-        else
-        {
-            _animator.SetTrigger("Attack_t");
-        }
+        
+        _animator.SetTrigger("Attack_t");
+        
 
         float damage = Math.Max(1, value - target.Def);
 
@@ -194,14 +193,7 @@ public class PlayerUnit : Unit
 
     public void ShootHealProjectile(Unit target, float value, Projectile projectile)
     {
-        if (_isSkillActivated)
-        {
-            _animator.SetTrigger("SkillAttack_t");
-        }
-        else
-        {
-            _animator.SetTrigger("Attack_t");
-        }
+        _animator.SetTrigger("Attack_t");
 
 
         if (projectile != null)
@@ -236,6 +228,8 @@ public class PlayerUnit : Unit
     public override void OnDeath()
     {
         base.OnDeath();
+        _unitSpUI.DisableUI();
+
 
         _basicAttack.UnBlockTargets();
         _skillAttack.UnBlockTargets();

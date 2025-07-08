@@ -33,6 +33,7 @@ MonoBehaviour:
   UnitPrefab: {fileID: 5758161919349873981, guid: 2cb8c6081e6cc4b48a1ad7ae4e19e641, type: 3}
   UnitTposePrefab: {fileID: 3392885724487588042, guid: f765c66cc0640194da63e72b077b43ce, type: 3}
   SkillActivateEffectPrefab: {fileID: 1625816069985526, guid: 3c1cb9043ada1994c9d5c83863783eab, type: 3}
+  HitEffectPrefab: {fileID: 4725284599179449539, guid: 29c1f23655f2a9f4883da5f123a6fb22, type: 3}
   BasicAttackData: {fileID: 11400000, guid: d9fb623a77ba7064a94a491154a55465, type: 2}
   SkillAttackData:
   - {fileID: 11400000, guid: c064278fa489d8841ba99dd02a596513, type: 2}
