@@ -25,6 +25,7 @@ public class GameResultPopup : MonoBehaviour
     private void Start()
     {
         fullScreenButton.onClick.AddListener(() => SceneManager.LoadScene("MainLobbyScene"));
+        gameObject.SetActive(false); 
     }
 
     /// <summary>
