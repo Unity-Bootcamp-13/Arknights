@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
             victoryDialogue,
             defeatDialogue
         );
+        Time.timeScale = 0;
     }
     
     private int CalculateStarCount()
