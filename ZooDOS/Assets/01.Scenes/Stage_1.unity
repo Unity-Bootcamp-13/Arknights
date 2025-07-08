@@ -1204,7 +1204,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8bde5704c9b6973448ee3566f8f2941b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3c7e87f51d989446b1ca91cce0055d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5339,11 +5339,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mapCoordX: 12
   _mapCoordY: 6
-  _groundPrefab: {fileID: 8409871894455403138, guid: f155fcdae290bfa4098f5cb25663ae95, type: 3}
-  _hillPrefab: {fileID: 6389956526961145993, guid: 3e57f104619de5643b9bc9e686dc202d, type: 3}
-  _restrictedPrefab: {fileID: 2218204189450762703, guid: b87bbeecca10e3347b1e2fbf0933b1b7, type: 3}
-  _enemyEntryPointPrefab: {fileID: 8409871894455403138, guid: 6350100e9c392424ba2166521d491a25, type: 3}
-  _defensePointPrefab: {fileID: 8409871894455403138, guid: 3c877401414af5441b7e727a56c92e3c, type: 3}
+  _groundPrefab: {fileID: 1617266053126839220, guid: aa56f8905f7669647aa30d3ad4b7086a, type: 3}
+  _hillPrefab: {fileID: 7005000226824014747, guid: 046204bf69cdd8948b2201a1c4c4bce3, type: 3}
+  _restrictedPrefab: {fileID: 2940093945836868949, guid: 61668f5e254f76341a79800769fefb14, type: 3}
+  _enemyEntryPointPrefab: {fileID: 8225930756139219261, guid: abf5c9e47d366bf488905109b351643f, type: 3}
+  _defensePointPrefab: {fileID: 1754942764860659195, guid: 67bce8a2673042444895fc30ab556441, type: 3}
   _stageLayoutInfoSO: {fileID: 11400000, guid: 790e2000557a1b141b9baa7d0cc80d17, type: 2}
 --- !u!4 &1671331095
 Transform:
