@@ -54,6 +54,7 @@ public class DirectionSelectUI : MonoBehaviour
             ResetUnitSpawn();            
             return;
         }
+        ApplyPreviewDirection(Vector2.up);
         HandleInput();
     }
 
@@ -69,19 +70,20 @@ public class DirectionSelectUI : MonoBehaviour
 
     private void HandleInput()
     {
+       
         if (!_isDragging && Input.GetMouseButtonDown(0))
         {
             _startMousePos = Input.mousePosition;
             _isDragging = true;
+
         }
 
         if (_isDragging && Input.GetMouseButton(0))
         {
             Vector2 delta = (Vector2)Input.mousePosition - _startMousePos;
-            if (delta.sqrMagnitude >= 50f)
-            {
-                ApplyPreviewDirection(delta);
-            }
+            
+            ApplyPreviewDirection(delta);
+            
         }
 
         if (_isDragging && Input.GetMouseButtonUp(0))

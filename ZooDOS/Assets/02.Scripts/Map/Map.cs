@@ -9,9 +9,9 @@ public class Map : MonoBehaviour
 {
     private Maptile[,] _map;
 
-    const float GROUND_HEIGHT = 0.03f;
-    const float HILL_HEIGHT = 0.31f;
-    const float RESTRICTED_HEIGHT = 0.61f;
+    const float GROUND_HEIGHT = 0.17f;
+    const float HILL_HEIGHT = 0.6f;
+    const float RESTRICTED_HEIGHT = 0.17f;
 
     [Header("맵 크기 조절")]
     [SerializeField] private int _mapCoordX = 12;       //맵의 가로 길이
@@ -125,6 +125,8 @@ public class Map : MonoBehaviour
             TileType.Ground => GROUND_HEIGHT * Constants.MAPTILE_LENGTH,
             TileType.Hill => HILL_HEIGHT * Constants.MAPTILE_LENGTH,
             TileType.Restricted => RESTRICTED_HEIGHT * Constants.MAPTILE_LENGTH,
+            TileType.DefensePoint => GROUND_HEIGHT * Constants.MAPTILE_LENGTH,
+            TileType.EnemyEntryPoint => GROUND_HEIGHT * Constants.MAPTILE_LENGTH,
             _ => 0f
         };
 
