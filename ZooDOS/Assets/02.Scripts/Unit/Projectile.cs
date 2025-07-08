@@ -7,6 +7,12 @@ public class Projectile : MonoBehaviour
     Unit _target;
     float _speed;
     Action _projectileAction;
+    Vector3 _offset;
+
+    private void Awake()
+    {
+        _offset = Vector3.up;
+    }
 
     // Update is called once per frame
     void Update()
@@ -30,7 +36,7 @@ public class Projectile : MonoBehaviour
 
     public void Targeting()
     {
-        transform.position += (_target.transform.position - transform.position).normalized * _speed * Time.deltaTime;
+        transform.position += (_target.transform.position - transform.position + _offset).normalized * _speed * Time.deltaTime;
         transform.LookAt(_target.gameObject.transform);
     }
 

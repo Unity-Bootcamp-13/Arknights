@@ -88,6 +88,12 @@ public class PlayerUnit : Unit
             return;
         }
 
+        // 즉발 스킬일 경우, 자신의 범위 안에 타겟이 있어야만 발동 가능
+        if(_skillDuration ==0 && _skillAttack.IsAnyTargetInRange()== false)
+        {
+            return;
+        }
+
         _isSkillActivated = true;
         _isSpCharged = false;
         StartSkillEffect();
@@ -230,6 +236,10 @@ public class PlayerUnit : Unit
         base.OnDeath();
         _unitSpUI.DisableUI();
 
+        if (_isSkillActivated)
+        {
+            FinishSkillEffect();
+        }
 
         _basicAttack.UnBlockTargets();
         _skillAttack.UnBlockTargets();

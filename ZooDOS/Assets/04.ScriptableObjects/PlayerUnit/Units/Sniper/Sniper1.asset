@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66d85d90edc4a9419dce7065791624d, type: 3}
+  m_Name: Sniper1
+  m_EditorClassIdentifier: 
+  Name: "\uB808\uACE8\uB77C\uC2A4 \uD638\uC18C\uC778"
+  Id: 1301
+  Hp: 600
+  Def: 30
+  Atk: 170
+  AtkSpeed: 1
+  ProjectileSpeed: 10
+  ResistCapacity: 1
+  PlaceCost: 11
+  ReplaceTime: 55
+  BackwardRange: 0
+  ForwardRange: 3
+  SidewardRange: 1
+  PlayerUnitType: 2
+  TileType: 3
+  AttackType: 1
+  StandingIllust: {fileID: 21300000, guid: 9e4cb6aec901b504dac492f191786dab, type: 3}
+  UnitPortrait: {fileID: 21300000, guid: 3a0abf1762b5c9545a0a7f494c1d4b31, type: 3}
+  UnitPrefab: {fileID: 5758161919349873981, guid: 2cb8c6081e6cc4b48a1ad7ae4e19e641, type: 3}
+  UnitTposePrefab: {fileID: 3392885724487588042, guid: f765c66cc0640194da63e72b077b43ce, type: 3}
+  SkillActivateEffectPrefab: {fileID: 1625816069985526, guid: 3c1cb9043ada1994c9d5c83863783eab, type: 3}
+  BasicAttackData: {fileID: 11400000, guid: d9fb623a77ba7064a94a491154a55465, type: 2}
+  SkillAttackData:
+  - {fileID: 11400000, guid: c064278fa489d8841ba99dd02a596513, type: 2}

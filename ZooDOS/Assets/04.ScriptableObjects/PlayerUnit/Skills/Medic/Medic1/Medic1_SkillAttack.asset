@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4742a03e9a878643af1076f41afdc72, type: 3}
+  m_Name: Medic1_SkillAttack
+  m_EditorClassIdentifier: 
+  AtkCoefficient: 1
+  AtkSpeedCoefficient: 1
+  AttackType: 2
+  Duration: 15
+  TargetCapacity: 2
+  ProjectilePrefab: {fileID: -3409252852105410645, guid: 8e7c75b07897c724189463c0ff34ef61, type: 3}
+  SkillCost: 40
+  SkillDescription: "15\uCD08 \uB3D9\uC548 2\uBA85\uC758\n\uC544\uAD70\uC744 \uB3D9\uC2DC\uC5D0
+    \uD68C\uBCF5\uD569\uB2C8\uB2E4."

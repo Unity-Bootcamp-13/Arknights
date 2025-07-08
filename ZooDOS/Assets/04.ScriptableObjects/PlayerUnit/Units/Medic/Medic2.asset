@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66d85d90edc4a9419dce7065791624d, type: 3}
+  m_Name: Medic2
+  m_EditorClassIdentifier: 
+  Name: "\uBC29\uC5ED\uAD00\uB9AC\uC790"
+  Id: 1202
+  Hp: 600
+  Def: 40
+  Atk: 160
+  AtkSpeed: 2.2
+  ProjectileSpeed: 10
+  ResistCapacity: 1
+  PlaceCost: 20
+  ReplaceTime: 70
+  BackwardRange: 1
+  ForwardRange: 2
+  SidewardRange: 1
+  PlayerUnitType: 3
+  TileType: 3
+  AttackType: 2
+  StandingIllust: {fileID: 21300000, guid: e0f03ce1812e54440a7b22b828c983cf, type: 3}
+  UnitPortrait: {fileID: 21300000, guid: 268af441378e61b439424e95703139ae, type: 3}
+  UnitPrefab: {fileID: -4416593063023325296, guid: 2cdcafe75731c9d40a3aa7bb9d23b084, type: 3}
+  UnitTposePrefab: {fileID: 3655797239726242352, guid: d2c7638ce0c2b9e4a9d601688c0c0035, type: 3}
+  SkillActivateEffectPrefab: {fileID: 1625816069985526, guid: 3c1cb9043ada1994c9d5c83863783eab, type: 3}
+  BasicAttackData: {fileID: 11400000, guid: 9c56e3c6f62227a4294949d1523aba66, type: 2}
+  SkillAttackData:
+  - {fileID: 11400000, guid: 1edbe323841c64341a9e11dcba5d87f0, type: 2}
