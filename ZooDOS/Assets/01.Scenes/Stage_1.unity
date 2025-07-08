@@ -5343,7 +5343,7 @@ MonoBehaviour:
   _hillPrefab: {fileID: 7005000226824014747, guid: 046204bf69cdd8948b2201a1c4c4bce3, type: 3}
   _restrictedPrefab: {fileID: 2940093945836868949, guid: 61668f5e254f76341a79800769fefb14, type: 3}
   _enemyEntryPointPrefab: {fileID: 8225930756139219261, guid: abf5c9e47d366bf488905109b351643f, type: 3}
-  _defensePointPrefab: {fileID: 1754942764860659195, guid: 67bce8a2673042444895fc30ab556441, type: 3}
+  _defensePointPrefab: {fileID: 1617266053126839220, guid: 1bf275499f46d954c9d9abd11f235c1f, type: 3}
   _stageLayoutInfoSO: {fileID: 11400000, guid: 790e2000557a1b141b9baa7d0cc80d17, type: 2}
 --- !u!4 &1671331095
 Transform:
