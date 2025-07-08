@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4742a03e9a878643af1076f41afdc72, type: 3}
+  m_Name: Defender1_SkillAttack
+  m_EditorClassIdentifier: 
+  AtkCoefficient: 2
+  AtkSpeedCoefficient: 0
+  AttackType: 2
+  Duration: 0
+  TargetCapacity: 2
+  ProjectilePrefab: {fileID: 0}
+  SkillCost: 20
+  SkillDescription: "\uC790\uC2E0\uC758 \uCCB4\uB825\uC744 \n\uACF5\uACA9\uB825\uC758
+    200%\uB9CC\uD07C \uD68C\uBCF5\uD569\uB2C8\uB2E4."

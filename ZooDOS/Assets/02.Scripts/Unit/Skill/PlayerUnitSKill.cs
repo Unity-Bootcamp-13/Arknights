@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class PlayerUnitSKill
 {
+
     List<Unit> _targets;
     PlayerUnit _playerUnit;
     List<Maptile> _attackRange;
@@ -197,6 +198,19 @@ public class PlayerUnitSKill
         {
             EnemyUnit enemy = target as EnemyUnit;
             enemy.Unblock();
+        }
+    }
+
+    public bool IsAnyTargetInRange()
+    {
+        AddTarget();
+        if (_targets.Count > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
