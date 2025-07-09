@@ -9,21 +9,22 @@ public class UnitRetreat : MonoBehaviour
     [SerializeField] private Map _map;
     [SerializeField] private CostWallet _costWallet;
     [SerializeField] private PreviewSummoner _previewSummoner;
-
+    [SerializeField] private WaitingUI _waitingUI;
     [Header("UI")]
     [SerializeField] private GameObject _unitDiamondPanel;
     [SerializeField] private Button _retreatButton;
     [SerializeField] private SkillButtonCooldown _skillCooldown;
     [SerializeField] private Canvas _canvas;
-    [SerializeField] private TMP_Text _statusLabel;
-    [SerializeField] private TMP_Text _nameLabel;
-    [SerializeField] private Image _standingIllustPanel;
-    [SerializeField] private Image _ClassIcon;
+    
+    [SerializeField] private UnitInfoUI _unitInfoUI;
+
     [SerializeField] private UIFocusMask _focusMaskPanel;
+    [SerializeField] private GameSpeedController _gameSpeedController;
 
     private Button _blockerButton;
     private LayerMask _playerUnitMask;   // PlayerUnit 레이어
     private PlayerUnit _selectedUnit;
+
 
     void Awake()
     {
@@ -33,11 +34,9 @@ public class UnitRetreat : MonoBehaviour
         CreateBlocker();
         _unitDiamondPanel.SetActive(false);
         _focusMaskPanel.Hide();
-        _standingIllustPanel.gameObject.SetActive(false);
+        _unitInfoUI.Hide();
 
     }
-
-
 
     void CreateBlocker()
     {
@@ -75,6 +74,14 @@ public class UnitRetreat : MonoBehaviour
     }
     void Update()
     {
+        if (_gameSpeedController.IsPause)
+        {
+            if (_selectedUnit != null)
+            {
+                ClosePanel();
+            }
+            return;
+        }
         if (Input.GetMouseButtonDown(0) &&
             _previewSummoner._previewSummonerIsNull() &&
             !_unitDiamondPanel.activeSelf)
@@ -103,14 +110,16 @@ public class UnitRetreat : MonoBehaviour
 
     void OpenUnitPanel(PlayerUnit unit)
     {
+        Time.timeScale = 0.2f;
+
         _selectedUnit = unit;
         _selectedUnit.Die += HandleUnitDie;
         // 기본 정보 표시 
         PlayerUnitStatus stat = _selectedUnit.GetStatus();
-        _statusLabel.text = BuildStatusString(stat);
-        _nameLabel.text = stat.Name;
-        _standingIllustPanel.sprite = stat.StandingIllust;
-        _ClassIcon.sprite = stat.ClassIcon;
+        SkillData skillData = _waitingUI.FindPlayerUnitData(stat.Id).SkillAttackData[0];
+        _unitInfoUI.Show(BuildStatusString(stat), stat.Name, stat.StandingIllust, stat.ClassIcon,
+                         skillData.SkillIcon, skillData.SkillCost.ToString(), skillData.SkillDescription);
+
         //AttackRange
         Position pos = _map.Vector3ToCoord(unit.transform.position);
         Vector3 dir = unit.transform.forward.normalized;
@@ -123,10 +132,8 @@ public class UnitRetreat : MonoBehaviour
         _unitDiamondPanel.SetActive(true);
         _unitDiamondPanel.transform.SetAsLastSibling();
         _focusMaskPanel.Show(unit.transform.position);
-        _standingIllustPanel.gameObject.SetActive(true);
         PositionPanelAtWorld(unit.transform.position);
-
-        _skillCooldown.InitSkillData(unit);
+        _skillCooldown.InitSkillData(unit, _waitingUI.FindPlayerUnitData(stat.Id).SkillAttackData[0].SkillIcon);
     }
 
     void PositionPanelAtWorld(Vector3 worldPos)
@@ -180,8 +187,9 @@ public class UnitRetreat : MonoBehaviour
 
     void ClosePanel()
     {
+        _gameSpeedController.UpdateTimeScale();
         _unitDiamondPanel.SetActive(false);
-        _standingIllustPanel.gameObject.SetActive(false);
+        _unitInfoUI.Hide();
         _focusMaskPanel.Hide();
         _blockerButton.gameObject.SetActive(false);
 
@@ -201,9 +209,8 @@ public class UnitRetreat : MonoBehaviour
 
 
     private string BuildStatusString(PlayerUnitStatus stat)
-    {
-        //추후 한글로 변경
-        return $"Cost : {stat.Cost}\nATK  : {stat.Atk}\nDEF  : {stat.Def}\nMax Target : {stat.MaxTarget}";
-    }
+        => $"코스트 : {stat.Cost}\n공격력 : {stat.Atk}\n방어력 : {stat.Def}\n저지 : {stat.MaxTarget}";
+
+
 }
 

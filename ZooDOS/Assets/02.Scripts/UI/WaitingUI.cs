@@ -93,6 +93,17 @@ public class WaitingUI : MonoBehaviour
            
     }
 
+    public PlayerUnitData FindPlayerUnitData(int id)
+    {
+        foreach(var item in unitDataList)
+        {
+            if (item.Id == id)
+            {
+                return item;
+            }
+        }
+        return null;
+    }
     public void OnInfoOnlyClicked(PlayerUnitData data)
     {
         _previewSummoner.ShowInfoOnly(data);   // 프리뷰 없이 정보만
