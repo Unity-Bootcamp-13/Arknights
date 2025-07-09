@@ -1,22 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
+using TMPro;
 
 public class GameResultPopup : MonoBehaviour
 {
     [Header("UI Components")]
-    [SerializeField] private Text resultText;
+    [SerializeField] private TextMeshProUGUI resultText;
     [SerializeField] private Image[] starImages; // Star1~Star3
     [SerializeField] private Button fullScreenButton;
 
     [Header("Stage Info UI")]
-    [SerializeField] private Text stageNameText;
-    [SerializeField] private Text stageCodeText;
+    [SerializeField] private TextMeshProUGUI stageNameText;
+    [SerializeField] private TextMeshProUGUI stageCodeText;
 
     [Header("Character UI")]
     [SerializeField] private Image characterPortraitImage;
-    [SerializeField] private Text characterDialogueText;
+    [SerializeField] private TextMeshProUGUI characterDialogueText;
 
     [Header("Star Colors")]
     [SerializeField] private Color activeStarColor = Color.white;
