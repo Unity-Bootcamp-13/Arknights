@@ -65,7 +65,7 @@ public class Map : MonoBehaviour
                         PlaceMaptile(_groundPrefab, pos);
                         break;
                     case TileType.RestrictedGround:
-                        PlaceMaptile(_groundPrefab, pos);
+                        PlaceMaptile(_restrictedGroundPrefab, pos);
                         break;
                 }
             }
