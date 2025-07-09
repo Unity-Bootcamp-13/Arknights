@@ -152,7 +152,7 @@ public class PlayerUnit : Unit
     {
         gameObject.SetActive(false);
 
-        _status = new PlayerUnitStatus(playerUnitData.UnitPortrait, playerUnitData.StandingIllust, playerUnitData.Name, playerUnitData.PlaceCost);
+        _status = new PlayerUnitStatus(playerUnitData.UnitPortrait, playerUnitData.StandingIllust, playerUnitData.Name, playerUnitData.Id,  playerUnitData.PlaceCost);
         _tileType = playerUnitData.TileType;
         _hp = new Hp(this, playerUnitData.Hp);
         _def = playerUnitData.Def;

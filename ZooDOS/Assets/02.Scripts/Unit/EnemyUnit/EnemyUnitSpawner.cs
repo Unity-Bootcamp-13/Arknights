@@ -1,29 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Overlays;
 using UnityEngine;
 public class EnemyUnitSpawner : MonoBehaviour
 {
     [SerializeField] private Map map;
     [SerializeField] private UnitHpSpUIManager _unitHpSpUIManager;
     [SerializeField] private EffectManager _effectManager;
-    [SerializeField] private WaveData waveData;
+    [SerializeField] private StageData _stageData;
     [SerializeField] private GameManager gameManager;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       
-        StartCoroutine(CallWave());
-        gameManager.SetEnemyCountOfThisStage(waveData.WaveCount);
+        StartCoroutine(CallStage(_stageData));
+        gameManager.SetEnemyCountOfThisStage(_stageData.StageCount);
     }
+
+
+    IEnumerator CallStage(StageData stageData)
+    {
+        foreach (var waveData in stageData.Stage)
+        {
+            //정해놓은 스폰시간마다 적스폰, spawnTime 간격 대기 
+            yield return new WaitForSeconds(waveData.StartTime);
+            CallWave(waveData);
+        }
+
+    }
+
 
     /// <summary>
     /// 웨이브호출
     /// </summary>
-    IEnumerator  CallWave()
+    IEnumerator CallWave (WaveData waveData)
     {
-
-        foreach (var enemy in waveData.WaveList)
+        foreach (var enemy in waveData.Wave)
         {
             //정해놓은 스폰시간마다 적스폰, spawnTime 간격 대기 
             yield return new WaitForSeconds(enemy.spawnTime); 
