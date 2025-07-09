@@ -567,7 +567,7 @@ GameObject:
   - component: {fileID: 2074985281978554392}
   - component: {fileID: -4570997409184578962}
   m_Layer: 0
-  m_Name: CowBrown
+  m_Name: Normal_Short_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

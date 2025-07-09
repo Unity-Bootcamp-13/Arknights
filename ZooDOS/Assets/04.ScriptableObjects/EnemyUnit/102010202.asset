@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e90132116cecb6438787f6b983e05dd, type: 3}
-  m_Name: LongRangeEnemy
+  m_Name: 102010202
   m_EditorClassIdentifier: 
   Hp: 1550
   Def: 50

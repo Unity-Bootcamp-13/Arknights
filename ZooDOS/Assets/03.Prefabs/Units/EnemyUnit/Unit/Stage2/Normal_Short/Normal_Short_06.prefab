@@ -4499,7 +4499,7 @@ GameObject:
   - component: {fileID: -1902256148603235444}
   - component: {fileID: 8910283175384632034}
   m_Layer: 0
-  m_Name: DogSaintBernard
+  m_Name: Normal_Short_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

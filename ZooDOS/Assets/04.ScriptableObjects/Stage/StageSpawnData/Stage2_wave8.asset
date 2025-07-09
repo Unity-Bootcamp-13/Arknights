@@ -10,20 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f47469214ffb6c742bb8cefc540c3023, type: 3}
-  m_Name: Stage1
+  m_Name: Stage2_wave8
   m_EditorClassIdentifier: 
   waveList:
   - enemyPrefab: {fileID: 4352046269588137532, guid: ee76472b5ec68404782b9a2f26512ae1, type: 3}
     spawnTime: 3
     path:
-    - x: 0
-      y: 2
-    - x: 5
-      y: 2
-    - x: 5
-      y: 3
-    - x: 8
-      y: 3
-    - x: 8
-      y: 0
+    - x: 1
+      y: 5
+    - x: 2
+      y: 5
+    - x: 3
+      y: 5
+    - x: 2
+      y: 5
+    - x: 3
+      y: 5
+    - x: 2
+      y: 5
+    - x: 3
+      y: 5
+    - x: 2
+      y: 5
+    - x: 3
+      y: 5
+    - x: 3
+      y: 5
+    - x: 3
+      y: 5
+    - x: 9
+      y: 5
+    - x: 9
+      y: 4
+    - x: 10
+      y: 4
   waveCount: 3
