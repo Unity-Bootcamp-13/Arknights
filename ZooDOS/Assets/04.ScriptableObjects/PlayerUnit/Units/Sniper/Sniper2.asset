@@ -16,21 +16,21 @@ MonoBehaviour:
   Id: 1302
   Hp: 900
   Def: 60
-  Atk: 420
+  Atk: 380
   AtkSpeed: 2.5
   ProjectileSpeed: 5
   ResistCapacity: 1
-  PlaceCost: 24
+  PlaceCost: 23
   ReplaceTime: 70
   BackwardRange: 0
-  ForwardRange: 3
+  ForwardRange: 4
   SidewardRange: 1
   PlayerUnitType: 2
   TileType: 3
   AttackType: 1
   StandingIllust: {fileID: 21300000, guid: 6121a610c53e83942b9a962875851d25, type: 3}
   UnitPortrait: {fileID: 21300000, guid: eb580cb9145e49e45a6a3797fa4e1d16, type: 3}
-  UnitPrefab: {fileID: 459893668636384836, guid: f805fc12bedb5014ba0d3db9c3a97728, type: 3}
+  UnitPrefab: {fileID: 3195880364614878763, guid: efe3048d003e99c43aead467eddbada0, type: 3}
   UnitTposePrefab: {fileID: 2433133833541575859, guid: f3c147c77df89e446a383475ecca0ab1, type: 3}
   SkillActivateEffectPrefab: {fileID: 1625816069985526, guid: 3c1cb9043ada1994c9d5c83863783eab, type: 3}
   BasicAttackData: {fileID: 11400000, guid: 5f64cb5fbba26364888894eccabf1b42, type: 2}

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66d85d90edc4a9419dce7065791624d, type: 3}
+  m_Name: Defender4
+  m_EditorClassIdentifier: 
+  Name: "\uC870\uAE30 \uCD95\uAD6C \uC5D0\uC774\uC2A4"
+  Id: 1104
+  Hp: 50000
+  Def: 140
+  Atk: 200
+  AtkSpeed: 1.1
+  ProjectileSpeed: 1
+  ResistCapacity: 2
+  PlaceCost: 0
+  ReplaceTime: 65
+  BackwardRange: 0
+  ForwardRange: 2
+  SidewardRange: 0
+  PlayerUnitType: 1
+  TileType: 2
+  AttackType: 1
+  StandingIllust: {fileID: 21300000, guid: 79e0fe2b85be6f048a01e29899a7d163, type: 3}
+  UnitPortrait: {fileID: 21300000, guid: 270902c1539c8a540adf4f625714ffa3, type: 3}
+  UnitPrefab: {fileID: 7646748102953633372, guid: 2f445a05bdd911b49b1340e9f071300a, type: 3}
+  UnitTposePrefab: {fileID: 139913545757980068, guid: 88a1c05a5ad9772458bdcbd5582456f4, type: 3}
+  SkillActivateEffectPrefab: {fileID: 1625816069985526, guid: 3c1cb9043ada1994c9d5c83863783eab, type: 3}
+  BasicAttackData: {fileID: 11400000, guid: f1ee020fda17a2743a3d49b99ed21f5c, type: 2}
+  SkillAttackData:
+  - {fileID: 11400000, guid: 6d99df046d4ac6e4bb4c6036d3f5746a, type: 2}
