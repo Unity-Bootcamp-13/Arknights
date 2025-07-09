@@ -10,4 +10,9 @@ public class WaveData : ScriptableObject
     
     public List<EnemySpawnData> WaveList => waveList;
     public int WaveCount => waveCount;
+    public void Init(List<EnemySpawnData> waveList)
+    {
+        this.waveList = waveList;
+        this.waveCount = waveList.Count;
+    }
 }
