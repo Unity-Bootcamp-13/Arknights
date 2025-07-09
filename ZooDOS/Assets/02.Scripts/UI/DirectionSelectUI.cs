@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DirectionSelectUI : MonoBehaviour
@@ -15,6 +16,12 @@ public class DirectionSelectUI : MonoBehaviour
     [SerializeField] private Map _map;
     [SerializeField] private CostWallet _costWallet;
     [SerializeField] private PlayerUnitSpawner _playerUnitSpanwer;
+
+    [Header("마스크")]
+    [SerializeField] private UIFocusMask _focusMaskPanel;
+
+    private Dictionary<int, int> _spawnCounts = new();
+    public Dictionary<int, int> SpawnCounts => _spawnCounts; 
 
     public event Action<int> Spawn;
     public bool IsActive { get; private set; }
@@ -38,7 +45,7 @@ public class DirectionSelectUI : MonoBehaviour
         _isDragging = false;
 
         ShowPopupAtWorldPos(preview.transform.position);
-
+       
         _indicatorBasePos = _dirIndicator.anchoredPosition = Vector2.zero;
         _dirIndicator.gameObject.SetActive(true);
     }
@@ -65,7 +72,8 @@ public class DirectionSelectUI : MonoBehaviour
         _summoner.CancelPreview();
         _preview = null;
         _playerUnitData = null;
-        _summoner = null;
+        _summoner = null; 
+        _focusMaskPanel.Hide();
     }
 
     private void HandleInput()
@@ -89,14 +97,8 @@ public class DirectionSelectUI : MonoBehaviour
         if (_isDragging && Input.GetMouseButtonUp(0))
         {
             Vector2 delta = (Vector2)Input.mousePosition - _startMousePos;
-            if (delta.sqrMagnitude >= 50f)
-            {
-                FinalizePlacement(delta);
-            }
-            else
-            {
-                _isDragging = false;
-            }
+            
+            FinalizePlacement(delta);
         }
     }
 
@@ -129,16 +131,32 @@ public class DirectionSelectUI : MonoBehaviour
         _dirIndicator.anchoredPosition = _indicatorBasePos +
                                          (Vector2)(localDir * INDICATOR_OFFSET);
     }
-
+    // 배치할 때 지금까지 배치된 횟수 저장
+    public int GetCurrentPlaceCost(PlayerUnitData data)
+    {
+        int spawnCount = _spawnCounts.TryGetValue(data.Id, out var count) ? count : 0;
+        int baseCost = data.PlaceCost;
+        return Mathf.RoundToInt(baseCost * Mathf.Pow(1.5f, spawnCount));
+    }
+    //소환될 때 SpawnCount를 늘려주는 메서드
+    public void OnPlayerUnitSpawnedCount(PlayerUnitData data)
+    {
+        if (_spawnCounts.ContainsKey(data.Id))
+            _spawnCounts[data.Id]++;
+        else
+            _spawnCounts[data.Id] = 1;
+    }
     private void FinalizePlacement(Vector2 delta)
     {
         Vector3 dirVector = GetSwipeDirection(delta);
         Position pos = _map.Vector3ToCoord(_preview.transform.position);
 
-        if (_map.IsInsideMap(pos) && _costWallet.TrySpendCost(new Cost(_playerUnitData.PlaceCost)))
+        if (_map.IsInsideMap(pos) && _costWallet.TrySpendCost(new Cost(GetCurrentPlaceCost(_playerUnitData))))
         {
             _playerUnitSpanwer.PlayerUnitSpawn(pos, dirVector, _playerUnitData);
+            OnPlayerUnitSpawnedCount(_playerUnitData); 
             Spawn.Invoke(_playerUnitData.Id);
+            
         }
         CloseDirectionPopup();
     }
@@ -149,6 +167,7 @@ public class DirectionSelectUI : MonoBehaviour
         _popupUI.gameObject.SetActive(false);
         _dirIndicator.gameObject.SetActive(false);
         _summoner.CancelPreview();   
+         _focusMaskPanel.Hide();
     }
 
     private Vector3 GetSwipeDirection(Vector2 delta)
@@ -174,6 +193,7 @@ public class DirectionSelectUI : MonoBehaviour
 
     private void ShowPopupAtWorldPos(Vector3 world)
     {
+        _focusMaskPanel.Show(world);
         Vector3 screen = _mainCamera.WorldToScreenPoint(world);
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             _canvas.transform as RectTransform,
