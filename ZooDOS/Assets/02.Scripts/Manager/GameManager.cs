@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         string stageName = "정밀조준";
         string stageCode = "TR-2";
 
-        string victoryDialogue = "박사님의 지시 덕분이네요.";
+        string victoryDialogue = "대장님의 지시 덕분이네요.";
         string defeatDialogue = "다음엔 꼭 성공하겠습니다.";
 
         _gameResultPopup.gameObject.SetActive(true); // 팝업 활성화

@@ -24,7 +24,7 @@ public class EnemyUnitSpawner : MonoBehaviour
         {
             //정해놓은 스폰시간마다 적스폰, spawnTime 간격 대기 
             yield return new WaitForSeconds(waveData.StartTime);
-            CallWave(waveData);
+            StartCoroutine(CallWave(waveData));
         }
 
     }
