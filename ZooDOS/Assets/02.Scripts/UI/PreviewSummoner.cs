@@ -9,6 +9,7 @@ public class PreviewSummoner : MonoBehaviour
     [SerializeField] private Map _map;
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private DirectionSelectUI _directionUI;
+    [SerializeField] private GameSpeedController _gameSpeedController;
 
     [Header("유닛 정보 UI")]
 
@@ -54,6 +55,7 @@ public class PreviewSummoner : MonoBehaviour
             Destroy(_preview);
         }
 
+        _gameSpeedController.UpdateTimeScale();
         _preview = null;
         HideInfo();
     }
@@ -64,6 +66,8 @@ public class PreviewSummoner : MonoBehaviour
         {
             return;
         }
+
+        Time.timeScale = 0.2f;
         UpdatePreviewPosition();
         HandleMouseClick();
     }

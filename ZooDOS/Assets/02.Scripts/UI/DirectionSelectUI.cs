@@ -16,6 +16,7 @@ public class DirectionSelectUI : MonoBehaviour
     [SerializeField] private Map _map;
     [SerializeField] private CostWallet _costWallet;
     [SerializeField] private PlayerUnitSpawner _playerUnitSpanwer;
+    [SerializeField] private GameSpeedController _gameSpeedController;
 
     [Header("마스크")]
     [SerializeField] private UIFocusMask _focusMaskPanel;
@@ -167,6 +168,9 @@ public class DirectionSelectUI : MonoBehaviour
         _popupUI.gameObject.SetActive(false);
         _dirIndicator.gameObject.SetActive(false);
         _summoner.CancelPreview();   
+        _gameSpeedController.UpdateTimeScale();
+
+
          _focusMaskPanel.Hide();
     }
 
