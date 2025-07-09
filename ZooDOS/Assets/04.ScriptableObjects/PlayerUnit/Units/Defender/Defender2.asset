@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\uC220\uC9D1 \uC8FC\uC778"
   Id: 1102
-  Hp: 1760
-  Def: 200
+  Hp: 2460
+  Def: 230
   Atk: 120
   AtkSpeed: 1.5
   ProjectileSpeed: 0
   ResistCapacity: 3
-  PlaceCost: 14
+  PlaceCost: 25
   ReplaceTime: 70
   BackwardRange: 0
   ForwardRange: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
   AttackType: 1
   StandingIllust: {fileID: 21300000, guid: 2c534053644d552408be3be008da04a4, type: 3}
   UnitPortrait: {fileID: 21300000, guid: 0d2f6b95b3a77c3418a75cf017dd9207, type: 3}
-  UnitPrefab: {fileID: 7946307043125928507, guid: 40cc26a77c9e4a3428dda02869e36709, type: 3}
+  UnitPrefab: {fileID: 7955374657534152354, guid: 3a99ecfaf83f803429f162e99b7b7537, type: 3}
   UnitTposePrefab: {fileID: 4005331351472897680, guid: c5abb729f5d72bc488f155c388e119fd, type: 3}
   SkillActivateEffectPrefab: {fileID: 1625816069985526, guid: 3c1cb9043ada1994c9d5c83863783eab, type: 3}
   BasicAttackData: {fileID: 11400000, guid: 950ce51c62b0f604199d8a285c632751, type: 2}

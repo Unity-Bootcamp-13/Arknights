@@ -19,5 +19,5 @@ MonoBehaviour:
   TargetCapacity: 4
   ProjectilePrefab: {fileID: 0}
   SkillCost: 40
-  SkillDescription: "20\uCD08 \uB3D9\uC548 \uC800\uC9C0\uAC00\uB2A5\uC218\uAC00 \n1
-    \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  SkillDescription: "20\uCD08 \uB3D9\uC548 \n\uC800\uC9C0\uAC00\uB2A5\uC218\uAC00
+    1 \uC99D\uAC00\uD569\uB2C8\uB2E4."

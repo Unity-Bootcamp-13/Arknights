@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 
 public class PlayerUnitSKill
 {
-
     List<Unit> _targets;
     PlayerUnit _playerUnit;
     List<Maptile> _attackRange;
+    Maptile _currentTile;
 
     float _atk;
     float _atkSpeed;
     AttackType _attackType;
+    int _targetCapacity;
 
     private float _leftAttackTime;
     Projectile _projectile;
@@ -19,7 +22,8 @@ public class PlayerUnitSKill
     public PlayerUnitSKill(PlayerUnit playerUnit, float atk, float atkSpeed, SkillData skillData)
     {
         _playerUnit = playerUnit;
-        _targets = new List<Unit>(skillData.TargetCapacity);
+        _targetCapacity = skillData.TargetCapacity;
+        _targets = new List<Unit>(_targetCapacity);
         _attackRange = new List<Maptile>();
         _atk = atk * skillData.AtkCoefficient;
         _atkSpeed = atkSpeed * skillData.AtkSpeedCoefficient;
@@ -27,9 +31,10 @@ public class PlayerUnitSKill
         _projectile = skillData.ProjectilePrefab;
     }
 
-    public void SetRange(List<Maptile> range)
+    public void SetRange(List<Maptile> range, Maptile currentTile)
     {
         _attackRange = range;
+        _currentTile = currentTile;
     }
 
     public void Init()
@@ -50,7 +55,15 @@ public class PlayerUnitSKill
         _leftAttackTime = 0;
 
 
-        AttackUnit();
+        
+        if (_attackType == AttackType.Damage)
+        {
+            AttackUnit();
+        }
+        else if (_attackType == AttackType.Heal)
+        {
+            HealUnit();
+        }
     }
 
     public void AddTarget()
@@ -80,55 +93,60 @@ public class PlayerUnitSKill
                     continue;
                 }
 
-                if(_attackType == AttackType.Damage)
+                _playerUnit.SetTargetValue(target, _atk, _projectile, _playerUnit.ShootDamageProjectile);
+
+            }
+        }
+    }
+
+    public void HealUnit()
+    {
+        if (_targets.Count > 0)
+        {
+            foreach (Unit target in _targets)
+            {
+                if (IsInRange(target) == false && target.Hp.IsDead == true)
                 {
-                    _playerUnit.ShootDamageProjectile(target, _atk, _projectile);
+                    continue;
                 }
 
-                if(_attackType == AttackType.Heal)
-                {
-                    _playerUnit.ShootHealProjectile(target, _atk, _projectile);
-                }
+                _playerUnit.SetTargetValue(target, _atk, _projectile, _playerUnit.ShootHealProjectile);
+
             }
         }
     }
 
     private void AddEnemyUnitToTargets()
     {
-        _targets.RemoveAll(t => t == null || t.Hp.IsDead);
+        _targets.RemoveAll(t => t != null);
 
-        if (_targets.Count < _targets.Capacity)
+        for (int i = 0; i < _targetCapacity; i++)
         {
             EnemyUnit target = FindEnemyUnitTarget();
             if (target != null && _targets.Contains(target) == false)
             {
                 _targets.Add(target);
             }
-
         }
-
-        if (_playerUnit.TileType == TileType.Ground)
+        if (_playerUnit.TileType == TileType.Ground && _currentTile.GetEnemyUnits().Count > 0)
         {
-            foreach (EnemyUnit target in _targets)
-            {
-                target.Block(_playerUnit);
-            }
+            BlockTarget();
         }
     }
 
     private void AddPlayerUnitToTargets()
     {
-        _targets.RemoveAll(t => t == null || t.Hp.IsDead);
-        
+        _targets.RemoveAll(t => t != null);
 
-        if (_targets.Count < _targets.Capacity)
+        for (int i = 0; i < _targetCapacity; i++)
         {
             PlayerUnit target = FindPlayerUnitTarget();
             if (target != null && _targets.Contains(target) == false)
             {
-                _targets.Add(target);
+                _targets.Insert(0, target);
             }
         }
+
         _targets.RemoveAll(t=>t.Hp.HpRatio == 1);
     }
 
@@ -138,18 +156,18 @@ public class PlayerUnitSKill
         float lowestHpRatio = 1f;
         foreach (Maptile maptile in _attackRange)
         {
-            if (maptile.GetPlayerUnit() == null)
+            PlayerUnit target = maptile.GetPlayerUnit();
+
+            if (target == null || target.Hp.IsDead || _targets.Contains(target))
             {
                 continue;
             }
-
-            PlayerUnit target = maptile.GetPlayerUnit();
 
             float ratio = target.Hp.HpRatio;
 
             if (ratio < 1f && ratio < lowestHpRatio)
             {
-                lowestHpUnit = maptile.GetPlayerUnit();
+                lowestHpUnit = target;
                 lowestHpRatio = ratio;
             }
         }
@@ -170,7 +188,7 @@ public class PlayerUnitSKill
             foreach (EnemyUnit enemyUnit in maptile.GetEnemyUnits())
             {
 
-                if (enemyUnit == null || enemyUnit.Hp.IsDead)
+                if (enemyUnit == null || enemyUnit.Hp.IsDead|| _targets.Contains(enemyUnit))
                 {
                     continue;
                 }
@@ -185,6 +203,16 @@ public class PlayerUnitSKill
             }
         }
         return ClosestUnit;
+    }
+    public void BlockTarget()
+    {
+        foreach (EnemyUnit target in _targets)
+        {
+            if (_currentTile.GetEnemyUnits().Contains(target))
+            {
+                target.Block(_playerUnit);
+            }
+        }
     }
 
     public void UnBlockTargets()
