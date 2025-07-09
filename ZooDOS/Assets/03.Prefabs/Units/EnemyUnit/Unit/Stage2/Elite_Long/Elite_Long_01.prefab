@@ -591,7 +591,7 @@ GameObject:
   - component: {fileID: 4904044000567526721}
   - component: {fileID: 7105638896004454457}
   m_Layer: 0
-  m_Name: Elite_LongRangeEnemy
+  m_Name: Elite_Long_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

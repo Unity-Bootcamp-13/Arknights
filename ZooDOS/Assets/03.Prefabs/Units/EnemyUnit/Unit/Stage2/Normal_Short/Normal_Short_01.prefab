@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: -7246428430620567346}
   - component: {fileID: -4525794893508685052}
   m_Layer: 0
-  m_Name: Dear
+  m_Name: Normal_Short_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

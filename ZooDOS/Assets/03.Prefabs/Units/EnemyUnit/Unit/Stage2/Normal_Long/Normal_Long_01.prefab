@@ -1455,7 +1455,7 @@ GameObject:
   - component: {fileID: 834990865872925814}
   - component: {fileID: -8747491607230730377}
   m_Layer: 0
-  m_Name: LongRangeHorse
+  m_Name: Normal_Long_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
