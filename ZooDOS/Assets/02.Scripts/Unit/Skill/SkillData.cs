@@ -12,5 +12,6 @@ public class SkillData : ScriptableObject
     [SerializeField] public int TargetCapacity;
     [SerializeField] public Projectile ProjectilePrefab;
     [SerializeField] public float SkillCost;
+    [SerializeField] public Sprite SkillIcon;
     [Multiline(3)] public string SkillDescription;
 }

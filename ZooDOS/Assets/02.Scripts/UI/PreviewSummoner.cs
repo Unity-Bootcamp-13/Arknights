@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,10 +13,7 @@ public class PreviewSummoner : MonoBehaviour
     [SerializeField] private GameSpeedController _gameSpeedController;
 
     [Header("유닛 정보 UI")]
-
-    [SerializeField] private Image unitInfoPanel;
-    [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI descText;
+    [SerializeField] private UnitInfoUI _unitInfoUI;
 
     private PlayerUnitData _currentUnit;
     private GameObject _preview;
@@ -26,9 +24,31 @@ public class PreviewSummoner : MonoBehaviour
     private readonly List<BlinkSpriteBehaviour> _rangeBlinks = new();
 
     private bool _isSameTileType = false;
+
+    [Header("Sprite")]
+    [SerializeField] private Sprite _iconDefender;
+    [SerializeField] private Sprite _iconSniper;
+    [SerializeField] private Sprite _iconMedic;
+
     private void Awake()
     {
         _tileMask = LayerMask.GetMask("Tile");
+        _unitInfoUI.Hide();
+    }
+
+    public Sprite GetClassIconSprite(PlayerUnitData data)
+    {
+        Sprite sprite = data.PlayerUnitType switch
+        {
+            PlayerUnitType.Defender => _iconDefender,
+            PlayerUnitType.Sniper => _iconSniper,
+            PlayerUnitType.Medic => _iconMedic,
+            _ => throw new ArgumentOutOfRangeException(
+                    $"아이콘이 등록되지 않은 타입입니다.")
+        };
+        return sprite;
+
+
     }
     public void StartPreview(PlayerUnitData data)
     {
@@ -37,14 +57,19 @@ public class PreviewSummoner : MonoBehaviour
         _preview = Instantiate(data.UnitTposePrefab);
         _preview.SetActive(false);
         HighlightPlacableTiles();
-        ShowInfo(data);
+        SkillData skillData = data.SkillAttackData[0];
+        _unitInfoUI.Show(BuildStatusString(data), data.Name, data.StandingIllust, GetClassIconSprite(data),
+                         skillData.SkillIcon, skillData.SkillCost.ToString(), skillData.SkillDescription);
+        
     }
 
     public void ShowInfoOnly(PlayerUnitData data)
     {
         CancelPreview();            
         _currentUnit = data;
-        ShowInfo(data);            
+        SkillData skillData = data.SkillAttackData[0];
+        _unitInfoUI.Show(BuildStatusString(data), data.Name, data.StandingIllust, GetClassIconSprite(data),
+                         skillData.SkillIcon, skillData.SkillCost.ToString(), skillData.SkillDescription);
     }
     public void CancelPreview()
     {
@@ -57,7 +82,7 @@ public class PreviewSummoner : MonoBehaviour
 
         _gameSpeedController.UpdateTimeScale();
         _preview = null;
-        HideInfo();
+        _unitInfoUI.Hide();
     }
 
     void Update()
@@ -150,17 +175,8 @@ public class PreviewSummoner : MonoBehaviour
     }
 
     
-    private void ShowInfo(PlayerUnitData data)
-    {
-        nameText.text = data.name;
-        descText.text = $"HP {data.Hp}\nDef {data.Def}\nAtk {data.Atk}\nTarget {data.ResistCapacity}";
-        unitInfoPanel.sprite = data.StandingIllust;
-        unitInfoPanel.gameObject.SetActive(true);
-    }
-    private void HideInfo()
-    {
-        unitInfoPanel.gameObject.SetActive(false);
-    }
+    
+    
 
     private void HighlightPlacableTiles()
     {
@@ -269,4 +285,7 @@ public class PreviewSummoner : MonoBehaviour
     {
         return _preview == null;
     }
+
+    private string BuildStatusString(PlayerUnitData data)
+      => $"코스트 : {data.PlaceCost}\n공격력 : {data.Atk}\n방어력 : {data.Def}\n저지 : {data.ResistCapacity} 명";
 }

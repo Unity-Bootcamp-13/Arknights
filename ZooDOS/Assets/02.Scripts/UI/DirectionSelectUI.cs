@@ -53,6 +53,15 @@ public class DirectionSelectUI : MonoBehaviour
 
     void Update()
     {
+        if (_gameSpeedController.IsPause)
+        {
+            if (_preview != null)
+            {
+                CloseDirectionPopup();
+            }
+            return;
+        }
+                
         if (!IsActive)
         {
             return;          
@@ -98,8 +107,15 @@ public class DirectionSelectUI : MonoBehaviour
         if (_isDragging && Input.GetMouseButtonUp(0))
         {
             Vector2 delta = (Vector2)Input.mousePosition - _startMousePos;
+            if (delta.SqrMagnitude() > 200)
+            {
+                FinalizePlacement(delta);
+            }
+            else
+            {
+                _isDragging = false;
+            }
             
-            FinalizePlacement(delta);
         }
     }
 
@@ -207,4 +223,6 @@ public class DirectionSelectUI : MonoBehaviour
         _popupUI.anchoredPosition = local;
         _popupUI.gameObject.SetActive(true);
     }
+
+   
 }
