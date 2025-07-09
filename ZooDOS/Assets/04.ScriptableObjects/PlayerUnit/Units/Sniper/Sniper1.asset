@@ -20,7 +20,7 @@ MonoBehaviour:
   AtkSpeed: 1
   ProjectileSpeed: 10
   ResistCapacity: 1
-  PlaceCost: 11
+  PlaceCost: 14
   ReplaceTime: 55
   BackwardRange: 0
   ForwardRange: 3
@@ -30,7 +30,7 @@ MonoBehaviour:
   AttackType: 1
   StandingIllust: {fileID: 21300000, guid: 9e4cb6aec901b504dac492f191786dab, type: 3}
   UnitPortrait: {fileID: 21300000, guid: 3a0abf1762b5c9545a0a7f494c1d4b31, type: 3}
-  UnitPrefab: {fileID: 5758161919349873981, guid: 2cb8c6081e6cc4b48a1ad7ae4e19e641, type: 3}
+  UnitPrefab: {fileID: 546608356369383155, guid: 2e3e9a5a9885c544dbdf8fb5462f9e1f, type: 3}
   UnitTposePrefab: {fileID: 3392885724487588042, guid: f765c66cc0640194da63e72b077b43ce, type: 3}
   SkillActivateEffectPrefab: {fileID: 1625816069985526, guid: 3c1cb9043ada1994c9d5c83863783eab, type: 3}
   BasicAttackData: {fileID: 11400000, guid: d9fb623a77ba7064a94a491154a55465, type: 2}

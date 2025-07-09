@@ -152,7 +152,7 @@ public class EnemyUnit : Unit
         {
             _target.Hp.GetDamage(dmg);
         }
-        Debug.Log("적 -> 아군 공격");
+        //Debug.Log("적 -> 아군 공격");
 
     }
     public void SetPlayerUnit(PlayerUnit unit)

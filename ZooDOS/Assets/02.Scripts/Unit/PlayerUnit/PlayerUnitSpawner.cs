@@ -50,7 +50,7 @@ public class PlayerUnitSpawner : MonoBehaviour
         playerUnit.SetSpUI(spUI);
         spUI.Init(playerUnit);
 
-        playerUnit.OnPlace(Range);
+        playerUnit.OnPlace(Range, _gameManager.Map.GetTile(position));
 
         
     }

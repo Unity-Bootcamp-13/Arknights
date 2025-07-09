@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: d8c618861e4114b4cba74ece999b6b00
+guid: da8dd823901c1714181d86e8ac870153
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -94,7 +94,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -108,12 +108,1948 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: skillicon_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 5281
+        width: 395
+        height: 386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 276b58dd878b8df49970ab7ea271cc0b
+      internalID: -2119351331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_1
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 5276
+        width: 384
+        height: 391
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 908eab8af38d19d44b60fddfc5a1fbf2
+      internalID: 1361677090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_2
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 5274
+        width: 385
+        height: 393
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f94d742bbac091646bef6451e40d6f10
+      internalID: -123675432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_3
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 5281
+        width: 407
+        height: 386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f52ab5dc6443dc347be5a2632b897796
+      internalID: 1102217564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_4
+      rect:
+        serializedVersion: 2
+        x: 1869
+        y: 5281
+        width: 384
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e50bc59d013f7d4494cef2f57675e66
+      internalID: 1221661288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_5
+      rect:
+        serializedVersion: 2
+        x: 2334
+        y: 5274
+        width: 384
+        height: 393
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 497bdb76f3ee5a440aad7a18633646cc
+      internalID: -201044123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_6
+      rect:
+        serializedVersion: 2
+        x: 2799
+        y: 5274
+        width: 384
+        height: 393
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ac4be75ab6891f4eb03aae3ca717925
+      internalID: 562959677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_7
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 4836
+        width: 384
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 592e54b397872364ca281975ee9b7429
+      internalID: 744836218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_8
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 4836
+        width: 384
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e0509367ee33f54a83fa64924f9cc21
+      internalID: 1122383765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_9
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 4830
+        width: 407
+        height: 407
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eac7220ec80ccfc468e2f623675e0399
+      internalID: 1177935986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_10
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 4842
+        width: 385
+        height: 381
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eaf4e527f3efe548b785b915b69090f
+      internalID: -711607519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_11
+      rect:
+        serializedVersion: 2
+        x: 1869
+        y: 4842
+        width: 384
+        height: 381
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb23dfd648f735a4883a2dce6bce3772
+      internalID: 1683320573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_12
+      rect:
+        serializedVersion: 2
+        x: 2334
+        y: 4836
+        width: 384
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28fff592e12a0124d87e2c66e5eed558
+      internalID: 1025075003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_13
+      rect:
+        serializedVersion: 2
+        x: 2790
+        y: 4836
+        width: 399
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c1f5e122f3546b469ebb76964eaf2a7
+      internalID: 1918946516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_14
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 4404
+        width: 396
+        height: 381
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ee35abc2bc4fec479056c55994c5518
+      internalID: 41309560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_15
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 4393
+        width: 407
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1745c13ad73da9e4ab0d1b4038e38205
+      internalID: 678134833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_16
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 4393
+        width: 407
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82a0f5ddfa3a7054aa0b37dd1b35c82c
+      internalID: 831303980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_17
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 4393
+        width: 407
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d40e4aae7f8e1e41a58d9eff7a8eb11
+      internalID: 1788374053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_18
+      rect:
+        serializedVersion: 2
+        x: 1850
+        y: 4393
+        width: 422
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d52c9b6b9d791614e93e3e506588c722
+      internalID: 1314127024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_19
+      rect:
+        serializedVersion: 2
+        x: 2323
+        y: 4393
+        width: 406
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2a61655ff8945541bf5d87782cbdba6
+      internalID: 856221430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_20
+      rect:
+        serializedVersion: 2
+        x: 2799
+        y: 4404
+        width: 384
+        height: 381
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b784f34451343b348b7a4dc078122b91
+      internalID: 1186269909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_21
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 3964
+        width: 384
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dffefea4dbe82ae479ea5eb2a3b302da
+      internalID: 2004433821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_22
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 3961
+        width: 384
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9687df3d581b49441811575a8cbde0c6
+      internalID: -1413846763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_23
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 3961
+        width: 385
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 979e86e43fc873b4b938d0166baff3f9
+      internalID: -2086567625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_24
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 3964
+        width: 385
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ae4673cdf8faf14d9a859d1fc6302d5
+      internalID: -1498469605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_25
+      rect:
+        serializedVersion: 2
+        x: 1869
+        y: 3963
+        width: 384
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ce2f601506d4b0449cd2b4c8a45e226
+      internalID: -1061781596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_26
+      rect:
+        serializedVersion: 2
+        x: 2323
+        y: 3953
+        width: 406
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81e573f7370d49b4fb224abcf6cfe7dc
+      internalID: -46240417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_27
+      rect:
+        serializedVersion: 2
+        x: 2799
+        y: 3956
+        width: 384
+        height: 398
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21b422e3deb69144bb91d4e0548ee4d7
+      internalID: 1294410405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3510
+        width: 405
+        height: 410
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da645cebf1590554c8ea267adb1fcae2
+      internalID: -1948351977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_29
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 3524
+        width: 384
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e8e81444991d9c4bbe0cfebb89d220e
+      internalID: -879486707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_30
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 3524
+        width: 385
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdb7f6248e5f9684a9f62d937cad1678
+      internalID: 33938586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_31
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 3513
+        width: 407
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 943ffaf61fe67bb40be64e2492c0a156
+      internalID: 1756351581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_32
+      rect:
+        serializedVersion: 2
+        x: 1858
+        y: 3510
+        width: 407
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94f1284d49f75c84391011b80eb1f0f6
+      internalID: 1449123526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_33
+      rect:
+        serializedVersion: 2
+        x: 2321
+        y: 3513
+        width: 408
+        height: 406
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0772a2b443bf3f4fbe5fcc125c507e1
+      internalID: -705870484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_34
+      rect:
+        serializedVersion: 2
+        x: 2799
+        y: 3524
+        width: 391
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92099dfa0a3661b41addd032aac37690
+      internalID: -1468863750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3073
+        width: 405
+        height: 406
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50d66b5a3a8d3f0469964cb1ff5a58ed
+      internalID: 1639391363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_36
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 3078
+        width: 394
+        height: 396
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74de2b3caa8b9714282dae2cd844fd3b
+      internalID: -1282153730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_37
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 3073
+        width: 407
+        height: 407
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34f1a332e32eb69499c9b5a6898897fe
+      internalID: 603138036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_38
+      rect:
+        serializedVersion: 2
+        x: 1402
+        y: 3084
+        width: 387
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fd30fb4b7916854c8a7eb129ff9a926
+      internalID: -1654767932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_39
+      rect:
+        serializedVersion: 2
+        x: 1869
+        y: 3081
+        width: 384
+        height: 390
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef09d684bf2ea39489ebad0fa8640929
+      internalID: -1604754969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_40
+      rect:
+        serializedVersion: 2
+        x: 2334
+        y: 3082
+        width: 384
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91ad252973b3cd14abb8ce27e43c79ce
+      internalID: -407026050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_41
+      rect:
+        serializedVersion: 2
+        x: 2799
+        y: 3073
+        width: 391
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a04b6527d75ed7d46b1681cee134d00f
+      internalID: 509336223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2636
+        width: 394
+        height: 403
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dac9a8d586081c34186d8bd2a51e72b4
+      internalID: 1670144742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_43
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 2636
+        width: 407
+        height: 403
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4007dbc705ee724478ade471dbf5f7f4
+      internalID: -764426422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_44
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 2636
+        width: 407
+        height: 403
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 226a260e626fad644929827822b5b994
+      internalID: -81727942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_45
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 2633
+        width: 407
+        height: 407
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aa0d4e4394784e4fabbd72a1f3e2dbc
+      internalID: 1412034436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_46
+      rect:
+        serializedVersion: 2
+        x: 1858
+        y: 2636
+        width: 407
+        height: 403
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed06b28c527d73846b5a46f6aa03f427
+      internalID: 1522376791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_47
+      rect:
+        serializedVersion: 2
+        x: 2323
+        y: 2636
+        width: 406
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60d035d2f0488b34f88bb9e6d7910e00
+      internalID: -1964334809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_48
+      rect:
+        serializedVersion: 2
+        x: 2787
+        y: 2636
+        width: 403
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 046d6efbb15c4854cb9801d5c3d02b28
+      internalID: 1439443451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_49
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2193
+        width: 394
+        height: 398
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c934dc059706d86409596b24fa2fd400
+      internalID: 1402575010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_50
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 2196
+        width: 407
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d326197fff07ec34c8a5e5ddd78baeb8
+      internalID: -1729855673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_51
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 2193
+        width: 407
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 166411daa08565f4ebf8c110396c8974
+      internalID: -1290543790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_52
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 2207
+        width: 385
+        height: 381
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dbec5fceb060d04992e68e904bf2b22
+      internalID: -1602816957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_53
+      rect:
+        serializedVersion: 2
+        x: 1858
+        y: 2193
+        width: 407
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfb3112ebfb9f6b499d43356730fc297
+      internalID: 129080382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_54
+      rect:
+        serializedVersion: 2
+        x: 2323
+        y: 2193
+        width: 406
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd9f33cc8e4061f4285dfb1e229bc129
+      internalID: -1915049935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_55
+      rect:
+        serializedVersion: 2
+        x: 2787
+        y: 2193
+        width: 403
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6906be3e148a0f443a332c2c5b99d304
+      internalID: 517322245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1756
+        width: 394
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29d46e3ad78af1e4f8eb5e23f69e7458
+      internalID: 448942779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_57
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 1764
+        width: 384
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7e8effcbf705254fa072641add5c663
+      internalID: -1856995634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_58
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 1753
+        width: 407
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cc64230c76ac4b448233b6e333cd1bd
+      internalID: -2053202097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_59
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 1753
+        width: 407
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb4def899fe88794fa0fa8e13718b162
+      internalID: -1746334923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_60
+      rect:
+        serializedVersion: 2
+        x: 1869
+        y: 1765
+        width: 384
+        height: 386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d869f76abbc61e948bcaad20f8d52bac
+      internalID: -912110683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_61
+      rect:
+        serializedVersion: 2
+        x: 2323
+        y: 1753
+        width: 406
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0ccfa4dc984a914aac3e674470d5479
+      internalID: -1383172019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_62
+      rect:
+        serializedVersion: 2
+        x: 2787
+        y: 1756
+        width: 403
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a8dce932da5bc64486b6f76f3883a4c
+      internalID: -159982036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1316
+        width: 405
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dd3b8a15c76b4041aaeb39da4168c78
+      internalID: 477023567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_64
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 1316
+        width: 407
+        height: 406
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30f847eab7a1065419b76d9b2ba08673
+      internalID: 1434819755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_65
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 1316
+        width: 407
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2f2f60284df20b4895b426312fce8f4
+      internalID: 1811974890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_66
+      rect:
+        serializedVersion: 2
+        x: 1391
+        y: 1327
+        width: 409
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e429d707b6644584f86a04461d930ea3
+      internalID: -700951633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_67
+      rect:
+        serializedVersion: 2
+        x: 1858
+        y: 1302
+        width: 407
+        height: 434
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05e58453ab2d8204bbcdf5d79f65f9a2
+      internalID: -512236740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_68
+      rect:
+        serializedVersion: 2
+        x: 2334
+        y: 1327
+        width: 384
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2845d8ea0516753468741ea15ff73b9b
+      internalID: -235600383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_69
+      rect:
+        serializedVersion: 2
+        x: 2787
+        y: 1316
+        width: 403
+        height: 406
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21f587176db5c51469fc10fea7ac0c34
+      internalID: -86937176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_70
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 870
+        width: 405
+        height: 418
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 621eac804d7350543b985dc667cce2d8
+      internalID: -282048325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_71
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 870
+        width: 407
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d910e6f1bf125d43b99cd4280df33cd
+      internalID: 1809105422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_72
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 870
+        width: 406
+        height: 407
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 890c1dec26fa2714b822a2c10f1536e1
+      internalID: 1250562229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_73
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 870
+        width: 406
+        height: 407
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 036669aa14dd8a14bae5d9855a60feeb
+      internalID: 1771653627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_74
+      rect:
+        serializedVersion: 2
+        x: 1858
+        y: 870
+        width: 404
+        height: 407
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ea4af3fd4fef47418ee1d876e37dc7f
+      internalID: 1419017512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_75
+      rect:
+        serializedVersion: 2
+        x: 2334
+        y: 870
+        width: 384
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aca1daa7b88c93d40b1b77bf6571bfc8
+      internalID: 1055489431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_76
+      rect:
+        serializedVersion: 2
+        x: 2787
+        y: 870
+        width: 403
+        height: 418
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e57c04d185163de4696f543ae98bb653
+      internalID: -1448615986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_77
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 461
+        width: 408
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8498fefd60ed0904baeccaeff107b636
+      internalID: 2044382918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_78
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 422
+        width: 412
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20d60cbdfb2b1824a84081b5b87b3460
+      internalID: 977724772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_79
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 422
+        width: 407
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84cb1e3b51c7dd341a6a2f108763ed03
+      internalID: 2058304800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_80
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 434
+        width: 385
+        height: 381
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28b6214d6d984b24e93ca880194598db
+      internalID: -2025998389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_81
+      rect:
+        serializedVersion: 2
+        x: 1858
+        y: 425
+        width: 407
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa3348d620390014591a18ffef0241f6
+      internalID: 1238765158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_82
+      rect:
+        serializedVersion: 2
+        x: 2321
+        y: 422
+        width: 408
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3f4d6cabea027240b0c93d7d3c47ec5
+      internalID: 2041670041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_83
+      rect:
+        serializedVersion: 2
+        x: 2511
+        y: 0
+        width: 679
+        height: 818
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 965496e11380fa84fafaf1610104cdee
+      internalID: 2091929199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 405
+        height: 405
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a41bb40085b4fa943aa9ec39c490b254
+      internalID: -1285181839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_85
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 0
+        width: 384
+        height: 391
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f714831679da1b64d9fd4404cd70d09b
+      internalID: -815862871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_86
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 0
+        width: 385
+        height: 392
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5aea2f11e0af0846b93335363c733fd
+      internalID: 781144358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skillicon_87
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 0
+        width: 407
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1366104846d14cc409cafa6cccdb183b
+      internalID: 1423715997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b44bd717591d7004bbe187f14f0c89cb
     internalID: 0
     vertices: []
     indices: 
@@ -122,7 +2058,95 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      skillicon_0: -2119351331
+      skillicon_1: 1361677090
+      skillicon_10: -711607519
+      skillicon_11: 1683320573
+      skillicon_12: 1025075003
+      skillicon_13: 1918946516
+      skillicon_14: 41309560
+      skillicon_15: 678134833
+      skillicon_16: 831303980
+      skillicon_17: 1788374053
+      skillicon_18: 1314127024
+      skillicon_19: 856221430
+      skillicon_2: -123675432
+      skillicon_20: 1186269909
+      skillicon_21: 2004433821
+      skillicon_22: -1413846763
+      skillicon_23: -2086567625
+      skillicon_24: -1498469605
+      skillicon_25: -1061781596
+      skillicon_26: -46240417
+      skillicon_27: 1294410405
+      skillicon_28: -1948351977
+      skillicon_29: -879486707
+      skillicon_3: 1102217564
+      skillicon_30: 33938586
+      skillicon_31: 1756351581
+      skillicon_32: 1449123526
+      skillicon_33: -705870484
+      skillicon_34: -1468863750
+      skillicon_35: 1639391363
+      skillicon_36: -1282153730
+      skillicon_37: 603138036
+      skillicon_38: -1654767932
+      skillicon_39: -1604754969
+      skillicon_4: 1221661288
+      skillicon_40: -407026050
+      skillicon_41: 509336223
+      skillicon_42: 1670144742
+      skillicon_43: -764426422
+      skillicon_44: -81727942
+      skillicon_45: 1412034436
+      skillicon_46: 1522376791
+      skillicon_47: -1964334809
+      skillicon_48: 1439443451
+      skillicon_49: 1402575010
+      skillicon_5: -201044123
+      skillicon_50: -1729855673
+      skillicon_51: -1290543790
+      skillicon_52: -1602816957
+      skillicon_53: 129080382
+      skillicon_54: -1915049935
+      skillicon_55: 517322245
+      skillicon_56: 448942779
+      skillicon_57: -1856995634
+      skillicon_58: -2053202097
+      skillicon_59: -1746334923
+      skillicon_6: 562959677
+      skillicon_60: -912110683
+      skillicon_61: -1383172019
+      skillicon_62: -159982036
+      skillicon_63: 477023567
+      skillicon_64: 1434819755
+      skillicon_65: 1811974890
+      skillicon_66: -700951633
+      skillicon_67: -512236740
+      skillicon_68: -235600383
+      skillicon_69: -86937176
+      skillicon_7: 744836218
+      skillicon_70: -282048325
+      skillicon_71: 1809105422
+      skillicon_72: 1250562229
+      skillicon_73: 1771653627
+      skillicon_74: 1419017512
+      skillicon_75: 1055489431
+      skillicon_76: -1448615986
+      skillicon_77: 2044382918
+      skillicon_78: 977724772
+      skillicon_79: 2058304800
+      skillicon_8: 1122383765
+      skillicon_80: -2025998389
+      skillicon_81: 1238765158
+      skillicon_82: 2041670041
+      skillicon_83: 2091929199
+      skillicon_84: -1285181839
+      skillicon_85: -815862871
+      skillicon_86: 781144358
+      skillicon_87: 1423715997
+      skillicon_9: 1177935986
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

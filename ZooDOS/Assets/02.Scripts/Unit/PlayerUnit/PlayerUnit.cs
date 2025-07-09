@@ -7,6 +7,7 @@ public class PlayerUnit : Unit
 {
     [SerializeField] private Animator _animator;
 
+    public Action AttackEvent;
 
     public Func<Vector3, GameObject> GetSkillEffect;
     private GameObject _skillActivateEffect;
@@ -30,7 +31,11 @@ public class PlayerUnit : Unit
 
     public TileType TileType => _tileType;
     public Sp Sp => _sp;
-    
+
+    Unit _target;
+    float _value;
+    Projectile _projectile;
+
 
     void Update()
     {
@@ -118,15 +123,15 @@ public class PlayerUnit : Unit
     /// </summary>
     /// <param name="attackRange"></param>
     /// <param name="placedTile"></param>
-    public virtual void OnPlace(List<Maptile> attackRange)
+    public virtual void OnPlace(List<Maptile> attackRange, Maptile currentTile)
     {
         _attackRange = attackRange;
         _hp.ResetHp();
         _sp.ResetSp();
 
 
-        _basicAttack.SetRange(_attackRange);
-        _skillAttack.SetRange(_attackRange);
+        _basicAttack.SetRange(_attackRange, currentTile);
+        _skillAttack.SetRange(_attackRange, currentTile);
         _remainSkillDuration = -1;
 
         _unitHpUI.SetUIPosition(transform.position);
@@ -147,7 +152,7 @@ public class PlayerUnit : Unit
     {
         gameObject.SetActive(false);
 
-        _status = new PlayerUnitStatus(playerUnitData.UnitPortrait, playerUnitData.StandingIllust, playerUnitData.Name, playerUnitData.PlaceCost);
+        _status = new PlayerUnitStatus(playerUnitData.UnitPortrait, playerUnitData.StandingIllust, playerUnitData.Name, playerUnitData.Id,  playerUnitData.PlaceCost);
         _tileType = playerUnitData.TileType;
         _hp = new Hp(this, playerUnitData.Hp);
         _def = playerUnitData.Def;
@@ -160,6 +165,7 @@ public class PlayerUnit : Unit
         _basicAttack = new PlayerUnitSKill(this, _atk, _atkSpeed, playerUnitData.BasicAttackData);
         _skillAttack = new PlayerUnitSKill(this, _atk, _atkSpeed, playerUnitData.SkillAttackData[0]);
         _sp = new Sp(this, playerUnitData.SkillAttackData[0].SkillCost);
+
     }
 
     public PlayerUnitStatus GetStatus()
@@ -176,9 +182,6 @@ public class PlayerUnit : Unit
 
     public void ShootDamageProjectile(Unit target, float value, Projectile projectile)
     {
-        
-        _animator.SetTrigger("Attack_t");
-        
 
         float damage = Math.Max(1, value - target.Def);
 
@@ -193,14 +196,10 @@ public class PlayerUnit : Unit
         {
             target.Hp.GetDamage(damage);
         }
-
     }
-
 
     public void ShootHealProjectile(Unit target, float value, Projectile projectile)
     {
-        _animator.SetTrigger("Attack_t");
-
 
         if (projectile != null)
         {
@@ -214,6 +213,38 @@ public class PlayerUnit : Unit
             target.Hp.GetHeal(value);
         }
 
+    }
+
+
+    public void InvokeAttackEvent()
+    {
+        AttackEvent?.Invoke();
+        AttackEvent = null;
+    }
+
+    public void SubscribeAttackEvent(Action attackEvent)
+    {
+        AttackEvent += attackEvent;
+    }
+
+    public void SetTargetValue(Unit target, float value, Projectile projectile, Action<Unit, float, Projectile> attackEvent)
+    {
+        _target = target;
+        _value = value;
+        _projectile = projectile;
+        SubscribeAttackEvent(()=> 
+        {
+            attackEvent?.Invoke(target, value, projectile);
+        });
+
+        if (_isSkillActivated)
+        {
+            _animator.SetTrigger("SkillAttack_t");
+        }
+        else
+        {
+            _animator.SetTrigger("Attack_t");
+        }
     }
 
 
