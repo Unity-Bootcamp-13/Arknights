@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e90132116cecb6438787f6b983e05dd, type: 3}
-  m_Name: HorseEnemy
+  m_Name: 102020201
   m_EditorClassIdentifier: 
   Hp: 2000
   Def: 85
@@ -19,5 +19,5 @@ MonoBehaviour:
   MoveSpeed: 1
   EnemyUnitType: 2
   RangeRadius: 0
-  ProjectilePrefab: {fileID: 1117804056975720, guid: 8072a94c464c04341be1da273afa3591, type: 3}
+  ProjectilePrefab: {fileID: 6706638302488462161, guid: ab98e1b486c3b0c4aa0ad4286b6a84a9, type: 3}
   ProjectileSpeed: 1

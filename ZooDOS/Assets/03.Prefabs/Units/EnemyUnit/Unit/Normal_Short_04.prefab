@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: -2832985021373151106}
   - component: {fileID: 2055029896901073909}
   m_Layer: 0
-  m_Name: DogDoberman
+  m_Name: Normal_Short_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

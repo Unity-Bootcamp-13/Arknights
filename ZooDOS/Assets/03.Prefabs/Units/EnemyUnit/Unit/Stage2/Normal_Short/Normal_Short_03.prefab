@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: -4883533352636504967}
   - component: {fileID: 5157497138421953609}
   m_Layer: 0
-  m_Name: CowWhite
+  m_Name: Normal_Short_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

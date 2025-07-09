@@ -23,6 +23,7 @@ public class Map : MonoBehaviour
     [SerializeField] private GameObject _restrictedPrefab;
     [SerializeField] private GameObject _enemyEntryPointPrefab;
     [SerializeField] private GameObject _defensePointPrefab;
+    [SerializeField] private GameObject _restrictedGroundPrefab;
 
     [SerializeField] private StageTileInfoSO _stageLayoutInfoSO;
     
@@ -62,6 +63,9 @@ public class Map : MonoBehaviour
                         break;
                     case TileType.Ground:
                         PlaceMaptile(_groundPrefab, pos);
+                        break;
+                    case TileType.RestrictedGround:
+                        PlaceMaptile(_restrictedGroundPrefab, pos);
                         break;
                 }
             }
@@ -127,6 +131,7 @@ public class Map : MonoBehaviour
             TileType.Restricted => RESTRICTED_HEIGHT * Constants.MAPTILE_LENGTH,
             TileType.DefensePoint => GROUND_HEIGHT * Constants.MAPTILE_LENGTH,
             TileType.EnemyEntryPoint => GROUND_HEIGHT * Constants.MAPTILE_LENGTH,
+            TileType.RestrictedGround => GROUND_HEIGHT * Constants.MAPTILE_LENGTH,
             _ => 0f
         };
 
