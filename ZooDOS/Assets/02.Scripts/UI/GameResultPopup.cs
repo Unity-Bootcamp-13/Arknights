@@ -22,7 +22,7 @@ public class GameResultPopup : MonoBehaviour
     [SerializeField] private Color activeStarColor = Color.white;
     [SerializeField] private Color inactiveStarColor = Color.gray;
 
-    private void Start()
+    public void Init()
     {
         fullScreenButton.onClick.AddListener(() => SceneManager.LoadScene("StageSelect"));
         gameObject.SetActive(false); 

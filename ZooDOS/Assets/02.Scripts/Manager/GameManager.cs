@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     private int _leftLifeCount;
     private int _totalEnemyCount;
     private int _leftEnemyCount;
-    private int resultStarCnt = 3;
+    private int resultStarCnt;
     public int LeftLifeCount => _leftLifeCount;
     public int TotalEnemyCount => _totalEnemyCount;
     public int LeftEnemyCount => _leftEnemyCount;
@@ -21,12 +21,18 @@ public class GameManager : MonoBehaviour
 
     public event Action OnHudDataChanged;            
 
-    private bool isGameEnded = false;
+    private bool isGameEnded;
 
-    
+    private void Awake()
+    {
+        isGameEnded = false;
+        resultStarCnt = 3;
+    }
+
     private void Start()
     {
         Time.timeScale = 1.0f;
+        _gameResultPopup.Init();
 
     }
     private void Update()
@@ -44,12 +50,12 @@ public class GameManager : MonoBehaviour
 
     private void EvaluateGameResult()
     {
-        
         if (_leftLifeCount <= 0)
         {
             //패배
             _loopSound.StopBgm();
             isGameEnded = true;
+            _loseSound.gameObject.SetActive(true);
             _loseSound.PlayBGMOneShot();
             OnBattleEnd(false);
         } 
@@ -58,6 +64,7 @@ public class GameManager : MonoBehaviour
             //승리
             _loopSound.StopBgm();
             isGameEnded = true;
+            _winSound.gameObject.SetActive(true);
             _winSound.PlayBGMOneShot();
             OnBattleEnd(true);
         }
