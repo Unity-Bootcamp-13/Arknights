@@ -1,6 +1,4 @@
 ﻿using System;
-using TMPro;
-
 
 public class Hp
 {
