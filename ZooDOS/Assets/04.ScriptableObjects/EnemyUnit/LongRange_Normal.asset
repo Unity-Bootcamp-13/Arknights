@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e90132116cecb6438787f6b983e05dd, type: 3}
   m_Name: LongRange_Normal
   m_EditorClassIdentifier: 
-  Hp: 1550
-  Def: 50
-  Atk: 150
+  Hp: 1250
+  Def: 65
+  Atk: 315
   AtkSpeed: 2.7
-  MoveSpeed: 1.1
+  MoveSpeed: 0.9
   EnemyUnitType: 2
   RangeRadius: 0
   ProjectilePrefab: {fileID: 6706638302488462161, guid: ab98e1b486c3b0c4aa0ad4286b6a84a9, type: 3}
-  ProjectileSpeed: 1
+  ProjectileSpeed: 7

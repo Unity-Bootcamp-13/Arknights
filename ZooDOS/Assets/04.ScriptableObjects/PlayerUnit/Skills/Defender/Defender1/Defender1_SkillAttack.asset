@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4742a03e9a878643af1076f41afdc72, type: 3}
   m_Name: Defender1_SkillAttack
   m_EditorClassIdentifier: 
-  AtkCoefficient: 2
+  AtkCoefficient: 7
   AtkSpeedCoefficient: 0
   AttackType: 2
   Duration: 0
@@ -21,4 +21,4 @@ MonoBehaviour:
   SkillCost: 20
   SkillIcon: {fileID: -201044123, guid: da8dd823901c1714181d86e8ac870153, type: 3}
   SkillDescription: "\uC790\uC2E0\uC758 \uCCB4\uB825\uC744 \n\uACF5\uACA9\uB825\uC758
-    200%\uB9CC\uD07C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+    700%\uB9CC\uD07C \uD68C\uBCF5\uD569\uB2C8\uB2E4."

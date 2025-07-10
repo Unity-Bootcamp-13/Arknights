@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e90132116cecb6438787f6b983e05dd, type: 3}
   m_Name: ShortRange_Normal
   m_EditorClassIdentifier: 
-  Hp: 2650
+  Hp: 1930
   Def: 85
   Atk: 350
   AtkSpeed: 2
