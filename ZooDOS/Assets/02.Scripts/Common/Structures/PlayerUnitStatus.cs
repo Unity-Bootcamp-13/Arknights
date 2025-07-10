@@ -3,7 +3,7 @@
 public struct PlayerUnitStatus
 {
     public int Id { get; }
-    public Sprite ClassIcon { get; }
+    public PlayerUnitType PlayerUnitType { get; }
     public Sprite StandingIllust{get;}
     public string Name{get;}
     public int Cost { get; }
@@ -20,9 +20,9 @@ public struct PlayerUnitStatus
     private float _maxHp;
 
 
-    public PlayerUnitStatus(Sprite classIcon, Sprite standingIllust, string name, int id, int cost, float atk =0, float def = 0, int maxTarget = 0, float currentHp = 0, float maxHp = 0)
+    public PlayerUnitStatus(PlayerUnitType playerUnitType, Sprite standingIllust, string name, int id, int cost, float atk =0, float def = 0, int maxTarget = 0, float currentHp = 0, float maxHp = 0)
     {
-        ClassIcon = classIcon;
+        PlayerUnitType = playerUnitType;
         StandingIllust = standingIllust;
         Name = name;
         Id = id;

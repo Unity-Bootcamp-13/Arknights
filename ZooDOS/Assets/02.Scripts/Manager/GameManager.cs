@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
 
     private bool isGameEnded = false;
 
+    private void Start()
+    {
+        Time.timeScale = 1.0f;
+    }
     private void Update()
     {
         if (!isGameEnded)

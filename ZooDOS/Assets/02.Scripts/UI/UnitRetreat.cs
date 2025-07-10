@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class UnitRetreat : MonoBehaviour
 {
@@ -25,7 +26,10 @@ public class UnitRetreat : MonoBehaviour
     private LayerMask _playerUnitMask;   // PlayerUnit 레이어
     private PlayerUnit _selectedUnit;
 
-
+    [Header("Sprite")]
+    [SerializeField] private Sprite _iconDefender;
+    [SerializeField] private Sprite _iconSniper;
+    [SerializeField] private Sprite _iconMedic;
     void Awake()
     {
         _retreatButton.onClick.AddListener(OnRetreatClicked);
@@ -117,7 +121,7 @@ public class UnitRetreat : MonoBehaviour
         // 기본 정보 표시 
         PlayerUnitStatus stat = _selectedUnit.GetStatus();
         SkillData skillData = _waitingUI.FindPlayerUnitData(stat.Id).SkillAttackData[0];
-        _unitInfoUI.Show(BuildStatusString(stat), stat.Name, stat.StandingIllust, stat.ClassIcon,
+        _unitInfoUI.Show(BuildStatusString(stat), stat.Name, stat.StandingIllust, GetStatIcon(stat),
                          skillData.SkillIcon, skillData.SkillCost.ToString(), skillData.SkillDescription);
 
         //AttackRange
@@ -134,6 +138,22 @@ public class UnitRetreat : MonoBehaviour
         _focusMaskPanel.Show(unit.transform.position);
         PositionPanelAtWorld(unit.transform.position);
         _skillCooldown.InitSkillData(unit, _waitingUI.FindPlayerUnitData(stat.Id).SkillAttackData[0].SkillIcon);
+    }
+
+    private Sprite GetStatIcon(PlayerUnitStatus stat)
+    {
+        if (stat.PlayerUnitType == PlayerUnitType.Defender)
+        {
+            return _iconDefender;
+        }
+        else if (stat.PlayerUnitType == PlayerUnitType.Sniper)
+        {
+            return _iconSniper;
+        }
+        else
+        {
+            return _iconMedic;
+        }
     }
 
     void PositionPanelAtWorld(Vector3 worldPos)

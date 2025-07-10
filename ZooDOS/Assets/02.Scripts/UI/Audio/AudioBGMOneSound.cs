@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class AudioBGMSound : MonoBehaviour
+public class AudioBGMOneSound : MonoBehaviour
 {
     [SerializeField] private AudioClip _bgmClip;
 
@@ -12,20 +12,25 @@ public class AudioBGMSound : MonoBehaviour
     private void Start()
     {
         _audioSource.outputAudioMixerGroup = _audioManager.BGMGroup;
-        PlayBGMSound();
+        PlayBGMOneShot();
     }
-    public void PlayBGMSound()
+
+    public void StopBgm()
+    {
+        if (_audioSource.isPlaying)
+            _audioSource.Stop();     
+    }
+
+    public void PlayBGMOneShot()
     {
         if (_bgmClip != null)
         {
-            _audioSource.clip = _bgmClip;
-            _audioSource.loop = true;   
-            _audioSource.playOnAwake = false;
-            _audioSource.Play();
+            _audioSource.PlayOneShot(_bgmClip);
         }
         else
         {
-            Debug.LogWarning("BGM Clip이 할당되지 않았습니다.");
+            Debug.LogWarning("BGM 사운드가 할당되지 않았습니다.");
         }
     }
+
 }
