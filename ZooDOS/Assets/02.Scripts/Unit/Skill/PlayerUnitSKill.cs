@@ -126,18 +126,20 @@ public class PlayerUnitSKill
             EnemyUnit target = FindEnemyUnitTarget();
             if (target != null && _targets.Contains(target) == false)
             {
-                _targets.Add(target);
+                _targets.Insert(0, target);
             }
         }
         if (_playerUnit.TileType == TileType.Ground && _currentTile.GetEnemyUnits().Count > 0)
         {
-            BlockTarget();
+            for (int i = 0; i < _targetCapacity; i++)
+            {
+                BlockTarget(i);
+            }
         }
     }
 
     private void AddPlayerUnitToTargets()
     {
-        UnBlockTargets();
         _targets.Clear();
 
         for (int i = 0; i < _targetCapacity; i++)
@@ -206,23 +208,34 @@ public class PlayerUnitSKill
         }
         return ClosestUnit;
     }
-    public void BlockTarget()
+
+    public void BlockTarget(int i)
     {
-        foreach (EnemyUnit target in _targets)
+        if(i>= _currentTile.GetEnemyUnits().Count)
         {
-            if (_currentTile.GetEnemyUnits().Contains(target))
-            {
-                target.Block(_playerUnit);
-            }
+            return;
         }
+
+        EnemyUnit unit = _currentTile.GetEnemyUnits()[i] as EnemyUnit;
+        
+
+       if (unit != null)
+       {
+            unit.Block(_playerUnit);
+       }
+        
     }
 
     public void UnBlockTargets()
     {
-       
         foreach (Unit target in _targets)
         {
             EnemyUnit enemy = target as EnemyUnit;
+            if(enemy == null)
+            {
+                continue;
+            }
+
             enemy.Unblock();
         }
     }
