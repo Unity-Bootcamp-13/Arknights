@@ -118,7 +118,9 @@ public class PlayerUnitSKill
     private void AddEnemyUnitToTargets()
     {
         _targets.Clear();
+
         _blockList.RemoveAll(t => t == null);
+
 
         for (int i = 0; i < _targetCapacity; i++)
         {
@@ -129,7 +131,7 @@ public class PlayerUnitSKill
             }
         }
 
-        if (_playerUnit.TileType == TileType.Ground && _currentTile.GetEnemyUnits().Count > 0)
+        if (_playerUnit.TileType == TileType.Ground && _currentTile.GetEnemyUnits().Count > 0 && _blockList.Count < _targetCapacity)
         {
             for (int i = 0; i < _targetCapacity; i++)
             {
@@ -216,15 +218,15 @@ public class PlayerUnitSKill
 
     public void BlockTarget(int i)
     {
-        if (_blockList.Count >= _blockList.Capacity)
+        if (_blockList.Count >= _targetCapacity)
         {
             return;
         }
 
         EnemyUnit target = _currentTile.GetEnemyUnits()[i] as EnemyUnit;
-        
 
-       if (target != null)
+
+        if (target != null && _blockList.Contains(target) == false)
        {
             _blockList.Add(target);
             target.Block(_playerUnit);
@@ -234,7 +236,6 @@ public class PlayerUnitSKill
 
     public void UnBlockTargets()
     {
-
         foreach (EnemyUnit target in _blockList)
         {
             if(target == null)
@@ -242,8 +243,10 @@ public class PlayerUnitSKill
                 continue;
             }
 
-            target.Unblock();
+            target.Unblock(_playerUnit);
         }
+
+        _blockList.Clear();
     }
 
     public bool IsAnyTargetInRange()

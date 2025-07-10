@@ -112,17 +112,17 @@ public class EnemyUnit : Unit
     //저지당하면 정지
     public void Block(PlayerUnit unit)
     {
+        SetPlayerUnit(unit);
         isBlocked = true;
-        _targetList.Add(unit);
 
     }
 
 
     //저지 풀리면 다시 경로탐색 
-    public void Unblock()
+    public void Unblock(Unit unit)
     {
+        RemovePlayerUnit(unit);
         isBlocked = false;
-        _targetList.Clear();
     }
 
 
@@ -199,24 +199,24 @@ public class EnemyUnit : Unit
     }
     
     
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out PlayerUnit unit))
-        {
-            SetPlayerUnit(unit);
-        }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.TryGetComponent(out PlayerUnit unit))
+    //    {
+    //        SetPlayerUnit(unit);
+    //    }
         
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent(out EnemyUnit enemy))
-        {
-            RemovePlayerUnit(enemy);
-        }
+    //}
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.TryGetComponent(out EnemyUnit enemy))
+    //    {
+    //        RemovePlayerUnit(enemy);
+    //    }
         
         
         
-    }
+    //}
 
     
 }
