@@ -19,15 +19,15 @@ public class GameManager : MonoBehaviour
     public event Action OnHudDataChanged;            
 
 
-    private void Awake()
-    {
-        _leftLifeCount = Constants.LIFE_OF_PLAYER;
-
-    }
 
     private void Update()
     {
         EvaluateGameResult();
+    }
+
+    public void SetStageLife(int life)
+    {
+        _leftLifeCount = life;
     }
 
     private void EvaluateGameResult()

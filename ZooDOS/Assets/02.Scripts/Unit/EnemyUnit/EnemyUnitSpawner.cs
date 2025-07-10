@@ -9,14 +9,15 @@ public class EnemyUnitSpawner : MonoBehaviour
     [SerializeField] private EffectManager _effectManager;
     [SerializeField] private StageData _stageData;
     [SerializeField] private AudioManager _audioManager;
-    [SerializeField] private GameManager gameManager;
+    [SerializeField] private GameManager _gameManager;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _gameManager.SetStageLife(_stageData.StageLife);
         StartCoroutine(CallStage(_stageData));
-        gameManager.SetEnemyCountOfThisStage(_stageData.StageCount);
+        _gameManager.SetEnemyCountOfThisStage(_stageData.StageCount);
     }
 
 
@@ -65,8 +66,8 @@ public class EnemyUnitSpawner : MonoBehaviour
         if (enemy.EnemyUnitData.EnemyUnitType == EnemyUnitType.Nothing) return;
 
         enemy.SetSFXSound(_audioManager);
-        enemy.Die += gameManager.OnEnemyDeath;
-        enemy.OnArrived += gameManager.OnEnemyEnterDefensePoint;
+        enemy.Die += _gameManager.OnEnemyDeath;
+        enemy.OnArrived += _gameManager.OnEnemyEnterDefensePoint;
 
         enemy.PlayHitEffect += _effectManager.PlayHitEffect;
         

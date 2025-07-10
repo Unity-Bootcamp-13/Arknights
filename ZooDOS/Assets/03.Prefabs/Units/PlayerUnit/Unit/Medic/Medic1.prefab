@@ -302,6 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitHpUI: {fileID: 0}
+  _sfxSound: {fileID: 7914868289767275117}
   _animator: {fileID: 1664805229785790919}
 --- !u!54 &5216692926138496089
 Rigidbody:
