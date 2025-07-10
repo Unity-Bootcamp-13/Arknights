@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioMixer _audioMixer;
     [SerializeField] private AudioMixerGroup _bgmGroup;
     [SerializeField] private AudioMixerGroup _sfxGroup;
+    [SerializeField] private AudioSource _audioSource;
     
     [Range(0f, 1f)] private float _masterVolume;
     [Range(0f, 1f)] private float _bgmVolume;
@@ -17,7 +18,10 @@ public class AudioManager : MonoBehaviour
     public float BgmVolume => _bgmVolume;
     public float SfxVolume => _sfxVolume;
 
+
     private readonly Dictionary<string, float> _lastVolumes = new();
+
+    public AudioSource AudioSource => _audioSource;
 
     public AudioMixerGroup BGMGroup => _bgmGroup;
     public AudioMixerGroup SFXGroup => _sfxGroup;

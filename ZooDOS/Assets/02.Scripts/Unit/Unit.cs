@@ -12,8 +12,8 @@ public class Unit : MonoBehaviour, IDamagable
     protected float _atk;
     protected float _atkSpeed;
     protected float _projectileSpeed;
-    [SerializeField] protected UnitHpUI _unitHpUI;
     [SerializeField] protected AudioSFXSound _sfxSound;
+    [SerializeField] protected UnitHpUI _unitHpUI;
 
 
     public Hp Hp => _hp;

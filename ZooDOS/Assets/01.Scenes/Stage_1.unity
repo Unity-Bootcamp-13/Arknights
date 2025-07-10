@@ -1321,6 +1321,7 @@ MonoBehaviour:
   _audioMixer: {fileID: 24100000, guid: 5f3a9157ecc9a3f4fb8267bf698f6141, type: 2}
   _bgmGroup: {fileID: -30274595060033258, guid: 5f3a9157ecc9a3f4fb8267bf698f6141, type: 2}
   _sfxGroup: {fileID: 7863022685064263103, guid: 5f3a9157ecc9a3f4fb8267bf698f6141, type: 2}
+  _audioSource: {fileID: 0}
 --- !u!1 &217671307
 GameObject:
   m_ObjectHideFlags: 0
@@ -4588,7 +4589,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5909500e7392a540a6df706ef50a3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 1040896743}
   _clips:
   - _soundName: Click
     _clip: {fileID: 8300000, guid: da87512076eb14593b04fb7e58cad6b0, type: 3}
@@ -5945,8 +5945,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1268203905}
-  - {fileID: 1567591419}
   - {fileID: 886141676481314060}
+  - {fileID: 1567591419}
   - {fileID: 1147764345}
   - {fileID: 69004731}
   - {fileID: 522690017}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Defender1
   m_EditorClassIdentifier: 
   Name: "\uACF5\uC0AC\uC7A5 \uAC10\uB3C5\uAD00"
-  Id: 3230
+  Id: 1101
   Hp: 3230
   Def: 190
   Atk: 310

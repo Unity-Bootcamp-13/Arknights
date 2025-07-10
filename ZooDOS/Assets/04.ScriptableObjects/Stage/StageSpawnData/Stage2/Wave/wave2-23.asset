@@ -99,7 +99,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 151702, guid: da82abfca38a6004e883d9411925a204, type: 3}
-    spawnTime: 35
+    spawnTime: 50
     path:
     - x: 11
       y: 8
@@ -116,7 +116,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 151702, guid: da82abfca38a6004e883d9411925a204, type: 3}
-    spawnTime: 35
+    spawnTime: 50
     path:
     - x: 11
       y: 8
@@ -133,7 +133,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 151702, guid: da82abfca38a6004e883d9411925a204, type: 3}
-    spawnTime: 35
+    spawnTime: 50
     path:
     - x: 11
       y: 8
@@ -150,7 +150,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 151702, guid: da82abfca38a6004e883d9411925a204, type: 3}
-    spawnTime: 35
+    spawnTime: 50
     path:
     - x: 11
       y: 8
@@ -167,7 +167,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 151702, guid: da82abfca38a6004e883d9411925a204, type: 3}
-    spawnTime: 35
+    spawnTime: 50
     path:
     - x: 11
       y: 8
@@ -184,7 +184,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 151702, guid: da82abfca38a6004e883d9411925a204, type: 3}
-    spawnTime: 35
+    spawnTime: 50
     path:
     - x: 11
       y: 8
@@ -200,5 +200,5 @@ MonoBehaviour:
       y: 4
     - x: 10
       y: 4
-  _waveCount: 7
-  _startTime: 228
+  _waveCount: 10
+  _startTime: 30

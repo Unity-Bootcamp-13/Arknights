@@ -64,6 +64,7 @@ public class Maptile : MonoBehaviour
 
     public IReadOnlyList<Unit> GetEnemyUnits()
     {
+        _enemyUnits.RemoveAll(t => t == null);
         return _enemyUnits.AsReadOnly();
     }
 

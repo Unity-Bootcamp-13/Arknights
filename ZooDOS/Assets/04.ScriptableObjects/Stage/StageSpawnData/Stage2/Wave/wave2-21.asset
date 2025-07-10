@@ -48,7 +48,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 127534, guid: b01de3bd0685aac4884a604cf0eca633, type: 3}
-    spawnTime: 3
+    spawnTime: 15
     path:
     - x: 11
       y: 8
@@ -65,7 +65,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 127534, guid: b01de3bd0685aac4884a604cf0eca633, type: 3}
-    spawnTime: 3
+    spawnTime: 15
     path:
     - x: 11
       y: 8
@@ -82,7 +82,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 127534, guid: b01de3bd0685aac4884a604cf0eca633, type: 3}
-    spawnTime: 3
+    spawnTime: 15
     path:
     - x: 11
       y: 8
@@ -99,7 +99,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 127534, guid: b01de3bd0685aac4884a604cf0eca633, type: 3}
-    spawnTime: 3
+    spawnTime: 15
     path:
     - x: 11
       y: 8
@@ -116,4 +116,4 @@ MonoBehaviour:
     - x: 10
       y: 4
   _waveCount: 5
-  _startTime: 173
+  _startTime: 20

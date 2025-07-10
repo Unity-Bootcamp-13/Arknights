@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e90132116cecb6438787f6b983e05dd, type: 3}
   m_Name: ShortRange_Enhanced
   m_EditorClassIdentifier: 
-  Hp: 2400
-  Def: 50
-  Atk: 495
-  AtkSpeed: 2
-  MoveSpeed: 1.1
+  Hp: 2200
+  Def: 70
+  Atk: 445
+  AtkSpeed: 2.2
+  MoveSpeed: 0.8
   EnemyUnitType: 1
   RangeRadius: 0
   ProjectilePrefab: {fileID: 0}

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class AudioSFXSound : MonoBehaviour
 {
     [Serializable]
@@ -13,12 +12,13 @@ public class AudioSFXSound : MonoBehaviour
     }
 
     [SerializeField] private Dictionary<string, AudioClip> _sfxSounds;
-    [SerializeField] private AudioSource _audioSource; 
     [SerializeField] private List<StringAudioClipPair> _clips;
+    private AudioSource _audioSource;
 
     public void Init(AudioManager manager)
     {
         _sfxSounds = new Dictionary<string, AudioClip>();
+        _audioSource = manager.AudioSource;
 
         foreach (var clip in _clips)
         {

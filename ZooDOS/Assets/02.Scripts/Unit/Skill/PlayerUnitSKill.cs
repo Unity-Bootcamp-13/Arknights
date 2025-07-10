@@ -3,6 +3,7 @@ using System.Collections.Generic;
 public class PlayerUnitSKill
 {
     List<Unit> _targets;
+    List<EnemyUnit> _blockList;
     PlayerUnit _playerUnit;
     List<Maptile> _attackRange;
     Maptile _currentTile;
@@ -21,6 +22,7 @@ public class PlayerUnitSKill
         _playerUnit = playerUnit;
         _targetCapacity = skillData.TargetCapacity;
         _targets = new List<Unit>(_targetCapacity);
+        _blockList = new List<EnemyUnit>(_targetCapacity);
         _attackRange = new List<Maptile>();
         _atk = atk * skillData.AtkCoefficient;
         _atkSpeed = atkSpeed * skillData.AtkSpeedCoefficient;
@@ -115,8 +117,8 @@ public class PlayerUnitSKill
 
     private void AddEnemyUnitToTargets()
     {
-        UnBlockTargets();
         _targets.Clear();
+        _blockList.RemoveAll(t => t == null);
 
         for (int i = 0; i < _targetCapacity; i++)
         {
@@ -126,10 +128,16 @@ public class PlayerUnitSKill
                 _targets.Insert(0, target);
             }
         }
+
         if (_playerUnit.TileType == TileType.Ground && _currentTile.GetEnemyUnits().Count > 0)
         {
             for (int i = 0; i < _targetCapacity; i++)
             {
+                if (i >= _currentTile.GetEnemyUnits().Count)
+                {
+                    return;
+                }
+
                 BlockTarget(i);
             }
         }
@@ -208,32 +216,33 @@ public class PlayerUnitSKill
 
     public void BlockTarget(int i)
     {
-        if(i>= _currentTile.GetEnemyUnits().Count)
+        if (_blockList.Count >= _blockList.Capacity)
         {
             return;
         }
 
-        EnemyUnit unit = _currentTile.GetEnemyUnits()[i] as EnemyUnit;
+        EnemyUnit target = _currentTile.GetEnemyUnits()[i] as EnemyUnit;
         
 
-       if (unit != null)
+       if (target != null)
        {
-            unit.Block(_playerUnit);
+            _blockList.Add(target);
+            target.Block(_playerUnit);
        }
         
     }
 
     public void UnBlockTargets()
     {
-        foreach (Unit target in _targets)
+
+        foreach (EnemyUnit target in _blockList)
         {
-            EnemyUnit enemy = target as EnemyUnit;
-            if(enemy == null)
+            if(target == null)
             {
                 continue;
             }
 
-            enemy.Unblock();
+            target.Unblock();
         }
     }
 

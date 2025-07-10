@@ -275,10 +275,12 @@ public class PlayerUnit : Unit
 
         if (_hp.HP <= 0)
         {
+            Debug.Log("111");
             _sfxSound.PlaySFXSound("Death");
         }
         else
         {
+            Debug.Log("222");
             _sfxSound.PlaySFXSound("UnPlace");
         }
 

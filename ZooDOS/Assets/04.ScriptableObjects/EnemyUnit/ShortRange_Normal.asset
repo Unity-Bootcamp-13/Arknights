@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ShortRange_Normal
   m_EditorClassIdentifier: 
   Hp: 1930
-  Def: 85
-  Atk: 350
+  Def: 60
+  Atk: 330
   AtkSpeed: 2
   MoveSpeed: 1.1
   EnemyUnitType: 1

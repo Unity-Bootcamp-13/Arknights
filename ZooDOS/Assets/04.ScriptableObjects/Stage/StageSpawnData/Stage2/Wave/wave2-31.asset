@@ -20,7 +20,7 @@ MonoBehaviour:
       y: 4
     - x: 10
       y: 4
-  - enemyPrefab: {fileID: 102230, guid: b5c037aea11c85143b1f37dbf6be9992, type: 3}
+  - enemyPrefab: {fileID: 102230, guid: 068015ed71a6f26459ea319ac05c2c6d, type: 3}
     spawnTime: 10
     path:
     - x: 0
@@ -28,4 +28,4 @@ MonoBehaviour:
     - x: 10
       y: 4
   _waveCount: 5
-  _startTime: 253
+  _startTime: 10
