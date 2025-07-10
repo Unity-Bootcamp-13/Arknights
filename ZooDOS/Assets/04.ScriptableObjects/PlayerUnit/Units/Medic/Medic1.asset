@@ -30,7 +30,7 @@ MonoBehaviour:
   AttackType: 2
   StandingIllust: {fileID: 21300000, guid: 3a90726f5c304d64fa93d5e0bcf3fdd0, type: 3}
   UnitPortrait: {fileID: 21300000, guid: 739c3c39f94a29145beeb14ed72c150a, type: 3}
-  UnitPrefab: {fileID: 8042738150713734235, guid: 75f2d7cf4db82414aa61e367c0c8868f, type: 3}
+  UnitPrefab: {fileID: 4091985803895383717, guid: 751e0593de8efe04eb4f40ec923f0275, type: 3}
   UnitTposePrefab: {fileID: 6592207061964206478, guid: 8e1bed0030a115743b0648814c93ed79, type: 3}
   SkillActivateEffectPrefab: {fileID: 1625816069985526, guid: 3c1cb9043ada1994c9d5c83863783eab, type: 3}
   BasicAttackData: {fileID: 11400000, guid: 2c2262cd8296c0e4cbb192ca9bb06994, type: 2}

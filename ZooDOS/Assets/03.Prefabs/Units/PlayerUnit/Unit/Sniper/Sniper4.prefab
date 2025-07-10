@@ -1282,6 +1282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitHpUI: {fileID: 0}
+  _sfxSound: {fileID: 2904897494234592254}
   _animator: {fileID: 4837205481614961941}
 --- !u!65 &4300148238375232431
 BoxCollider:
@@ -1440,7 +1441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5909500e7392a540a6df706ef50a3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 547336906152549638, guid: e1b4e33be40e0c7439e7cbe08df795b8, type: 3}
+  _audioSource: {fileID: -4542979768314773933}
   _clips:
   - _soundName: Attack
     _clip: {fileID: 8300000, guid: 6caadcce7246014478ddfc7ac1d0453c, type: 3}

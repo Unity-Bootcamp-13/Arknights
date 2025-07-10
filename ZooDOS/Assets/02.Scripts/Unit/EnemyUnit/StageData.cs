@@ -6,9 +6,10 @@ using UnityEngine;
 public class StageData : ScriptableObject
 {
     [SerializeField] private List<WaveData> _stage;
+    [SerializeField] private int _stageLife;
 
     public IReadOnlyList<WaveData> Stage => _stage;
-
+    public int StageLife => _stageLife;
 
     public int StageCount
     {

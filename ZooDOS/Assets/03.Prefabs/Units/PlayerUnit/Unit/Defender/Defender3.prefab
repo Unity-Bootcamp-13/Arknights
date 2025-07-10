@@ -2392,6 +2392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitHpUI: {fileID: 0}
+  _sfxSound: {fileID: 5762809850601038582}
   _animator: {fileID: -8723602221646270600}
 --- !u!65 &1430664161866205886
 BoxCollider:

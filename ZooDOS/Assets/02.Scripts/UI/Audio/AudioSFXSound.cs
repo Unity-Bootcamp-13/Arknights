@@ -18,8 +18,6 @@ public class AudioSFXSound : MonoBehaviour
 
     public void Init(AudioManager manager)
     {
-        _clips = new List<StringAudioClipPair>();
-
         _sfxSounds = new Dictionary<string, AudioClip>();
 
         foreach (var clip in _clips)
