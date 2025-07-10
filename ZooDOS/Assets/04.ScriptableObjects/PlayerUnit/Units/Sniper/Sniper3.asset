@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\uD2B9\uC784\uB300 \uAD00\uC2EC\uBCD1\uC0AC"
   Id: 1303
-  Hp: 550
-  Def: 45
-  Atk: 130
+  Hp: 1130
+  Def: 90
+  Atk: 420
   AtkSpeed: 1.1
   ProjectileSpeed: 10
   ResistCapacity: 1

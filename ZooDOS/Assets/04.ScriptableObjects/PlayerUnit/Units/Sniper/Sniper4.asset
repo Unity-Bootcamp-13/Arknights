@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\uC218\uB958\uD0C4\uC744 \uC190\uC5D0 \uB4E0 \uD6C8\uB828\uBCD1"
   Id: 1304
-  Hp: 850
-  Def: 60
-  Atk: 500
+  Hp: 1630
+  Def: 123
+  Atk: 930
   AtkSpeed: 2.7
   ProjectileSpeed: 5
   ResistCapacity: 1
-  PlaceCost: 0
+  PlaceCost: 24
   ReplaceTime: 70
   BackwardRange: 0
   ForwardRange: 2
