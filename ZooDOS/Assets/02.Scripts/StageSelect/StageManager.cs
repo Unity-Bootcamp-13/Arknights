@@ -16,7 +16,10 @@ public class StageManager : MonoBehaviour
     void Start()
     {
          LoadStageData();
-         InitStageStarCnt();
+         if (SceneManager.GetActiveScene().name == "StageSelect")
+         {
+            InitStageStarCnt();
+         }
     }
 
 
