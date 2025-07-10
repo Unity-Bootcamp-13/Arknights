@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class GameManager : MonoBehaviour
     private int _leftLifeCount;
     private int _totalEnemyCount;
     private int _leftEnemyCount;
-
+    private int resultStarCnt = 3;
     public int LeftLifeCount => _leftLifeCount;
     public int TotalEnemyCount => _totalEnemyCount;
     public int LeftEnemyCount => _leftEnemyCount;
@@ -18,11 +19,14 @@ public class GameManager : MonoBehaviour
 
     public event Action OnHudDataChanged;            
 
-
+    private bool isGameEnded = false;
 
     private void Update()
     {
-        EvaluateGameResult();
+        if (!isGameEnded)
+        {
+            EvaluateGameResult();
+        }
     }
 
     public void SetStageLife(int life)
@@ -35,11 +39,13 @@ public class GameManager : MonoBehaviour
         if (_leftLifeCount <= 0)
         {
             //패배
+            isGameEnded = true;
             OnBattleEnd(false);
         } 
         else if(_leftEnemyCount <= 0)
         {
             //승리
+            isGameEnded = true;
             OnBattleEnd(true);
         }
     }
@@ -66,11 +72,18 @@ public class GameManager : MonoBehaviour
             defeatDialogue
         );
         Time.timeScale = 0;
+        //스테이지 별 저장
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        int stageNum = Convert.ToInt32(currentSceneName.Substring(6));
+        GetComponent<StageManager>().SetStageStarCnt(stageNum - 1, starCount);
+
     }
     
     private int CalculateStarCount()
     {
-        return _leftLifeCount;
+        int result = Mathf.Max(0, resultStarCnt);
+        
+        return result;
     }
     
     
@@ -82,6 +95,7 @@ public class GameManager : MonoBehaviour
     public void OnEnemyEnterDefensePoint()
     {
         _leftLifeCount--;
+        resultStarCnt--;
         NotifyHud();
     }
 

@@ -1,64 +1,68 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
-    [Header("External Refs")]
+    [Header("그룹 연결")]
     [SerializeField] private AudioMixer _audioMixer;
     [SerializeField] private AudioMixerGroup _bgmGroup;
     [SerializeField] private AudioMixerGroup _sfxGroup;
     
-    [Range(0f, 1f)] private float masterVolume = 0.3f;
-    [Range(0f, 1f)] private float bgmVolume = 0.3f;
-    [Range(0f, 1f)] private float sfxVolume = 0.3f;
+    [Range(0f, 1f)] private float _masterVolume;
+    [Range(0f, 1f)] private float _bgmVolume;
+    [Range(0f, 1f)] private float _sfxVolume;
+
+    public float MasterVolume => _masterVolume;
+    public float BgmVolume => _bgmVolume;
+    public float SfxVolume => _sfxVolume;
 
     private readonly Dictionary<string, float> _lastVolumes = new();
 
     public AudioMixerGroup BGMGroup => _bgmGroup;
     public AudioMixerGroup SFXGroup => _sfxGroup;
 
-   
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-        //1. playerprefs 값셋팅
-        //2. saveValue(   ) ;\
-    }
-
     private void Start()
     {
+        _masterVolume = PlayerPrefs.GetFloat("MasterVolume", 0.3f);
+        _bgmVolume = PlayerPrefs.GetFloat("BGMVolume", 0.3f);
+        _sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0.3f);
         ApplyInitialVolumes();
+
     }
     private void ApplyInitialVolumes()
     {
-        SetVolume("Master", masterVolume);
-        SetVolume("BGM", bgmVolume);
-        SetVolume("SFX", sfxVolume);
+        SetVolume("Master", _masterVolume);
+        SetVolume("BGM", _bgmVolume);
+        SetVolume("SFX", _sfxVolume);
     }
 
     public void SetVolume(string parameter, float normalizedValue)
     {
         float dB = Mathf.Log10(Mathf.Clamp(normalizedValue, 0.0001f, 1f)) * 20f;
         _audioMixer.SetFloat(parameter, dB);
-
         switch (parameter)
         {
             case "Master":
-                masterVolume = normalizedValue;
+                _masterVolume = normalizedValue;
+                PlayerPrefs.SetFloat("MasterVolume", _masterVolume);
+                PlayerPrefs.Save();
                 break;
             case "BGM":
-                bgmVolume = normalizedValue;
+                _bgmVolume = normalizedValue;
+                PlayerPrefs.SetFloat("BGMVolume", _bgmVolume);
+                PlayerPrefs.Save();
                 break;
             case "SFX":
-                sfxVolume = normalizedValue;
+                _sfxVolume = normalizedValue;
+                PlayerPrefs.SetFloat("SFXVolume", _sfxVolume);
+                PlayerPrefs.Save();
                 break;
             default:
-                break;          
+                break;
         }
+        
     }
-
 
     public void ToggleMuteSingle(string paramName)
     {
