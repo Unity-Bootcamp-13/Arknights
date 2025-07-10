@@ -107,7 +107,7 @@ public class DirectionSelectUI : MonoBehaviour
         if (_isDragging && Input.GetMouseButtonUp(0))
         {
             Vector2 delta = (Vector2)Input.mousePosition - _startMousePos;
-            if (delta.SqrMagnitude() > 200)
+            if (delta.SqrMagnitude() > 800)
             {
                 FinalizePlacement(delta);
             }

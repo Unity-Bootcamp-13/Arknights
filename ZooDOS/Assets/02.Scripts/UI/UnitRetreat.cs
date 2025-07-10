@@ -112,7 +112,7 @@ public class UnitRetreat : MonoBehaviour
 
     void OpenUnitPanel(PlayerUnit unit)
     {
-        Time.timeScale = 0.2f;
+        Time.timeScale = 0.1f;
 
         _selectedUnit = unit;
         _selectedUnit.Die += HandleUnitDie;
