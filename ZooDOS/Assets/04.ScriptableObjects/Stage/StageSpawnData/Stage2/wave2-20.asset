@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: wave2-20
   m_EditorClassIdentifier: 
   _wave:
-  - enemyPrefab: {fileID: 0}
+  - enemyPrefab: {fileID: 4352046269588137532, guid: ee76472b5ec68404782b9a2f26512ae1, type: 3}
     spawnTime: 0
     path:
     - x: 1
@@ -24,5 +24,115 @@ MonoBehaviour:
       y: 4
     - x: 10
       y: 4
-  _waveCount: 0
-  _startTime: 0
+  - enemyPrefab: {fileID: 3866023922725468305, guid: 67ffe65f00d052d44bda4ba5aa17418d, type: 3}
+    spawnTime: 3
+    path:
+    - x: 1
+      y: 2
+    - x: 7
+      y: 2
+    - x: 7
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 3866023922725468305, guid: 67ffe65f00d052d44bda4ba5aa17418d, type: 3}
+    spawnTime: 3
+    path:
+    - x: 1
+      y: 2
+    - x: 7
+      y: 2
+    - x: 7
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 3866023922725468305, guid: 67ffe65f00d052d44bda4ba5aa17418d, type: 3}
+    spawnTime: 3
+    path:
+    - x: 1
+      y: 2
+    - x: 7
+      y: 2
+    - x: 7
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 3866023922725468305, guid: 67ffe65f00d052d44bda4ba5aa17418d, type: 3}
+    spawnTime: 3
+    path:
+    - x: 1
+      y: 2
+    - x: 7
+      y: 2
+    - x: 7
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 3866023922725468305, guid: 67ffe65f00d052d44bda4ba5aa17418d, type: 3}
+    spawnTime: 3
+    path:
+    - x: 1
+      y: 2
+    - x: 7
+      y: 2
+    - x: 7
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 3866023922725468305, guid: 67ffe65f00d052d44bda4ba5aa17418d, type: 3}
+    spawnTime: 3
+    path:
+    - x: 1
+      y: 2
+    - x: 7
+      y: 2
+    - x: 7
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 3866023922725468305, guid: 67ffe65f00d052d44bda4ba5aa17418d, type: 3}
+    spawnTime: 3
+    path:
+    - x: 1
+      y: 2
+    - x: 7
+      y: 2
+    - x: 7
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 3866023922725468305, guid: 67ffe65f00d052d44bda4ba5aa17418d, type: 3}
+    spawnTime: 3
+    path:
+    - x: 1
+      y: 2
+    - x: 7
+      y: 2
+    - x: 7
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 3866023922725468305, guid: 67ffe65f00d052d44bda4ba5aa17418d, type: 3}
+    spawnTime: 3
+    path:
+    - x: 1
+      y: 2
+    - x: 7
+      y: 2
+    - x: 7
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 3866023922725468305, guid: 67ffe65f00d052d44bda4ba5aa17418d, type: 3}
+    spawnTime: 3
+    path:
+    - x: 1
+      y: 2
+    - x: 7
+      y: 2
+    - x: 7
+      y: 4
+    - x: 10
+      y: 4
+  _waveCount: 10
+  _startTime: 158

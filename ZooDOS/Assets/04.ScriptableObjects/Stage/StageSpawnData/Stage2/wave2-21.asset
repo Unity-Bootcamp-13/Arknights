@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: wave2-21
   m_EditorClassIdentifier: 
   _wave:
-  - enemyPrefab: {fileID: 0}
+  - enemyPrefab: {fileID: 4352046269588137532, guid: ee76472b5ec68404782b9a2f26512ae1, type: 3}
     spawnTime: 0
     path:
     - x: 11
@@ -30,5 +30,90 @@ MonoBehaviour:
       y: 4
     - x: 10
       y: 4
-  _waveCount: 0
-  _startTime: 0
+  - enemyPrefab: {fileID: 151702, guid: da82abfca38a6004e883d9411925a204, type: 3}
+    spawnTime: 3
+    path:
+    - x: 11
+      y: 8
+    - x: 11
+      y: 7
+    - x: 6
+      y: 7
+    - x: 6
+      y: 5
+    - x: 9
+      y: 5
+    - x: 9
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 151702, guid: da82abfca38a6004e883d9411925a204, type: 3}
+    spawnTime: 5
+    path:
+    - x: 11
+      y: 8
+    - x: 11
+      y: 7
+    - x: 6
+      y: 7
+    - x: 6
+      y: 5
+    - x: 9
+      y: 5
+    - x: 9
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 151702, guid: da82abfca38a6004e883d9411925a204, type: 3}
+    spawnTime: 5
+    path:
+    - x: 11
+      y: 8
+    - x: 11
+      y: 7
+    - x: 6
+      y: 7
+    - x: 6
+      y: 5
+    - x: 9
+      y: 5
+    - x: 9
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 151702, guid: da82abfca38a6004e883d9411925a204, type: 3}
+    spawnTime: 5
+    path:
+    - x: 11
+      y: 8
+    - x: 11
+      y: 7
+    - x: 6
+      y: 7
+    - x: 6
+      y: 5
+    - x: 9
+      y: 5
+    - x: 9
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 151702, guid: da82abfca38a6004e883d9411925a204, type: 3}
+    spawnTime: 5
+    path:
+    - x: 11
+      y: 8
+    - x: 11
+      y: 7
+    - x: 6
+      y: 7
+    - x: 6
+      y: 5
+    - x: 9
+      y: 5
+    - x: 9
+      y: 4
+    - x: 10
+      y: 4
+  _waveCount: 5
+  _startTime: 173

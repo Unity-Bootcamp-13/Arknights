@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: wave2-24
   m_EditorClassIdentifier: 
   _wave:
-  - enemyPrefab: {fileID: 0}
+  - enemyPrefab: {fileID: 4352046269588137532, guid: ee76472b5ec68404782b9a2f26512ae1, type: 3}
     spawnTime: 0
     path:
     - x: 1
@@ -40,5 +40,140 @@ MonoBehaviour:
       y: 4
     - x: 10
       y: 4
-  _waveCount: 0
-  _startTime: 0
+  - enemyPrefab: {fileID: 114920, guid: 2d6705ec6125761449d27bb68020bb4f, type: 3}
+    spawnTime: 3
+    path:
+    - x: 1
+      y: 7
+    - x: 2
+      y: 7
+    - x: 2
+      y: 2
+    - x: 3
+      y: 2
+    - x: 3
+      y: 7
+    - x: 2
+      y: 7
+    - x: 2
+      y: 2
+    - x: 3
+      y: 2
+    - x: 3
+      y: 7
+    - x: 2
+      y: 7
+    - x: 2
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 103890, guid: 06f8094f91b6f5246b5a5662e2c514ff, type: 3}
+    spawnTime: 2
+    path:
+    - x: 1
+      y: 7
+    - x: 2
+      y: 7
+    - x: 2
+      y: 2
+    - x: 3
+      y: 2
+    - x: 3
+      y: 7
+    - x: 2
+      y: 7
+    - x: 2
+      y: 2
+    - x: 3
+      y: 2
+    - x: 3
+      y: 7
+    - x: 2
+      y: 7
+    - x: 2
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 114920, guid: 2d6705ec6125761449d27bb68020bb4f, type: 3}
+    spawnTime: 2
+    path:
+    - x: 1
+      y: 7
+    - x: 2
+      y: 7
+    - x: 2
+      y: 2
+    - x: 3
+      y: 2
+    - x: 3
+      y: 7
+    - x: 2
+      y: 7
+    - x: 2
+      y: 2
+    - x: 3
+      y: 2
+    - x: 3
+      y: 7
+    - x: 2
+      y: 7
+    - x: 2
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 103890, guid: 06f8094f91b6f5246b5a5662e2c514ff, type: 3}
+    spawnTime: 2
+    path:
+    - x: 1
+      y: 7
+    - x: 2
+      y: 7
+    - x: 2
+      y: 2
+    - x: 3
+      y: 2
+    - x: 3
+      y: 7
+    - x: 2
+      y: 7
+    - x: 2
+      y: 2
+    - x: 3
+      y: 2
+    - x: 3
+      y: 7
+    - x: 2
+      y: 7
+    - x: 2
+      y: 4
+    - x: 10
+      y: 4
+  - enemyPrefab: {fileID: 114920, guid: 2d6705ec6125761449d27bb68020bb4f, type: 3}
+    spawnTime: 2
+    path:
+    - x: 1
+      y: 7
+    - x: 2
+      y: 7
+    - x: 2
+      y: 2
+    - x: 3
+      y: 2
+    - x: 3
+      y: 7
+    - x: 2
+      y: 7
+    - x: 2
+      y: 2
+    - x: 3
+      y: 2
+    - x: 3
+      y: 7
+    - x: 2
+      y: 7
+    - x: 2
+      y: 4
+    - x: 10
+      y: 4
+  _waveCount: 5
+  _startTime: 228
