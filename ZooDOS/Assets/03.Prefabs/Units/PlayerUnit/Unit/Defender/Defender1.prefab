@@ -2541,6 +2541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitHpUI: {fileID: 0}
+  _sfxSound: {fileID: 438233042222248915}
   _animator: {fileID: 5314880458225198800}
 --- !u!65 &2067977803177705658
 BoxCollider:
@@ -2599,7 +2600,7 @@ AudioSource:
   m_GameObject: {fileID: 7379373711492148952}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 7863022685064263103, guid: 5f3a9157ecc9a3f4fb8267bf698f6141, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1

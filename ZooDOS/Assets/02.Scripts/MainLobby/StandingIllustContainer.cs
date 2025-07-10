@@ -6,7 +6,7 @@ public class StandingIllustContainer
 {
     public List<Sprite> StandingIllusts { get; }
 
-    static private string path = "MainLobby";
+    static private string path = "OutGame/MainLobby";
 
     public StandingIllustContainer()
     {
