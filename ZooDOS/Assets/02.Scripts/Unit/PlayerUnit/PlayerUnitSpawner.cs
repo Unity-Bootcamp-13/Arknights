@@ -7,6 +7,7 @@ public class PlayerUnitSpawner : MonoBehaviour
     [SerializeField] UnitHpSpUIManager _unitHpSpUIManager;
     [SerializeField] EffectManager _effectManager;
     [SerializeField] PlayerUnitData[] _playerUnitDatas;
+    [SerializeField] AudioManager _audioManager;
 
     Dictionary<int, PlayerUnit> _units;
 
@@ -19,6 +20,7 @@ public class PlayerUnitSpawner : MonoBehaviour
         {
             PlayerUnit playerUnit = Instantiate(_playerUnitDatas[i].UnitPrefab);
             playerUnit.Init(_playerUnitDatas[i]);
+            playerUnit.SetSFXSound(_audioManager);
             playerUnit.PlayHitEffect += _effectManager.PlayHitEffect;
             playerUnit.PlayHealEffect += _effectManager.PlayHealEffect;
             playerUnit.GetSkillEffect += _effectManager.GetPlayerSkillEffect;

@@ -119,6 +119,8 @@ public class EnemyUnit : Unit
     public override void OnDeath()
     {
         base.OnDeath();
+
+        _sfxSound.PlaySFXSound("Death");
         Die?.Invoke(this);
         Destroy(gameObject);
     }
@@ -140,7 +142,9 @@ public class EnemyUnit : Unit
     {
         Unit _target = LastDeployUnit(); 
         float dmg = Math.Max(1,_atk - _target.Def);
-        
+
+        _sfxSound.PlaySFXSound("Attack");
+
         if (_enemyUnitData.ProjectilePrefab != null)
         {
             Projectile projectile = Instantiate(_enemyUnitData.ProjectilePrefab).GetComponent<Projectile>();
