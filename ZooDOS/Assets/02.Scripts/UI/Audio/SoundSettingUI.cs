@@ -15,20 +15,20 @@ public class SoundSettingUI : MonoBehaviour
     [SerializeField] private TMP_Text _bgmText;
     [SerializeField] private TMP_Text _sfxText;
 
-    private AudioManager _audioManager;
-    private bool _visible;
-    void Awake()
+    [SerializeField] private AudioManager _audioManager;
+
+    private bool _visible = false;
+    private void Start()
     {
-        _audioManager = FindAnyObjectByType<AudioManager>(FindObjectsInactive.Include);
         if (_audioManager == null) 
         { 
             Debug.LogError("AudioManager 못 찾음"); 
             return; 
         }
 
-        InitSlider(_masterSlider, _masterText, 0.3f);  
-        InitSlider(_bgmSlider, _bgmText, 0.3f);
-        InitSlider(_sfxSlider, _sfxText, 0.3f);
+        InitSlider(_masterSlider, _masterText, _audioManager.MasterVolume);  
+        InitSlider(_bgmSlider, _bgmText, _audioManager.BgmVolume);
+        InitSlider(_sfxSlider, _sfxText, _audioManager.SfxVolume);
 
 
         _soundSettingButton.onClick.AddListener(TogglePanel);
