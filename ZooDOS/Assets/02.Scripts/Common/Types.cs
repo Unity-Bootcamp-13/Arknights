@@ -30,4 +30,5 @@ public enum TileType
     Hill,
     EnemyEntryPoint,
     DefensePoint,
+    RestrictedGround,
 }
