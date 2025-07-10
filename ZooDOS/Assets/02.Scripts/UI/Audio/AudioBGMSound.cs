@@ -1,23 +1,17 @@
 ﻿using UnityEngine;
-using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioBGMSound : MonoBehaviour
 {
     [SerializeField] private AudioClip _bgmClip;
 
-    private AudioSource _audioSource;
+    [SerializeField] AudioSource _audioSource;
+
+    [SerializeField] private AudioManager _audioManager;
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
-        AudioManager manager = FindAnyObjectByType<AudioManager>();
-        if (manager == null)
-        {
-            Debug.LogWarning("AudioManager를 찾지 못했습니다. 기본 출력 사용.");
-            return;
-        }
-        _audioSource.outputAudioMixerGroup = manager.BGMGroup;
+        _audioSource.outputAudioMixerGroup = _audioManager.BGMGroup;
         PlayBGMSound();
     }
     public void PlayBGMSound()

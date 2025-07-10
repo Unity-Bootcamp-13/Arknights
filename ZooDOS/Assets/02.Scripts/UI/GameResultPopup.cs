@@ -24,7 +24,7 @@ public class GameResultPopup : MonoBehaviour
 
     private void Start()
     {
-        fullScreenButton.onClick.AddListener(() => SceneManager.LoadScene("MainLobbyScene"));
+        fullScreenButton.onClick.AddListener(() => SceneManager.LoadScene("StageSelect"));
         gameObject.SetActive(false); 
     }
 

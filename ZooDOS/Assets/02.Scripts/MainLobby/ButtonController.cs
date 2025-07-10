@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
@@ -12,5 +13,6 @@ public class ButtonController : MonoBehaviour
 
     public void OnStageButtonClicked()
     {
+        SceneManager.LoadScene("StageSelect");
     }
 }
