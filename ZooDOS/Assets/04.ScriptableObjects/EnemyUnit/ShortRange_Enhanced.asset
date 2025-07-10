@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e90132116cecb6438787f6b983e05dd, type: 3}
   m_Name: ShortRange_Enhanced
   m_EditorClassIdentifier: 
-  Hp: 1700
+  Hp: 2400
   Def: 50
-  Atk: 250
+  Atk: 495
   AtkSpeed: 2
   MoveSpeed: 1.1
   EnemyUnitType: 1
