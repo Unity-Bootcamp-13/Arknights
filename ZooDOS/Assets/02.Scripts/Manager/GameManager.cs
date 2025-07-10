@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1.0f;
+        _gameResultPopup.Init();
 
     }
     private void Update()
@@ -44,12 +45,12 @@ public class GameManager : MonoBehaviour
 
     private void EvaluateGameResult()
     {
-        
         if (_leftLifeCount <= 0)
         {
             //패배
             _loopSound.StopBgm();
             isGameEnded = true;
+            _loseSound.gameObject.SetActive(true);
             _loseSound.PlayBGMOneShot();
             OnBattleEnd(false);
         } 
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
             //승리
             _loopSound.StopBgm();
             isGameEnded = true;
+            _winSound.gameObject.SetActive(true);
             _winSound.PlayBGMOneShot();
             OnBattleEnd(true);
         }
