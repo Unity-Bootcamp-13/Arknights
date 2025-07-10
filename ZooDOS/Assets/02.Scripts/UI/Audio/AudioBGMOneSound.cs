@@ -12,9 +12,14 @@ public class AudioBGMOneSound : MonoBehaviour
     private void Start()
     {
         _audioSource.outputAudioMixerGroup = _audioManager.BGMGroup;
-        PlayBGMOneShot();
+        _audioSource.playOnAwake = false;   // 씬 시작 시 자동 재생 방지
+        _audioSource.loop = false;
     }
 
+    private void OnEnable()
+    {
+        PlayBGMOneShot();
+    }
     public void StopBgm()
     {
         if (_audioSource.isPlaying)

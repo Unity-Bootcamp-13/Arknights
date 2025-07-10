@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] Map _map;
     [SerializeField] GameResultPopup _gameResultPopup;
     [SerializeField] private Sprite characterPortrait;
-    
+    [SerializeField] AudioBGMLoopSound _loopSound;
+    [SerializeField] AudioBGMOneSound _winSound;
+    [SerializeField] AudioBGMOneSound _loseSound;
     private int _leftLifeCount;
     private int _totalEnemyCount;
     private int _leftEnemyCount;
@@ -21,9 +23,11 @@ public class GameManager : MonoBehaviour
 
     private bool isGameEnded = false;
 
+    
     private void Start()
     {
         Time.timeScale = 1.0f;
+
     }
     private void Update()
     {
@@ -40,16 +44,21 @@ public class GameManager : MonoBehaviour
 
     private void EvaluateGameResult()
     {
+        
         if (_leftLifeCount <= 0)
         {
             //패배
+            _loopSound.StopBgm();
             isGameEnded = true;
+            _loseSound.PlayBGMOneShot();
             OnBattleEnd(false);
         } 
-        else if(_leftEnemyCount <= 0)
+        else if (_leftEnemyCount <= 0)
         {
             //승리
+            _loopSound.StopBgm();
             isGameEnded = true;
+            _winSound.PlayBGMOneShot();
             OnBattleEnd(true);
         }
     }
