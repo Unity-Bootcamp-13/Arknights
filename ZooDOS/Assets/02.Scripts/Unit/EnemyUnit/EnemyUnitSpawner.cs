@@ -8,13 +8,16 @@ public class EnemyUnitSpawner : MonoBehaviour
     [SerializeField] private UnitHpSpUIManager _unitHpSpUIManager;
     [SerializeField] private EffectManager _effectManager;
     [SerializeField] private StageData _stageData;
-    [SerializeField] private GameManager gameManager;
+    [SerializeField] private AudioManager _audioManager;
+    [SerializeField] private GameManager _gameManager;
+
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _gameManager.SetStageLife(_stageData.StageLife);
         StartCoroutine(CallStage(_stageData));
-        gameManager.SetEnemyCountOfThisStage(_stageData.StageCount);
+        _gameManager.SetEnemyCountOfThisStage(_stageData.StageCount);
     }
 
 
@@ -24,7 +27,7 @@ public class EnemyUnitSpawner : MonoBehaviour
         {
             //정해놓은 스폰시간마다 적스폰, spawnTime 간격 대기 
             yield return new WaitForSeconds(waveData.StartTime);
-            CallWave(waveData);
+            StartCoroutine(CallWave(waveData));
         }
 
     }
@@ -61,9 +64,10 @@ public class EnemyUnitSpawner : MonoBehaviour
         enemy.Init(path);
         //적유닛이 아니면 아래 로직 호출 x
         if (enemy.EnemyUnitData.EnemyUnitType == EnemyUnitType.Nothing) return;
-        
-        enemy.Die += gameManager.OnEnemyDeath;
-        enemy.OnArrived += gameManager.OnEnemyEnterDefensePoint;
+
+        enemy.SetSFXSound(_audioManager);
+        enemy.Die += _gameManager.OnEnemyDeath;
+        enemy.OnArrived += _gameManager.OnEnemyEnterDefensePoint;
 
         enemy.PlayHitEffect += _effectManager.PlayHitEffect;
         
