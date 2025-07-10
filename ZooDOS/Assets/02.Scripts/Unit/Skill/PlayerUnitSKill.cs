@@ -118,7 +118,8 @@ public class PlayerUnitSKill
 
     private void AddEnemyUnitToTargets()
     {
-        _targets.RemoveAll(t => t != null);
+        UnBlockTargets();
+        _targets.Clear();
 
         for (int i = 0; i < _targetCapacity; i++)
         {
@@ -136,7 +137,8 @@ public class PlayerUnitSKill
 
     private void AddPlayerUnitToTargets()
     {
-        _targets.RemoveAll(t => t != null);
+        UnBlockTargets();
+        _targets.Clear();
 
         for (int i = 0; i < _targetCapacity; i++)
         {
@@ -217,11 +219,7 @@ public class PlayerUnitSKill
 
     public void UnBlockTargets()
     {
-        if (_attackType == AttackType.Heal || _attackType == AttackType.Nothing || _playerUnit.TileType != TileType.Ground)
-        {
-            return;
-        }
-
+       
         foreach (Unit target in _targets)
         {
             EnemyUnit enemy = target as EnemyUnit;

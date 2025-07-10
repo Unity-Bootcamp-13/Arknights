@@ -14,6 +14,7 @@ public class EnemyUnit : Unit
     private List<Unit> _targetList = new List<Unit>();
 
     private float _attackTime = 0;
+    private float _attackAfterMoveTime = 0;
 
     [SerializeField] private EnemyUnitData _enemyUnitData;
     private Animator _animator;
@@ -28,8 +29,20 @@ public class EnemyUnit : Unit
 
     private void Update()
     {
-        if (_targetList.Count > 0)
+        if (_targetList.Count > 0 )
         {
+            //원거리유닛 공격하고 0.3초 ~0.6초간 움직임
+            if (!isBlocked
+                &&_enemyUnitData.EnemyUnitType == EnemyUnitType.LongRange
+                && (_attackAfterMoveTime > 0.3f && _attackAfterMoveTime < _enemyUnitData.AtkSpeed))
+            {
+                _attackAfterMoveTime += Time.deltaTime;
+                _animator.SetFloat("Speed_f", 1f);
+                MoveStep();
+                _attackTime += Time.deltaTime;
+                return;
+            }
+            
             _animator.SetFloat("Speed_f", 0f);
             if (_attackTime > _enemyUnitData.AtkSpeed)
             {
@@ -157,6 +170,7 @@ public class EnemyUnit : Unit
             _target.Hp.GetDamage(dmg);
         }
         //Debug.Log("적 -> 아군 공격");
+        _attackAfterMoveTime = 0;
 
     }
     public void SetPlayerUnit(PlayerUnit unit)
