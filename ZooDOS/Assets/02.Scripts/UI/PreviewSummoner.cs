@@ -90,7 +90,7 @@ public class PreviewSummoner : MonoBehaviour
             return;
         }
 
-        Time.timeScale = 0.2f;
+        Time.timeScale = 0.1f;
         UpdatePreviewPosition();
         HandleMouseClick();
     }
