@@ -47,7 +47,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 127546, guid: 7887ef8715cd3bc4a87754303e2841cd, type: 3}
-    spawnTime: 3
+    spawnTime: 5
     path:
     - x: 1
       y: 2
@@ -69,7 +69,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 127546, guid: 7887ef8715cd3bc4a87754303e2841cd, type: 3}
-    spawnTime: 3
+    spawnTime: 5
     path:
     - x: 1
       y: 2
@@ -91,7 +91,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 127546, guid: 7887ef8715cd3bc4a87754303e2841cd, type: 3}
-    spawnTime: 3
+    spawnTime: 5
     path:
     - x: 1
       y: 2
@@ -113,7 +113,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 127546, guid: 7887ef8715cd3bc4a87754303e2841cd, type: 3}
-    spawnTime: 3
+    spawnTime: 5
     path:
     - x: 1
       y: 2
@@ -135,7 +135,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 127546, guid: 7887ef8715cd3bc4a87754303e2841cd, type: 3}
-    spawnTime: 3
+    spawnTime: 5
     path:
     - x: 1
       y: 2
@@ -157,7 +157,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 127546, guid: 7887ef8715cd3bc4a87754303e2841cd, type: 3}
-    spawnTime: 3
+    spawnTime: 5
     path:
     - x: 1
       y: 2
@@ -179,7 +179,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 127546, guid: 7887ef8715cd3bc4a87754303e2841cd, type: 3}
-    spawnTime: 3
+    spawnTime: 5
     path:
     - x: 1
       y: 2
@@ -201,7 +201,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 127546, guid: 7887ef8715cd3bc4a87754303e2841cd, type: 3}
-    spawnTime: 3
+    spawnTime: 5
     path:
     - x: 1
       y: 2
@@ -223,7 +223,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 127546, guid: 7887ef8715cd3bc4a87754303e2841cd, type: 3}
-    spawnTime: 3
+    spawnTime: 5
     path:
     - x: 1
       y: 2

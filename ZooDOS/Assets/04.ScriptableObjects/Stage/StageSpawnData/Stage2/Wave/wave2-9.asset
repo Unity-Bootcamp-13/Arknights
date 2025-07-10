@@ -76,7 +76,7 @@ MonoBehaviour:
     - x: 10
       y: 4
   - enemyPrefab: {fileID: 3866023922725468305, guid: 67ffe65f00d052d44bda4ba5aa17418d, type: 3}
-    spawnTime: 7
+    spawnTime: 5
     path:
     - x: 1
       y: 3

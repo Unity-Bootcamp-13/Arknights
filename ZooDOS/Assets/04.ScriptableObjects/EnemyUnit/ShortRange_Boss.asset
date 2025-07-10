@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e90132116cecb6438787f6b983e05dd, type: 3}
   m_Name: ShortRange_Boss
   m_EditorClassIdentifier: 
-  Hp: 2650
-  Def: 85
-  Atk: 350
-  AtkSpeed: 2
-  MoveSpeed: 1.1
+  Hp: 9203
+  Def: 120
+  Atk: 930
+  AtkSpeed: 6
+  MoveSpeed: 0.3
   EnemyUnitType: 1
   RangeRadius: 0
   ProjectilePrefab: {fileID: 0}
