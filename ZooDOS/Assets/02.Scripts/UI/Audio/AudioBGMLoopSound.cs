@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class AudioBGMSound : MonoBehaviour
+public class AudioBGMLoopSound : MonoBehaviour
 {
     [SerializeField] private AudioClip _bgmClip;
 
@@ -28,4 +28,12 @@ public class AudioBGMSound : MonoBehaviour
             Debug.LogWarning("BGM Clip이 할당되지 않았습니다.");
         }
     }
+
+    public void StopBgm()
+    {
+        if (_audioSource.isPlaying)
+            _audioSource.Stop();     
+    }
+
+
 }

@@ -1336,7 +1336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2d4169000c90b40bfc7d55ab85a582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bgmClip: {fileID: 8300000, guid: 822315ff056ecd54ebe91f05bc155012, type: 3}
+  _bgmClip: {fileID: 8300000, guid: b2d51aeec9606dd42b76d50e48282b58, type: 3}
   _audioSource: {fileID: 217671309}
   _audioManager: {fileID: 206351730}
 --- !u!82 &217671309
@@ -2879,7 +2879,7 @@ MonoBehaviour:
   map: {fileID: 1671331094}
   _unitHpSpUIManager: {fileID: 603207805}
   _effectManager: {fileID: 2074756878}
-  _stageData: {fileID: 11400000, guid: d6889bb697d1f124282f402d8be42bba, type: 2}
+  _stageData: {fileID: 11400000, guid: 1039accbdb3afa34b8edcf66c571234e, type: 2}
   _audioManager: {fileID: 206351730}
   _gameManager: {fileID: 167409844}
 --- !u!4 &647686781
@@ -8889,7 +8889,7 @@ MonoBehaviour:
   _enemyEntryPointPrefab: {fileID: 3543586772515963584, guid: d34bcc2e7f21aad4796f312a195a741c, type: 3}
   _defensePointPrefab: {fileID: 1617266053126839220, guid: 1bf275499f46d954c9d9abd11f235c1f, type: 3}
   _restrictedGroundPrefab: {fileID: 8778022737650930003, guid: faedf52790a2786469c58ea9467bceec, type: 3}
-  _stageLayoutInfoSO: {fileID: 11400000, guid: 790e2000557a1b141b9baa7d0cc80d17, type: 2}
+  _stageLayoutInfoSO: {fileID: 11400000, guid: ace89998503ce5f46a7f98261c7cb2fb, type: 2}
 --- !u!4 &1671331095
 Transform:
   m_ObjectHideFlags: 0
