@@ -19,5 +19,6 @@ MonoBehaviour:
   TargetCapacity: 1
   ProjectilePrefab: {fileID: -1166112774454647543, guid: 2519d4533ee850e439518dbfece513a2, type: 3}
   SkillCost: 3
+  SkillIcon: {fileID: -1290543790, guid: da8dd823901c1714181d86e8ac870153, type: 3}
   SkillDescription: "\uACF5\uACA9\uB825\uC758 300%\uC758 \uB370\uBBF8\uC9C0\uB97C
     \uC785\uD799\uB2C8\uB2E4."

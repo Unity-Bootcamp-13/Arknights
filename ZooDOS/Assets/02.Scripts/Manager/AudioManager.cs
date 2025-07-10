@@ -23,6 +23,8 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        //1. playerprefs 값셋팅
+        //2. saveValue(   ) ;\
     }
 
     private void Start()

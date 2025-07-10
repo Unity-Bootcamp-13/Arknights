@@ -5,19 +5,16 @@ public class AudioSFXSound : MonoBehaviour
 {
     [SerializeField] private AudioClip _sfxSound;
     
-    private AudioSource _audioSource;
+    [SerializeField] private AudioSource _audioSource;
 
-    private void Start()
+    public void Init(AudioManager manager)
     {
-        _audioSource = GetComponent<AudioSource>();
-        AudioManager manager = FindAnyObjectByType<AudioManager>();
         if (manager == null)
         {
             Debug.LogWarning("AudioManager를 찾지 못했습니다. 기본 출력 사용.");
             return;
         }
         _audioSource.outputAudioMixerGroup = manager.SFXGroup;
-        
     }
 
     public void PlaySFXSound()
