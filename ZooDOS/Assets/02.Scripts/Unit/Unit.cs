@@ -13,6 +13,7 @@ public class Unit : MonoBehaviour, IDamagable
     protected float _atkSpeed;
     protected float _projectileSpeed;
     [SerializeField] protected UnitHpUI _unitHpUI;
+    [SerializeField] protected AudioSFXSound _sfxSound;
 
 
     public Hp Hp => _hp;
@@ -29,6 +30,11 @@ public class Unit : MonoBehaviour, IDamagable
         PlayHealEffect?.Invoke(transform.position);
     }
 
+
+    public void SetSFXSound(AudioManager manager)
+    {
+        _sfxSound.Init(manager);
+    }
 
     public void SetHpUI(UnitHpUI ui)
     {
