@@ -8,7 +8,9 @@ public class EnemyUnitSpawner : MonoBehaviour
     [SerializeField] private UnitHpSpUIManager _unitHpSpUIManager;
     [SerializeField] private EffectManager _effectManager;
     [SerializeField] private StageData _stageData;
+    [SerializeField] private AudioManager _audioManager;
     [SerializeField] private GameManager gameManager;
+
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -61,7 +63,8 @@ public class EnemyUnitSpawner : MonoBehaviour
         enemy.Init(path);
         //적유닛이 아니면 아래 로직 호출 x
         if (enemy.EnemyUnitData.EnemyUnitType == EnemyUnitType.Nothing) return;
-        
+
+        enemy.SetSFXSound(_audioManager);
         enemy.Die += gameManager.OnEnemyDeath;
         enemy.OnArrived += gameManager.OnEnemyEnterDefensePoint;
 

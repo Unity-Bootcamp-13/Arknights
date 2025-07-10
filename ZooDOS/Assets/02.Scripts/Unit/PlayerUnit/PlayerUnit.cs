@@ -24,6 +24,7 @@ public class PlayerUnit : Unit
     private PlayerUnitSKill _basicAttack;
     private PlayerUnitSKill _skillAttack;
 
+
     float _remainSkillDuration;
     float _skillDuration;
     bool _isSkillActivated;
@@ -31,10 +32,6 @@ public class PlayerUnit : Unit
 
     public TileType TileType => _tileType;
     public Sp Sp => _sp;
-
-    Unit _target;
-    float _value;
-    Projectile _projectile;
 
 
     void Update()
@@ -73,6 +70,7 @@ public class PlayerUnit : Unit
 
     public void StartSkillEffect()
     {
+        _sfxSound.PlaySFXSound("SkillActivate");
         _skillActivateEffect = GetSkillEffect?.Invoke(transform.position);
     }  
     
@@ -125,6 +123,8 @@ public class PlayerUnit : Unit
     /// <param name="placedTile"></param>
     public virtual void OnPlace(List<Maptile> attackRange, Maptile currentTile)
     {
+        _sfxSound.PlaySFXSound("Place");
+
         _attackRange = attackRange;
         _hp.ResetHp();
         _sp.ResetSp();
@@ -180,6 +180,7 @@ public class PlayerUnit : Unit
         _unitSpUI = ui;
     }
 
+
     public void ShootDamageProjectile(Unit target, float value, Projectile projectile)
     {
 
@@ -220,6 +221,7 @@ public class PlayerUnit : Unit
     {
         AttackEvent?.Invoke();
         AttackEvent = null;
+        _sfxSound.PlaySFXSound("Attack");
     }
 
     public void SubscribeAttackEvent(Action attackEvent)
@@ -229,13 +231,12 @@ public class PlayerUnit : Unit
 
     public void SetTargetValue(Unit target, float value, Projectile projectile, Action<Unit, float, Projectile> attackEvent)
     {
-        _target = target;
-        _value = value;
-        _projectile = projectile;
         SubscribeAttackEvent(()=> 
         {
             attackEvent?.Invoke(target, value, projectile);
         });
+
+
 
         if (_isSkillActivated)
         {
@@ -270,6 +271,15 @@ public class PlayerUnit : Unit
         if (_isSkillActivated)
         {
             FinishSkillEffect();
+        }
+
+        if (_hp.HP <= 0)
+        {
+            _sfxSound.PlaySFXSound("Death");
+        }
+        else
+        {
+            _sfxSound.PlaySFXSound("UnPlace");
         }
 
         _basicAttack.UnBlockTargets();
