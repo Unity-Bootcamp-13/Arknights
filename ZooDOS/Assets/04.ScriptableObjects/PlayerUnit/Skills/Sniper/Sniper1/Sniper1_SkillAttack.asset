@@ -20,5 +20,5 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 6267384967294620990, guid: f8f36a6526cf5dc47b20d8e9984a6be4, type: 3}
   SkillCost: 50
   SkillIcon: {fileID: 129080382, guid: da8dd823901c1714181d86e8ac870153, type: 3}
-  SkillDescription: "20\uCD08 \uB3D9\uC548 \n\uC790\uC2E0\uC758 \uACF5\uACA9\uB825\uC774
-    25% \uAC10\uC18C\uD558\uACE0, \n\uACF5\uACA9 \uD0C0\uAC9F\uC774 1 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  SkillDescription: "20\uCD08 \uB3D9\uC548 \n\uACF5\uACA9\uB825\uC774 25% \uAC10\uC18C\uD558\uACE0,
+    \n\uACF5\uACA9 \uD0C0\uAC9F\uC774 1 \uC99D\uAC00\uD569\uB2C8\uB2E4."

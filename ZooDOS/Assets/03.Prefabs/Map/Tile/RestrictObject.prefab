@@ -208,7 +208,6 @@ GameObject:
   - component: {fileID: 1312205593625408166}
   - component: {fileID: 8610646798706090823}
   - component: {fileID: 6202476536465576042}
-  - component: {fileID: 3856748898837516380}
   m_Layer: 3
   m_Name: Tree 1
   m_TagString: Untagged
@@ -284,27 +283,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3856748898837516380
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3573560873945320640}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.6527746, y: 5.0425897, z: 1.1517272}
-  m_Center: {x: 0.18220207, y: 2.50641, z: -0.1360995}
 --- !u!1 &5563019546723115905
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +294,6 @@ GameObject:
   - component: {fileID: 2451920011978295406}
   - component: {fileID: 4667232723553670301}
   - component: {fileID: 1022311995934126795}
-  - component: {fileID: 7877467977231468648}
   m_Layer: 3
   m_Name: LittleStone 2
   m_TagString: Untagged
@@ -392,27 +369,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7877467977231468648
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5563019546723115905}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.27094674, y: 0.2831429, z: 0.27980095}
-  m_Center: {x: 0.004578948, y: -0.013283787, z: 0.0014685241}
 --- !u!1 &8169905788291637898
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,7 +380,6 @@ GameObject:
   - component: {fileID: 4121031574826918372}
   - component: {fileID: 7931010717107073216}
   - component: {fileID: 2969993893737019510}
-  - component: {fileID: 530748181859489075}
   m_Layer: 3
   m_Name: LittleStone 3
   m_TagString: Untagged
@@ -500,24 +455,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &530748181859489075
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8169905788291637898}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.31258607, y: 0.25341365, z: 0.19498146}
-  m_Center: {x: 0.019055828, y: 0.0038038488, z: 0.0059157265}

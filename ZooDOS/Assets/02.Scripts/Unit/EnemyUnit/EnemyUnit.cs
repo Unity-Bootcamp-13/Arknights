@@ -197,26 +197,36 @@ public class EnemyUnit : Unit
         }
         return last;
     }
-    
-    
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.TryGetComponent(out PlayerUnit unit))
-    //    {
-    //        SetPlayerUnit(unit);
-    //    }
-        
-    //}
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.TryGetComponent(out EnemyUnit enemy))
-    //    {
-    //        RemovePlayerUnit(enemy);
-    //    }
-        
-        
-        
-    //}
 
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(_enemyUnitData.EnemyUnitType == EnemyUnitType.ShortRange)
+        {
+            return;
+        }
+
+        if (other.TryGetComponent(out PlayerUnit unit))
+        {
+            SetPlayerUnit(unit);
+        }
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (_enemyUnitData.EnemyUnitType == EnemyUnitType.ShortRange)
+        {
+            return;
+        }
+
+        if (other.TryGetComponent(out EnemyUnit enemy))
+        {
+            RemovePlayerUnit(enemy);
+        }
+
+
+
+    }
+
+
 }

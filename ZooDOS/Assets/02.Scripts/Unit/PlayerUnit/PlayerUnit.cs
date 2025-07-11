@@ -128,7 +128,8 @@ public class PlayerUnit : Unit
         _attackRange = attackRange;
         _hp.ResetHp();
         _sp.ResetSp();
-
+        _isSpCharged = false;
+        _isSkillActivated = false;
 
         _basicAttack.SetRange(_attackRange, currentTile);
         _skillAttack.SetRange(_attackRange, currentTile);
