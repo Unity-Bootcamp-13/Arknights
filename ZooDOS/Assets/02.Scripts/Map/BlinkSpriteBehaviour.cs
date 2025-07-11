@@ -8,7 +8,7 @@ public class BlinkSpriteBehaviour : MonoBehaviour
     private Coroutine _blinkCoroutine;
     MaterialPropertyBlock _materialPropertyBlock;
 
-    [SerializeField] float _blinkInterval = 0.50f;
+    [SerializeField] float _blinkInterval = 0.1f;
 
     [Header("배치 깜박임")]
     [SerializeField] private Color _placement0 = new(0.4f, 0.5f, 1f, 0.5f);
@@ -30,7 +30,7 @@ public class BlinkSpriteBehaviour : MonoBehaviour
         _originColor = ReadColor(_materialPropertyBlock);
     }
 
-    public void StartBlink(Color c0, Color c1, float interval = 0.5f)
+    public void StartBlink(Color c0, Color c1, float interval = 0.1f)
     {
         StopBlink();                          
         _blinkCoroutine = StartCoroutine(BlinkRoutine(c0, c1, _blinkInterval));

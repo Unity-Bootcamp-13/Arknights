@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7485a5ec513473448c2340457cdadc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blinkInterval: 0.5
+  _blinkInterval: 0.1
   _placement0: {r: 0.4, g: 0.5, b: 1, a: 0.5}
   _placement1: {r: 0.4, g: 0.6, b: 1, a: 0.5}
   _attack0: {r: 0.95, g: 0.8, b: 0.95, a: 0.3}

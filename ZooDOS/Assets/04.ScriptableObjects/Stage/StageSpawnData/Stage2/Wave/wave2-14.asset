@@ -640,5 +640,5 @@ MonoBehaviour:
       y: 4
     - x: 10
       y: 4
-  _waveCount: 3
+  _waveCount: 10
   _startTime: 0

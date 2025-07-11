@@ -58,5 +58,5 @@ MonoBehaviour:
       y: 4
     - x: 10
       y: 4
-  _waveCount: 1
+  _waveCount: 2
   _startTime: 15
