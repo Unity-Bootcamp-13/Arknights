@@ -43,4 +43,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 96c8a8ad495644a40bdeb852dc950200, type: 2}
   - {fileID: 11400000, guid: 8e970578baf7f204a9cb50418750a2d7, type: 2}
   - {fileID: 11400000, guid: c83cd8964ef0c914fa1a9d530ef6b425, type: 2}
+  - {fileID: 11400000, guid: e6421b8ecfbccaa4192d1ca64d531057, type: 2}
   _stageLife: 10

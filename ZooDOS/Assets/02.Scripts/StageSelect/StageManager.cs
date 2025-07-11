@@ -89,8 +89,4 @@ public class StageManager : MonoBehaviour
         Debug.Log($"💾 스테이지 저장 완료: {SavePath}");
     }
 
-    public void ClickStageBtn(int stageNum)
-    {
-        SceneManager.LoadScene($"Stage_{stageNum}");
-    }
 }
